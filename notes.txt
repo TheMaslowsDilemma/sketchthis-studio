@@ -1,0 +1,32 @@
+----------------------------------------------------------
+Jan. 13 2026
+----------------------------------------------------------
+
+--- STUDIO GOAL ---
+i want to build a studio where a image description enters
+and the artist inside that studio (an llm) iterates on
+drafts, responds to critiques, and eventually produces a
+final sketch in SketchLang. this will power the @sketchthis
+project, to produce are entirely through the language model.
+
+
+--- ARTIST ---
+the artist is responsible for planning the steps, dividing
+the work into sections, and managing thought processes which
+recursively divide and conquer by adding details to the scene.
+the artist decides what depth of detail is required. each
+thought process must produce sketches for its delegated while
+delegating coherency, through negotiation with its neighboring
+tiles.
+
+--- COMPILATION ---
+we should verify that each piece produced by the thought
+processes can reliably line up...
+
+
+--- CRITIC ---
+the critic is responsible for reviewing the art and giving feed
+back, for specific sections. ill need to think more about how
+this one operates and if the referenced sections need to
+correspond to actual sections that were named by the artist.
+
