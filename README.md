@@ -91,7 +91,7 @@ flowchart TB
     style G fill:#f1f5f9,stroke:#94a3b8,color:#334155
     style H fill:#22c55e,stroke:#16a34a,color:#ffffff
     style I fill:#10b981,stroke:#059669,color:#ffffff
-    style J fill:#f1f5f9,stroke:#cbd5e1,color:#000000
+    style J fill:#f1f5f9,stroke:#000000,color:#000000
 
     style input fill:transparent,stroke:transparent
     style orchestration fill:transparent,stroke:transparent
