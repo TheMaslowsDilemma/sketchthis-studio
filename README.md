@@ -19,20 +19,20 @@ Prompt Design: Key prompts for top-level artist (detailed description + tiling) 
 
 ```mermaid
 flowchart TD
-    A[Image Description] --> B[Orchestrator]
-    B --> C1[Sub Artist 1]
-    B --> C2[Sub-Artist 2]
-    B --> C3[Sub-Artist 3]
-    B --> Cn[... Sub-Artist n]
-    C1 --> D[Neighbor Negotiation]
+    A[Image Description] --> B[ Orchestrator ]
+    B --> C1[ Sub Artist 1]
+    B --> C2[ Sub-Artist 2 ]
+    B --> C3[ Sub-Artist 3 ]
+    B --> Cn[... Sub-Artist n ]
+    C1 --> D[ Neighbor Negotiation ]
     C2 --> D
     C3 --> D
     Cn --> D
-    D --> E[Compile Sub-Works]
-    E --> F[Critique of SVG]
-    F --> G{Changes Needed?}
+    D --> E[ Compile Sub-Works ]
+    E --> F[ Critique SVG ]
+    F --> G{ Changes Needed? }
     G -->|Yes| B
-    G -->|No| H[Merge Works]
-    H --> I[Output: Sketchlang]
-    J[Logging] -.-> B & C1 & C2 & C3 & Cn & D & E & F & H
+    G -->|No| H[ Merge Works ]
+    H --> I[ Output: Sketchlang ]
+    J[ Logging ] -.-> B & C1 & C2 & C3 & Cn & D & E & F & H
 ```
