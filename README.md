@@ -43,27 +43,27 @@ flowchart TB
         B[Orchestrator]
     end
 
-    subgraph artists ["  Sub-Artists  "]
+    subgraph artists ["Sub-Artists      "]
         direction LR
-        C1[Artist 1]
-        C2[Artist 2]
-        C3[Artist 3]
-        Cn[Artist n]
+        C1["Artist 1        "]
+        C2["Artist 2        "]
+        C3["Artist 3        "]
+        Cn["Artist n        "]
     end
 
-    subgraph processing ["  Processing Pipeline  "]
-        D["  Neighbor Negotiation  "]
-        E["  Compile Sub-Works  "]
-        F["  Critique SVG   "]
-        G{"  Changes Needed?  "}
+    subgraph processing ["Processing Pipeline              "]
+        D["Neighbor Negotiation      "]
+        E["Compile Sub-Works      "]
+        F["Critique SVG       "]
+        G{"Changes Needed?      "}
     end
 
     subgraph output [" "]
-        H["  Merge Works  "]
-        I["  Output: SketchLang  "]
+        H["Merge Works      "]
+        I["Output: SketchLang          "]
     end
 
-    J["\tLogs\t"]
+    J["Logs    "]
 
     A --> B
     B --> C1 & C2 & C3 & Cn
