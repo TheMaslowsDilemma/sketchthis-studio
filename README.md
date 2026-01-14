@@ -45,15 +45,15 @@ flowchart TB
 
     subgraph artists ["Artists"]
         direction LR
-        C1["`$$A_1$$`"]
-        C2["`$$A_2$$`"]
-        C3["`$$A_3$$`"]
-        Cn["$$A_n$$"]
+        C1["`$A_1$`"]
+        C2["`$A_2$`"]
+        C3["`$A_3$`"]
+        Cn["`$A_n$`"]
     end
 
-    subgraph processing ["Processing Pipeline              "]
-        D["Neighbor Negotiation      "]
-        E["Compile Sub-Works      "]
+    subgraph processing [Processing Pipeline]
+        D[Neighbor Negotiation]
+        E[Compile Sub-Works]
         F["Critique SVG       "]
         G{"Changes Needed?      "}
     end
