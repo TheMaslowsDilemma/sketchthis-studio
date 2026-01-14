@@ -18,7 +18,8 @@ Prompt Design: Key prompts for top-level artist (detailed description + tiling) 
 ### Program Flow
 
 ```mermaid
-flowchart TD
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '13px', 'fontFamily': 'Inter'}}}%%
+flowchart LR
     A[Image Description] --> B[ Orchestrator ]
     B --> C1[ Sub Artist 1]
     B --> C2[ Sub-Artist 2 ]
