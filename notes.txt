@@ -21,12 +21,39 @@ tiles.
 
 --- COMPILATION ---
 we should verify that each piece produced by the thought
-processes can reliably line up...
-
+processes can reliably line up. *more thoughts below.
 
 --- CRITIC ---
 the critic is responsible for reviewing the art and giving feed
 back, for specific sections. ill need to think more about how
 this one operates and if the referenced sections need to
 correspond to actual sections that were named by the artist.
+
+
+----------------------------------------------------------
+Jan. 14 2026
+----------------------------------------------------------
+
+--- TRANSPARENCY AND MONITORING ---
+the studio will be written in golang. the process should be
+transparent. for example logging of top level plans by the
+artist, draft outputs (as svg), the critics responses. the
+errors during compilation from Sketchlang compiler, the number
+of tokens (is this possible) that the llm is using, and time
+to complete each step.
+
+--- PROMPT DESIGN ---
+there are a few crucial prompts here that we want easy access
+to. first the top level artist. this prompt must bring tell the
+llm to create a detailed description of the image requested,
+and then break the description into tiles for each recursive
+sub-artist to approach. 
+
+--- MERGING WORKS ---
+merging the sub-artists works back together will take negotiation
+between neighboring artists and will result in changes for the
+artists to make. for example if one artist is working on the torso
+of a main subject, while another is working on the arm and hand, the artists must communicate where that connection will take place.
+also before merging we should try to compile the sub artist work
+so we dont contaminate up.
 
