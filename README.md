@@ -63,7 +63,7 @@ flowchart TB
         I["  Output: SketchLang  "]
     end
 
-    J[Logs]
+    J["\tLogs\t"]
 
     A --> B
     B --> C1 & C2 & C3 & Cn
