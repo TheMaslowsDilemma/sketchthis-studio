@@ -45,10 +45,10 @@ flowchart TB
 
     subgraph artists ["Artists"]
         direction LR
-        C1[`1`"]
-        C2["`2`"]
-        C3["`3`"]
-        Cn["`n`"]
+        C1[1]
+        C2[2]
+        C3[3]
+        Cn[n]
     end
 
     subgraph processing [Processing Pipeline]
