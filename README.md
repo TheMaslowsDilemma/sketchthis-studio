@@ -43,12 +43,12 @@ flowchart TB
         B[Orchestrator]
     end
 
-    subgraph artists ["Sub-Artists      "]
+    subgraph artists ["Artists"]
         direction LR
-        C1["Artist 1        "]
-        C2["Artist 2        "]
-        C3["Artist 3        "]
-        Cn["Artist n        "]
+        C1["$$A_1$$"]
+        C2["$$A_2$$"]
+        C3["$$A_3$$"]
+        Cn["$$A_n$$"]
     end
 
     subgraph processing ["Processing Pipeline              "]
