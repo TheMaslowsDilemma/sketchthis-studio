@@ -29,73 +29,73 @@ Prompt Design: Key prompts for top-level artist (detailed description + tiling) 
     'secondaryColor': '#f1f5f9',
     'secondaryTextColor': '#334155',
     'tertiaryColor': '#ecfdf5',
-    'lineColor': '#94a3b8',
+    'lineColor': '#64748b',
     'textColor': '#334155'
   }
 }}%%
-
 flowchart TB
-    subgraph input [" "]
-        A[Image Description]
-    end
-
-    subgraph orchestration [" "]
-        B[Orchestrator]
-    end
-
-    subgraph artists ["Artists"]
+    A[Image Description]
+    B[Orchestrator]
+    
+    subgraph artists [Sub-Artists]
         direction LR
-        C1["1  ."]
-        C2["2  ."]
-        C3["3  ."]
-        Cn["n  ."]
+        C1[1]
+        C2[2]
+        C3[3]
+        Cn[n]
     end
-
+    
+    subgraph negotiation [Neighbor Negotiation]
+        direction LR
+        N1[Negotiate 1+2]
+        N2[Negotiate 3+n]
+    end
+    
     subgraph processing [Processing Pipeline]
-        D[Negotiate   .]
-        E[Compile     .]
-        F[Critique    .]
-        G{Changes?}
+        D[Combine]
+        E[Compile Sub-Works]
+        F[Critique SVG]
+        G{Changes Needed?}
     end
-
-    subgraph output [" "]
-        H["Merge Works      "]
-        I["Output: SketchLang          x"]
-    end
-
-    J["Logs    "]
-
+    
+    H[Merge Works]
+    I[Output: SketchLang]
+    J[Logs]
+    
     A --> B
     B --> C1 & C2 & C3 & Cn
-    C1 & C2 & C3 & Cn --> D
+    C1 & C2 --> N1
+    C3 & Cn --> N2
+    N1 & N2 --> D
     D --> E
     E --> F
     F --> G
     G -->|Yes| B
     G -->|No| H
     H --> I
-
-    J -.->|monitors| B
-    J -.->|monitors| D
-    J -.->|monitors| F
-
+    
+    J -. monitors .-> B
+    J -. monitors .-> D
+    J -. monitors .-> F
+    
     style A fill:#f8fafc,stroke:#cbd5e1,color:#334155
     style B fill:#6366f1,stroke:#4f46e5,color:#ffffff
     style C1 fill:#8b5cf6,stroke:#7c3aed,color:#ffffff
     style C2 fill:#8b5cf6,stroke:#7c3aed,color:#ffffff
     style C3 fill:#8b5cf6,stroke:#7c3aed,color:#ffffff
     style Cn fill:#8b5cf6,stroke:#7c3aed,color:#ffffff
-    style D fill:#06b6d4,stroke:#0891b2,color:#ffffff
+    style N1 fill:#06b6d4,stroke:#0891b2,color:#ffffff
+    style N2 fill:#06b6d4,stroke:#0891b2,color:#ffffff
+    style D fill:#0891b2,stroke:#0e7490,color:#ffffff
     style E fill:#14b8a6,stroke:#0d9488,color:#ffffff
     style F fill:#f59e0b,stroke:#d97706,color:#ffffff
     style G fill:#f1f5f9,stroke:#94a3b8,color:#334155
     style H fill:#22c55e,stroke:#16a34a,color:#ffffff
     style I fill:#10b981,stroke:#059669,color:#ffffff
-    style J fill:#f1f5f9,stroke:#000000,color:#000000
-
-    style input fill:transparent,stroke:transparent
-    style orchestration fill:transparent,stroke:transparent
-    style artists fill:#f8fafc,stroke:#e2e8f0,stroke-width:1px,rx:8
-    style processing fill:#f8fafc,stroke:#e2e8f0,stroke-width:1px,rx:8
-    style output fill:transparent,stroke:transparent
+    style J fill:#334155,stroke:#1e293b,color:#ffffff
+    style artists fill:#f8fafc,stroke:#e2e8f0,stroke-width:1px
+    style negotiation fill:#f8fafc,stroke:#e2e8f0,stroke-width:1px
+    style processing fill:#f8fafc,stroke:#e2e8f0,stroke-width:1px
+    
+    linkStyle 14,15,16 stroke:#334155,stroke-width:2px,stroke-dasharray:5
 ```
