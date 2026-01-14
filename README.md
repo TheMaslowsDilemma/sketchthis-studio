@@ -45,9 +45,9 @@ flowchart TB
 
     subgraph artists ["Artists"]
         direction LR
-        C1["$$A_1$$"]
-        C2["$$A_2$$"]
-        C3["$$A_3$$"]
+        C1["`$$A_1$$`"]
+        C2["`$$A_2$$`"]
+        C3["`$$A_3$$`"]
         Cn["$$A_n$$"]
     end
 
