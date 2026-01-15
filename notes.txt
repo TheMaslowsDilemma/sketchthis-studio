@@ -57,8 +57,10 @@ of a main subject, while another is working on the arm and hand, the artists mus
 also before merging we should try to compile the sub artist work
 so we dont contaminate up.
 
+--- PROMPTS ---
+below is an example of how i will prompt the sub-artists that get
+spawned from the original artists design.
 
---- PRE-AMBLE ---
 I am providing you a language specification Sketchlang and a section of a sketch that needs to be reviewed and thoroughly detailed. I will provide some meta information about the sketch as a whole, but you are only concerned about reviewing and fixing up the drafted section. You can assume variables that are referenced are defined and can be used.
 
 Here is the DSL <enter Lang Specification>
