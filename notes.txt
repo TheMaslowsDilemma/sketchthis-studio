@@ -61,9 +61,40 @@ so we dont contaminate up.
 below is an example of how i will prompt the sub-artists that get
 spawned from the original artists design.
 
+
+```
 I am providing you a language specification Sketchlang and a section of a sketch that needs to be reviewed and thoroughly detailed. I will provide some meta information about the sketch as a whole, but you are only concerned about reviewing and fixing up the drafted section. You can assume variables that are referenced are defined and can be used.
 
 Here is the DSL <enter Lang Specification>
 Here is the Sketch summary and meta info with the section in question: 
-< meta-inf > + < section-inf>
+<sketch summary > + < section-inf>
+```
+
+
+----------------------------------------------------------
+Jan. 15 2026
+----------------------------------------------------------
+
+--- KEEP IT SIMPLE ---
+the original idea was to use many different entities. i
+no longer think that is a good idea and will focus on keeping
+it simple. first attempt to build the pipes to complete a
+single pass through the sketch studio. this means we prompt
+the llm to produce a detailed description, summary, and metadata
+about an input image request along with a primary drafted
+contour sketch containing the initial sections with corresponding
+titles section descriptions.
+we then compile that and keep results <title>_contours.svg for
+viewing purposes. assuming that compilation passes we parse the
+sketch summary, and sketch details, to create the Sketch type
+which can be iterated on by sub-artists. this means each sub
+artist will work on expanding their own section and adding meticulous
+detail, while keeping in mind the metadata and larger picture idea.
+we will top-to-bottom iterate. each iteration will produce some
+expanded sketchlang output, which we will append into a file
+<title>_expanded.sketch
+we should compile that file after each iteration to make sure its
+working as expected. we can save the compiled svg as
+<title>_expanded_<section-title>.svg so that we can see the progress
+we do this for all sections and finally produce the final!
 

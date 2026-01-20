@@ -1,0 +1,1464 @@
+# ============================================
+# THE LONG MARCH - Initial Contours
+# A lone penguin facing distant mountains
+# Canvas: 200mm x 200mm
+# ============================================
+
+# --------------------------------------------
+# SECTION: Mountain Range (Background)
+# Jagged peaks on the horizon
+# --------------------------------------------
+
+# Left mountain cluster
+let mtn1_base_left : vec = (0, 55)
+let mtn1_peak : vec = (25, 28)
+let mtn1_base_right : vec = (45, 55)
+draw stroke from mtn1_base_left to mtn1_peak via [(10, 48), (18, 35)]
+draw stroke from mtn1_peak to mtn1_base_right via [(32, 38), (40, 50)]
+
+# Central dominant peak
+let mtn2_base_left : vec = (35, 55)
+let mtn2_peak : vec = (70, 18)
+let mtn2_base_right : vec = (100, 55)
+draw stroke from mtn2_base_left to mtn2_peak via [(45, 45), (55, 30), (62, 22)]
+draw stroke from mtn2_peak to mtn2_base_right via [(78, 25), (88, 40), (95, 50)]
+
+# Right mountain cluster
+let mtn3_base_left : vec = (90, 55)
+let mtn3_peak : vec = (120, 32)
+let mtn3_base_right : vec = (145, 55)
+draw stroke from mtn3_base_left to mtn3_peak via [(100, 48), (110, 38)]
+draw stroke from mtn3_peak to mtn3_base_right via [(130, 42), (140, 52)]
+
+# Far right smaller peak
+let mtn4_base_left : vec = (140, 55)
+let mtn4_peak : vec = (165, 40)
+let mtn4_base_right : vec = (200, 55)
+draw stroke from mtn4_base_left to mtn4_peak via [(150, 50), (158, 44)]
+draw stroke from mtn4_peak to mtn4_base_right via [(175, 45), (190, 52)]
+
+# --------------------------------------------
+# SECTION: Horizon Line
+# Where land meets sky
+# --------------------------------------------
+
+let horizon_left : vec = (0, 55)
+let horizon_right : vec = (200, 55)
+trace stroke from horizon_left to horizon_right
+
+# --------------------------------------------
+# SECTION: Penguin Body (Main Subject)
+# Viewed from behind, lower right of canvas
+# --------------------------------------------
+
+# Body outline - left side (black plumage)
+let body_top_left : vec = (115, 105)
+let body_mid_left : vec = (108, 140)
+let body_bottom_left : vec = (112, 175)
+draw stroke from body_top_left to body_bottom_left via [(110, 115), (106, 130), (body_mid_left), (107, 155), (109, 168)]
+
+# Body outline - right side (black plumage)
+let body_top_right : vec = (145, 105)
+let body_mid_right : vec = (152, 140)
+let body_bottom_right : vec = (148, 175)
+draw stroke from body_top_right to body_bottom_right via [(150, 115), (154, 130), (body_mid_right), (153, 155), (151, 168)]
+
+# White belly edge - left visible side
+let white_left_top : vec = (110, 120)
+let white_left_bottom : vec = (113, 170)
+draw stroke from white_left_top to white_left_bottom via [(107, 135), (108, 150), (110, 165)]
+
+# White belly edge - right visible side  
+let white_right_top : vec = (150, 120)
+let white_right_bottom : vec = (147, 170)
+draw stroke from white_right_top to white_right_bottom via [(153, 135), (152, 150), (150, 165)]
+
+# --------------------------------------------
+# SECTION: Penguin Head
+# Turned slightly left, looking at mountains
+# --------------------------------------------
+
+# Head outline - back of head
+let head_back_top : vec = (120, 88)
+let head_crown : vec = (128, 82)
+let head_back_bottom : vec = (115, 105)
+draw stroke from head_back_bottom to head_crown via [(117, 98), (119, 92), (head_back_top)]
+
+# Head outline - front/face side
+let head_front_bottom : vec = (145, 105)
+let beak_base : vec = (138, 90)
+let beak_tip : vec = (132, 86)
+draw stroke from head_front_bottom to beak_base via [(144, 100), (142, 95)]
+draw stroke from beak_base to beak_tip
+draw stroke from beak_tip to head_crown via [(130, 84)]
+
+# Neck connection
+draw stroke from head_back_bottom to body_top_left
+draw stroke from head_front_bottom to body_top_right
+
+# Eye indication
+let eye_pos : vec = (136, 92)
+draw dot at eye_pos
+
+# Yellow/orange ear patch outline (left visible)
+let ear_patch_top : vec = (122, 94)
+let ear_patch_bottom : vec = (118, 104)
+draw stroke from ear_patch_top to ear_patch_bottom via [(120, 99)]
+
+# --------------------------------------------
+# SECTION: Penguin Flippers
+# Held at sides
+# --------------------------------------------
+
+# Left flipper
+let flipper_left_top : vec = (106, 118)
+let flipper_left_tip : vec = (100, 150)
+let flipper_left_back : vec = (108, 145)
+draw stroke from flipper_left_top to flipper_left_tip via [(103, 130), (100, 142)]
+draw stroke from flipper_left_tip to flipper_left_back via [(104, 150)]
+
+# Right flipper (partially hidden)
+let flipper_right_top : vec = (154, 118)
+let flipper_right_tip : vec = (160, 148)
+let flipper_right_back : vec = (152, 144)
+draw stroke from flipper_right_top to flipper_right_tip via [(157, 130), (160, 142)]
+draw stroke from flipper_right_tip to flipper_right_back via [(156, 149)]
+
+# --------------------------------------------
+# SECTION: Penguin Feet
+# Planted on ice
+# --------------------------------------------
+
+# Left foot
+let foot_left_heel : vec = (115, 175)
+let foot_left_front : vec = (108, 182)
+let foot_left_outer : vec = (104, 180)
+draw stroke from foot_left_heel to foot_left_front via [(112, 180)]
+draw stroke from foot_left_front to foot_left_outer
+draw stroke from foot_left_outer to foot_left_heel via [(108, 176)]
+
+# Right foot
+let foot_right_heel : vec = (145, 175)
+let foot_right_front : vec = (152, 182)
+let foot_right_outer : vec = (156, 180)
+draw stroke from foot_right_heel to foot_right_front via [(148, 180)]
+draw stroke from foot_right_front to foot_right_outer
+draw stroke from foot_right_outer to foot_right_heel via [(152, 176)]
+
+# --------------------------------------------
+# SECTION: Snow Ground (Foreground)
+# Immediate terrain around penguin
+# --------------------------------------------
+
+# Snow drift near penguin - left
+let drift1_start : vec = (0, 178)
+let drift1_end : vec = (95, 182)
+draw stroke from drift1_start to drift1_end via [(30, 180), (60, 179), (80, 181)]
+
+# Snow drift near penguin - right
+let drift2_start : vec = (165, 180)
+let drift2_end : vec = (200, 176)
+draw stroke from drift2_start to drift2_end via [(180, 179), (195, 177)]
+
+# Small ice features
+let ice1_start : vec = (20, 185)
+let ice1_end : vec = (45, 188)
+draw stroke from ice1_start to ice1_end via [(32, 184)]
+
+let ice2_start : vec = (170, 190)
+let ice2_end : vec = (195, 188)
+draw stroke from ice2_start to ice2_end via [(182, 192)]
+
+# --------------------------------------------
+# SECTION: Distant Plains
+# Sparse marks indicating vast distance
+# --------------------------------------------
+
+# Subtle snow ridges in middle distance
+let ridge1_start : vec = (0, 75)
+let ridge1_end : vec = (60, 78)
+trace stroke from ridge1_start to ridge1_end via [(20, 76), (40, 77)]
+
+let ridge2_start : vec = (140, 72)
+let ridge2_end : vec = (200, 75)
+trace stroke from ridge2_start to ridge2_end via [(160, 73), (180, 74)]
+
+# Distant ice formation
+let distant_ice_start : vec = (75, 68)
+let distant_ice_end : vec = (95, 70)
+trace stroke from distant_ice_start to distant_ice_end
+
+# Track marks suggesting the path ahead (very subtle)
+let path1_start : vec = (125, 95)
+let path1_end : vec = (122, 85)
+trace stroke from path1_start to path1_end
+
+let path2_start : vec = (128, 80)
+let path2_end : vec = (125, 70)
+trace stroke from path2_start to path2_end
+
+let path3_start : vec = (126, 65)
+let path3_end : vec = (124, 58)
+trace stroke from path3_start to path3_end
+
+# ============================================
+# END CONTOURS
+# ============================================
+
+# === EXPANDED DETAILS ===
+
+
+# Section: Penguin Body
+# ============================================
+# SECTION DETAIL: Penguin Body
+# Adding plumage texture and shading to the back
+# ============================================
+
+# --- Black plumage texture strokes ---
+# Feather direction flows downward on the back
+
+# Upper back feather strokes
+let body_feather1_start : vec = (118, 110)
+let body_feather1_end : vec = (120, 118)
+draw stroke from body_feather1_start to body_feather1_end
+
+let body_feather2_start : vec = (125, 108)
+let body_feather2_end : vec = (126, 117)
+draw stroke from body_feather2_start to body_feather2_end
+
+let body_feather3_start : vec = (132, 108)
+let body_feather3_end : vec = (133, 116)
+draw stroke from body_feather3_start to body_feather3_end
+
+let body_feather4_start : vec = (140, 110)
+let body_feather4_end : vec = (141, 118)
+draw stroke from body_feather4_start to body_feather4_end
+
+# Mid-back feather texture - denser coverage
+let body_mid1_start : vec = (115, 122)
+let body_mid1_end : vec = (118, 132)
+draw stroke from body_mid1_start to body_mid1_end via [(116, 127)]
+
+let body_mid2_start : vec = (122, 120)
+let body_mid2_end : vec = (124, 130)
+draw stroke from body_mid2_start to body_mid2_end
+
+let body_mid3_start : vec = (129, 118)
+let body_mid3_end : vec = (130, 128)
+draw stroke from body_mid3_start to body_mid3_end
+
+let body_mid4_start : vec = (136, 118)
+let body_mid4_end : vec = (137, 129)
+draw stroke from body_mid4_start to body_mid4_end
+
+let body_mid5_start : vec = (143, 120)
+let body_mid5_end : vec = (144, 131)
+draw stroke from body_mid5_start to body_mid5_end via [(144, 125)]
+
+# Central spine area - darker strokes
+let body_spine1_start : vec = (128, 115)
+let body_spine1_end : vec = (129, 125)
+draw stroke from body_spine1_start to body_spine1_end
+
+let body_spine2_start : vec = (130, 128)
+let body_spine2_end : vec = (130, 140)
+draw stroke from body_spine2_start to body_spine2_end
+
+let body_spine3_start : vec = (129, 142)
+let body_spine3_end : vec = (130, 155)
+draw stroke from body_spine3_start to body_spine3_end
+
+# --- Lower back feather strokes ---
+let body_lower1_start : vec = (112, 145)
+let body_lower1_end : vec = (115, 158)
+draw stroke from body_lower1_start to body_lower1_end via [(113, 152)]
+
+let body_lower2_start : vec = (120, 138)
+let body_lower2_end : vec = (122, 152)
+draw stroke from body_lower2_start to body_lower2_end
+
+let body_lower3_start : vec = (127, 140)
+let body_lower3_end : vec = (128, 155)
+draw stroke from body_lower3_start to body_lower3_end
+
+let body_lower4_start : vec = (134, 140)
+let body_lower4_end : vec = (135, 154)
+draw stroke from body_lower4_start to body_lower4_end
+
+let body_lower5_start : vec = (141, 138)
+let body_lower5_end : vec = (143, 152)
+draw stroke from body_lower5_start to body_lower5_end
+
+let body_lower6_start : vec = (148, 145)
+let body_lower6_end : vec = (149, 158)
+draw stroke from body_lower6_start to body_lower6_end via [(149, 152)]
+
+# --- Rump area strokes approaching feet ---
+let body_rump1_start : vec = (116, 160)
+let body_rump1_end : vec = (118, 172)
+draw stroke from body_rump1_start to body_rump1_end
+
+let body_rump2_start : vec = (125, 158)
+let body_rump2_end : vec = (126, 170)
+draw stroke from body_rump2_start to body_rump2_end
+
+let body_rump3_start : vec = (135, 158)
+let body_rump3_end : vec = (136, 170)
+draw stroke from body_rump3_start to body_rump3_end
+
+let body_rump4_start : vec = (144, 160)
+let body_rump4_end : vec = (145, 172)
+draw stroke from body_rump4_start to body_rump4_end
+
+# --- Shading with dashes for depth ---
+# Left side darker (shadow)
+let body_shade1 : vec = (110, 128)
+draw dash at body_shade1
+
+let body_shade2 : vec = (109, 138)
+draw dash at body_shade2
+
+let body_shade3 : vec = (110, 148)
+draw dash at body_shade3
+
+let body_shade4 : vec = (111, 158)
+draw dash at body_shade4
+
+let body_shade5 : vec = (109, 135)
+draw dash at body_shade5
+
+# Additional left edge shading
+let body_shade6 : vec = (112, 125)
+draw dash at body_shade6
+
+let body_shade7 : vec = (108, 143)
+draw dash at body_shade7
+
+# Right side lighter shading (less dense)
+let body_shade8 : vec = (150, 132)
+draw dash at body_shade8
+
+let body_shade9 : vec = (151, 148)
+draw dash at body_shade9
+
+# --- White side boundary detail ---
+# Soft transition strokes where black meets white
+
+# Left white edge detail
+let body_white_left1_start : vec = (109, 125)
+let body_white_left1_end : vec = (111, 130)
+draw stroke from body_white_left1_start to body_white_left1_end
+
+let body_white_left2_start : vec = (108, 140)
+let body_white_left2_end : vec = (110, 145)
+draw stroke from body_white_left2_start to body_white_left2_end
+
+let body_white_left3_start : vec = (109, 155)
+let body_white_left3_end : vec = (111, 162)
+draw stroke from body_white_left3_start to body_white_left3_end
+
+# Right white edge detail
+let body_white_right1_start : vec = (151, 125)
+let body_white_right1_end : vec = (149, 130)
+draw stroke from body_white_right1_start to body_white_right1_end
+
+let body_white_right2_start : vec = (152, 142)
+let body_white_right2_end : vec = (150, 148)
+draw stroke from body_white_right2_start to body_white_right2_end
+
+let body_white_right3_start : vec = (151, 157)
+let body_white_right3_end : vec = (149, 163)
+draw stroke from body_white_right3_start to body_white_right3_end
+
+# --- Subtle shoulder definition ---
+let body_shoulder_left_start : vec = (112, 112)
+let body_shoulder_left_end : vec = (117, 118)
+draw stroke from body_shoulder_left_start to body_shoulder_left_end
+
+let body_shoulder_right_start : vec = (148, 112)
+let body_shoulder_right_end : vec = (143, 118)
+draw stroke from body_shoulder_right_start to body_shoulder_right_end
+
+# --- Cross-hatch shading for rounded form ---
+let body_cross1_start : vec = (118, 135)
+let body_cross1_end : vec = (124, 138)
+draw stroke from body_cross1_start to body_cross1_end
+
+let body_cross2_start : vec = (136, 135)
+let body_cross2_end : vec = (142, 138)
+draw stroke from body_cross2_start to body_cross2_end
+
+let body_cross3_start : vec = (120, 150)
+let body_cross3_end : vec = (126, 152)
+draw stroke from body_cross3_start to body_cross3_end
+
+let body_cross4_start : vec = (134, 150)
+let body_cross4_end : vec = (140, 152)
+draw stroke from body_cross4_start to body_cross4_end
+
+# Section: Penguin Head
+# ============================================
+# SECTION DETAIL: Penguin Head
+# Adding texture, plumage detail, and ear patch
+# ============================================
+
+# Black plumage texture on back of head
+# Short strokes following the curve of the skull
+let head_plume1_start : vec = (119, 90)
+let head_plume1_end : vec = (121, 93)
+draw stroke from head_plume1_start to head_plume1_end
+
+let head_plume2_start : vec = (121, 88)
+let head_plume2_end : vec = (124, 91)
+draw stroke from head_plume2_start to head_plume2_end
+
+let head_plume3_start : vec = (124, 86)
+let head_plume3_end : vec = (126, 89)
+draw stroke from head_plume3_start to head_plume3_end
+
+let head_plume4_start : vec = (117, 94)
+let head_plume4_end : vec = (118, 98)
+draw stroke from head_plume4_start to head_plume4_end
+
+let head_plume5_start : vec = (116, 99)
+let head_plume5_end : vec = (117, 103)
+draw stroke from head_plume5_start to head_plume5_end
+
+# Crown detail strokes
+let head_crown_detail1_start : vec = (126, 83)
+let head_crown_detail1_end : vec = (128, 85)
+draw stroke from head_crown_detail1_start to head_crown_detail1_end
+
+let head_crown_detail2_start : vec = (128, 83)
+let head_crown_detail2_end : vec = (130, 85)
+draw stroke from head_crown_detail2_start to head_crown_detail2_end
+
+# Yellow-orange ear patch - internal texture strokes
+# These create the distinctive emperor penguin marking
+let head_ear_stroke1_start : vec = (121, 95)
+let head_ear_stroke1_end : vec = (119, 99)
+draw stroke from head_ear_stroke1_start to head_ear_stroke1_end
+
+let head_ear_stroke2_start : vec = (122, 96)
+let head_ear_stroke2_end : vec = (120, 101)
+draw stroke from head_ear_stroke2_start to head_ear_stroke2_end
+
+let head_ear_stroke3_start : vec = (120, 98)
+let head_ear_stroke3_end : vec = (118, 103)
+draw stroke from head_ear_stroke3_start to head_ear_stroke3_end
+
+# Ear patch shading with dashes - creates color impression
+let head_ear_dash1 : vec = (120, 97)
+draw dash at head_ear_dash1
+
+let head_ear_dash2 : vec = (121, 99)
+draw dash at head_ear_dash2
+
+let head_ear_dash3 : vec = (119, 100)
+draw dash at head_ear_dash3
+
+let head_ear_dash4 : vec = (120, 102)
+draw dash at head_ear_dash4
+
+let head_ear_dash5 : vec = (118, 101)
+draw dash at head_ear_dash5
+
+# Beak detail - upper and lower mandible definition
+let head_beak_ridge_start : vec = (133, 87)
+let head_beak_ridge_end : vec = (137, 89)
+draw stroke from head_beak_ridge_start to head_beak_ridge_end
+
+let head_beak_lower_start : vec = (134, 88)
+let head_beak_lower_end : vec = (138, 91)
+draw stroke from head_beak_lower_start to head_beak_lower_end
+
+# Beak tip detail
+let head_beak_tip_detail : vec = (132, 87)
+draw dot at head_beak_tip_detail
+
+# Eye detail - add depth around eye
+let head_eye_ring1_start : vec = (135, 91)
+let head_eye_ring1_end : vec = (137, 91)
+scribble stroke from head_eye_ring1_start to head_eye_ring1_end
+
+let head_eye_ring2_start : vec = (137, 92)
+let head_eye_ring2_end : vec = (137, 93)
+scribble stroke from head_eye_ring2_start to head_eye_ring2_end
+
+# White face marking edge
+let head_white_face_start : vec = (134, 93)
+let head_white_face_end : vec = (140, 98)
+draw stroke from head_white_face_start to head_white_face_end via [(137, 95)]
+
+# Neck plumage flowing to body - creates smooth transition
+let head_neck_plume1_start : vec = (118, 103)
+let head_neck_plume1_end : vec = (116, 107)
+draw stroke from head_neck_plume1_start to head_neck_plume1_end
+
+let head_neck_plume2_start : vec = (120, 104)
+let head_neck_plume2_end : vec = (117, 109)
+draw stroke from head_neck_plume2_start to head_neck_plume2_end
+
+let head_neck_plume3_start : vec = (143, 103)
+let head_neck_plume3_end : vec = (144, 107)
+draw stroke from head_neck_plume3_start to head_neck_plume3_end
+
+let head_neck_plume4_start : vec = (141, 104)
+let head_neck_plume4_end : vec = (143, 109)
+draw stroke from head_neck_plume4_start to head_neck_plume4_end
+
+# Black plumage shading - back of head
+let head_shade_dash1 : vec = (118, 92)
+draw dash at head_shade_dash1
+
+let head_shade_dash2 : vec = (120, 95)
+draw dash at head_shade_dash2
+
+let head_shade_dash3 : vec = (117, 96)
+draw dash at head_shade_dash3
+
+let head_shade_dash4 : vec = (116, 100)
+draw dash at head_shade_dash4
+
+let head_shade_dash5 : vec = (119, 101)
+draw dash at head_shade_dash5
+
+# Forehead texture
+let head_forehead1_start : vec = (129, 84)
+let head_forehead1_end : vec = (131, 86)
+draw stroke from head_forehead1_start to head_forehead1_end
+
+let head_forehead2_start : vec = (130, 85)
+let head_forehead2_end : vec = (133, 88)
+draw stroke from head_forehead2_start to head_forehead2_end
+
+# Subtle cheek contour
+let head_cheek_start : vec = (139, 93)
+let head_cheek_end : vec = (141, 98)
+draw stroke from head_cheek_start to head_cheek_end via [(140, 96)]
+
+# Additional feather texture on dark areas
+let head_feather1_start : vec = (122, 92)
+let head_feather1_end : vec = (123, 95)
+draw stroke from head_feather1_start to head_feather1_end
+
+let head_feather2_start : vec = (125, 88)
+let head_feather2_end : vec = (126, 91)
+draw stroke from head_feather2_start to head_feather2_end
+
+# Neck junction shading for depth
+let head_neck_shade1 : vec = (122, 106)
+draw dash at head_neck_shade1
+
+let head_neck_shade2 : vec = (125, 105)
+draw dash at head_neck_shade2
+
+let head_neck_shade3 : vec = (138, 106)
+draw dash at head_neck_shade3
+
+let head_neck_shade4 : vec = (135, 105)
+draw dash at head_neck_shade4
+
+# Section: Penguin Flippers
+# ============================================
+# SECTION DETAIL: Penguin Flippers
+# Adding texture, shading, and feather detail
+# ============================================
+
+# --- Left Flipper Detail ---
+# The left flipper is more visible from behind
+
+# Upper flipper connection to body
+let flip_l_connect1 : vec = (107, 120)
+let flip_l_connect2 : vec = (109, 125)
+draw stroke from flip_l_connect1 to flip_l_connect2
+
+# Flipper surface contour strokes - following the form
+let flip_l_contour1_start : vec = (105, 125)
+let flip_l_contour1_end : vec = (102, 138)
+draw stroke from flip_l_contour1_start to flip_l_contour1_end via [(103, 132)]
+
+let flip_l_contour2_start : vec = (106, 128)
+let flip_l_contour2_end : vec = (103, 142)
+draw stroke from flip_l_contour2_start to flip_l_contour2_end via [(104, 135)]
+
+# Inner edge definition
+let flip_l_inner1 : vec = (107, 130)
+let flip_l_inner2 : vec = (106, 143)
+draw stroke from flip_l_inner1 to flip_l_inner2 via [(107, 137)]
+
+# Shading strokes on left flipper - darker toward edges
+let flip_l_shade1 : vec = (104, 132)
+let flip_l_shade2 : vec = (102, 140)
+draw stroke from flip_l_shade1 to flip_l_shade2
+
+let flip_l_shade3 : vec = (103, 136)
+let flip_l_shade4 : vec = (101, 145)
+draw stroke from flip_l_shade3 to flip_l_shade4
+
+# Dashes for tone on left flipper surface
+let flip_l_dash1 : vec = (105, 130)
+draw dash at flip_l_dash1
+
+let flip_l_dash2 : vec = (104, 135)
+draw dash at flip_l_dash2
+
+let flip_l_dash3 : vec = (103, 140)
+draw dash at flip_l_dash3
+
+let flip_l_dash4 : vec = (102, 144)
+draw dash at flip_l_dash4
+
+let flip_l_dash5 : vec = (105, 138)
+draw dash at flip_l_dash5
+
+let flip_l_dash6 : vec = (104, 142)
+draw dash at flip_l_dash6
+
+# Flipper tip detail
+let flip_l_tip1 : vec = (101, 147)
+let flip_l_tip2 : vec = (100, 150)
+draw stroke from flip_l_tip1 to flip_l_tip2
+
+let flip_l_tip3 : vec = (102, 148)
+let flip_l_tip4 : vec = (104, 149)
+draw stroke from flip_l_tip3 to flip_l_tip4
+
+# --- Right Flipper Detail ---
+# Partially hidden behind body, less detail visible
+
+# Upper connection to body
+let flip_r_connect1 : vec = (153, 120)
+let flip_r_connect2 : vec = (151, 125)
+draw stroke from flip_r_connect1 to flip_r_connect2
+
+# Visible outer edge contours
+let flip_r_contour1_start : vec = (155, 125)
+let flip_r_contour1_end : vec = (158, 138)
+draw stroke from flip_r_contour1_start to flip_r_contour1_end via [(157, 132)]
+
+let flip_r_contour2_start : vec = (156, 130)
+let flip_r_contour2_end : vec = (159, 142)
+draw stroke from flip_r_contour2_start to flip_r_contour2_end via [(158, 136)]
+
+# Inner edge where flipper meets body
+let flip_r_inner1 : vec = (153, 128)
+let flip_r_inner2 : vec = (152, 140)
+draw stroke from flip_r_inner1 to flip_r_inner2 via [(153, 134)]
+
+# Shading on right flipper - heavier as it curves away
+let flip_r_shade1 : vec = (157, 133)
+let flip_r_shade2 : vec = (159, 140)
+draw stroke from flip_r_shade1 to flip_r_shade2
+
+let flip_r_shade3 : vec = (158, 138)
+let flip_r_shade4 : vec = (159, 145)
+draw stroke from flip_r_shade3 to flip_r_shade4
+
+# Dashes for right flipper shading
+let flip_r_dash1 : vec = (156, 132)
+draw dash at flip_r_dash1
+
+let flip_r_dash2 : vec = (157, 137)
+draw dash at flip_r_dash2
+
+let flip_r_dash3 : vec = (158, 142)
+draw dash at flip_r_dash3
+
+let flip_r_dash4 : vec = (155, 136)
+draw dash at flip_r_dash4
+
+let flip_r_dash5 : vec = (157, 144)
+draw dash at flip_r_dash5
+
+# Right flipper tip detail
+let flip_r_tip1 : vec = (159, 145)
+let flip_r_tip2 : vec = (160, 148)
+draw stroke from flip_r_tip1 to flip_r_tip2
+
+let flip_r_tip3 : vec = (158, 147)
+let flip_r_tip4 : vec = (156, 148)
+draw stroke from flip_r_tip3 to flip_r_tip4
+
+# --- Body-Flipper Junction Shading ---
+# Dark area where flippers meet the body
+
+# Left side shadow
+let flip_body_shadow_l1 : vec = (108, 120)
+let flip_body_shadow_l2 : vec = (107, 128)
+scribble stroke from flip_body_shadow_l1 to flip_body_shadow_l2
+
+let flip_body_dash_l1 : vec = (109, 122)
+draw dash at flip_body_dash_l1
+
+let flip_body_dash_l2 : vec = (108, 126)
+draw dash at flip_body_dash_l2
+
+# Right side shadow
+let flip_body_shadow_r1 : vec = (152, 120)
+let flip_body_shadow_r2 : vec = (153, 128)
+scribble stroke from flip_body_shadow_r1 to flip_body_shadow_r2
+
+let flip_body_dash_r1 : vec = (151, 122)
+draw dash at flip_body_dash_r1
+
+let flip_body_dash_r2 : vec = (152, 126)
+draw dash at flip_body_dash_r2
+
+# Section: Penguin Feet
+# ============================================
+# SECTION DETAILS: Penguin Feet
+# Webbed feet showing determination, planted on ice
+# ============================================
+
+# --- Left Foot Detail ---
+
+# Webbing between toes - left foot
+let feet_lweb1_start : vec = (108, 182)
+let feet_lweb1_mid : vec = (106, 184)
+let feet_lweb1_end : vec = (104, 180)
+draw stroke from feet_lweb1_start to feet_lweb1_mid
+draw stroke from feet_lweb1_mid to feet_lweb1_end
+
+# Additional toe definition - left foot
+let feet_ltoe1 : vec = (106, 183)
+let feet_ltoe1_tip : vec = (103, 186)
+draw stroke from feet_ltoe1 to feet_ltoe1_tip
+
+let feet_ltoe2 : vec = (109, 182)
+let feet_ltoe2_tip : vec = (108, 187)
+draw stroke from feet_ltoe2 to feet_ltoe2_tip
+
+let feet_ltoe3 : vec = (111, 181)
+let feet_ltoe3_tip : vec = (113, 185)
+draw stroke from feet_ltoe3 to feet_ltoe3_tip
+
+# Webbing texture - left foot (dashes for shading)
+let feet_lweb_shade1 : vec = (106, 181)
+draw dash at feet_lweb_shade1
+
+let feet_lweb_shade2 : vec = (108, 183)
+draw dash at feet_lweb_shade2
+
+let feet_lweb_shade3 : vec = (105, 183)
+draw dash at feet_lweb_shade3
+
+# Ankle/leg connection detail - left
+let feet_lankle1 : vec = (114, 173)
+let feet_lankle2 : vec = (116, 176)
+draw stroke from feet_lankle1 to feet_lankle2
+
+let feet_lankle3 : vec = (113, 174)
+let feet_lankle4 : vec = (111, 177)
+draw stroke from feet_lankle3 to feet_lankle4
+
+# --- Right Foot Detail ---
+
+# Webbing between toes - right foot
+let feet_rweb1_start : vec = (152, 182)
+let feet_rweb1_mid : vec = (154, 184)
+let feet_rweb1_end : vec = (156, 180)
+draw stroke from feet_rweb1_start to feet_rweb1_mid
+draw stroke from feet_rweb1_mid to feet_rweb1_end
+
+# Additional toe definition - right foot
+let feet_rtoe1 : vec = (154, 183)
+let feet_rtoe1_tip : vec = (157, 186)
+draw stroke from feet_rtoe1 to feet_rtoe1_tip
+
+let feet_rtoe2 : vec = (151, 182)
+let feet_rtoe2_tip : vec = (152, 187)
+draw stroke from feet_rtoe2 to feet_rtoe2_tip
+
+let feet_rtoe3 : vec = (149, 181)
+let feet_rtoe3_tip : vec = (147, 185)
+draw stroke from feet_rtoe3 to feet_rtoe3_tip
+
+# Webbing texture - right foot (dashes for shading)
+let feet_rweb_shade1 : vec = (154, 181)
+draw dash at feet_rweb_shade1
+
+let feet_rweb_shade2 : vec = (152, 183)
+draw dash at feet_rweb_shade2
+
+let feet_rweb_shade3 : vec = (155, 183)
+draw dash at feet_rweb_shade3
+
+# Ankle/leg connection detail - right
+let feet_rankle1 : vec = (146, 173)
+let feet_rankle2 : vec = (144, 176)
+draw stroke from feet_rankle1 to feet_rankle2
+
+let feet_rankle3 : vec = (147, 174)
+let feet_rankle4 : vec = (149, 177)
+draw stroke from feet_rankle3 to feet_rankle4
+
+# --- Ice contact shadows under feet ---
+
+# Shadow beneath left foot
+let feet_lshadow1 : vec = (104, 181)
+let feet_lshadow2 : vec = (102, 183)
+scribble stroke from feet_lshadow1 to feet_lshadow2
+
+let feet_lshadow3 : vec = (106, 185)
+let feet_lshadow4 : vec = (110, 186)
+scribble stroke from feet_lshadow3 to feet_lshadow4
+
+let feet_lshadow_dash1 : vec = (107, 184)
+scribble dash at feet_lshadow_dash1
+
+let feet_lshadow_dash2 : vec = (105, 182)
+scribble dash at feet_lshadow_dash2
+
+# Shadow beneath right foot
+let feet_rshadow1 : vec = (156, 181)
+let feet_rshadow2 : vec = (158, 183)
+scribble stroke from feet_rshadow1 to feet_rshadow2
+
+let feet_rshadow3 : vec = (154, 185)
+let feet_rshadow4 : vec = (150, 186)
+scribble stroke from feet_rshadow3 to feet_rshadow4
+
+let feet_rshadow_dash1 : vec = (153, 184)
+scribble dash at feet_rshadow_dash1
+
+let feet_rshadow_dash2 : vec = (155, 182)
+scribble dash at feet_rshadow_dash2
+
+# --- Ice cracks radiating from weight ---
+
+# Small cracks near left foot showing weight/pressure
+let feet_crack1_start : vec = (100, 182)
+let feet_crack1_end : vec = (96, 184)
+trace stroke from feet_crack1_start to feet_crack1_end
+
+let feet_crack2_start : vec = (103, 185)
+let feet_crack2_end : vec = (99, 189)
+trace stroke from feet_crack2_start to feet_crack2_end
+
+# Small cracks near right foot
+let feet_crack3_start : vec = (160, 182)
+let feet_crack3_end : vec = (164, 184)
+trace stroke from feet_crack3_start to feet_crack3_end
+
+let feet_crack4_start : vec = (157, 185)
+let feet_crack4_end : vec = (161, 189)
+trace stroke from feet_crack4_start to feet_crack4_end
+
+# --- Texture on foot surface ---
+
+# Scale/skin texture dashes on left foot
+let feet_ltex1 : vec = (110, 178)
+draw dash at feet_ltex1
+
+let feet_ltex2 : vec = (112, 180)
+draw dash at feet_ltex2
+
+let feet_ltex3 : vec = (107, 179)
+draw dash at feet_ltex3
+
+# Scale/skin texture dashes on right foot
+let feet_rtex1 : vec = (150, 178)
+draw dash at feet_rtex1
+
+let feet_rtex2 : vec = (148, 180)
+draw dash at feet_rtex2
+
+let feet_rtex3 : vec = (153, 179)
+draw dash at feet_rtex3
+
+# --- Connection to body above ---
+
+# Feather overlap at leg base - left
+let feet_lfeather1 : vec = (113, 172)
+let feet_lfeather2 : vec = (111, 174)
+draw stroke from feet_lfeather1 to feet_lfeather2
+
+let feet_lfeather3 : vec = (115, 173)
+let feet_lfeather4 : vec = (117, 174)
+draw stroke from feet_lfeather3 to feet_lfeather4
+
+# Feather overlap at leg base - right
+let feet_rfeather1 : vec = (147, 172)
+let feet_rfeather2 : vec = (149, 174)
+draw stroke from feet_rfeather1 to feet_rfeather2
+
+let feet_rfeather3 : vec = (145, 173)
+let feet_rfeather4 : vec = (143, 174)
+draw stroke from feet_rfeather3 to feet_rfeather4
+
+# Section: Snow Ground
+# ============================================
+# SECTION: Snow Ground - Detailed Texture
+# Subtle ice and snow surface details
+# ============================================
+
+# --- Immediate foreground texture (bottom of canvas) ---
+
+# Gentle undulations in the snow surface - far left
+let snow_ground_wave1_start : vec = (0, 192)
+let snow_ground_wave1_end : vec = (35, 195)
+draw stroke from snow_ground_wave1_start to snow_ground_wave1_end via [(12, 194), (25, 193)]
+
+let snow_ground_wave2_start : vec = (30, 200)
+let snow_ground_wave2_end : vec = (70, 198)
+draw stroke from snow_ground_wave2_start to snow_ground_wave2_end via [(45, 199), (58, 197)]
+
+# Foreground texture near penguin feet - left side
+let snow_ground_ft_left1 : vec = (85, 185)
+let snow_ground_ft_left2 : vec = (100, 183)
+draw stroke from snow_ground_ft_left1 to snow_ground_ft_left2 via [(92, 184)]
+
+# Shadow indication under penguin - subtle dashes
+let snow_ground_shadow1 : vec = (110, 184)
+draw dash at snow_ground_shadow1
+let snow_ground_shadow2 : vec = (118, 186)
+draw dash at snow_ground_shadow2
+let snow_ground_shadow3 : vec = (125, 185)
+draw dash at snow_ground_shadow3
+let snow_ground_shadow4 : vec = (132, 186)
+draw dash at snow_ground_shadow4
+let snow_ground_shadow5 : vec = (140, 184)
+draw dash at snow_ground_shadow5
+let snow_ground_shadow6 : vec = (148, 185)
+draw dash at snow_ground_shadow6
+
+# Foreground texture near penguin feet - right side
+let snow_ground_ft_right1 : vec = (160, 183)
+let snow_ground_ft_right2 : vec = (175, 186)
+draw stroke from snow_ground_ft_right1 to snow_ground_ft_right2 via [(168, 185)]
+
+# Far right foreground
+let snow_ground_wave3_start : vec = (175, 195)
+let snow_ground_wave3_end : vec = (200, 193)
+draw stroke from snow_ground_wave3_start to snow_ground_wave3_end via [(188, 196)]
+
+# --- Middle ground snow texture ---
+
+# Subtle wind-carved patterns in snow - left side
+let snow_ground_wind1_start : vec = (5, 165)
+let snow_ground_wind1_end : vec = (40, 168)
+trace stroke from snow_ground_wind1_start to snow_ground_wind1_end via [(18, 166), (30, 167)]
+
+let snow_ground_wind2_start : vec = (50, 160)
+let snow_ground_wind2_end : vec = (85, 162)
+trace stroke from snow_ground_wind2_start to snow_ground_wind2_end via [(65, 161)]
+
+# Scattered ice crystals / texture marks - left area
+let snow_ground_crystal1 : vec = (15, 172)
+draw dash at snow_ground_crystal1
+let snow_ground_crystal2 : vec = (28, 175)
+draw dash at snow_ground_crystal2
+let snow_ground_crystal3 : vec = (55, 170)
+draw dash at snow_ground_crystal3
+let snow_ground_crystal4 : vec = (72, 168)
+draw dash at snow_ground_crystal4
+
+# Wind patterns - right side
+let snow_ground_wind3_start : vec = (165, 162)
+let snow_ground_wind3_end : vec = (200, 165)
+trace stroke from snow_ground_wind3_start to snow_ground_wind3_end via [(180, 163), (192, 164)]
+
+let snow_ground_wind4_start : vec = (175, 170)
+let snow_ground_wind4_end : vec = (200, 172)
+trace stroke from snow_ground_wind4_start to snow_ground_wind4_end via [(188, 171)]
+
+# Ice crystals - right area
+let snow_ground_crystal5 : vec = (178, 158)
+draw dash at snow_ground_crystal5
+let snow_ground_crystal6 : vec = (190, 168)
+draw dash at snow_ground_crystal6
+
+# --- Transition to middle distance ---
+
+# Faint ridgelines approaching distant plains
+let snow_ground_ridge1_start : vec = (0, 130)
+let snow_ground_ridge1_end : vec = (55, 135)
+trace stroke from snow_ground_ridge1_start to snow_ground_ridge1_end via [(20, 132), (40, 134)]
+
+let snow_ground_ridge2_start : vec = (145, 128)
+let snow_ground_ridge2_end : vec = (200, 132)
+trace stroke from snow_ground_ridge2_start to snow_ground_ridge2_end via [(165, 129), (185, 131)]
+
+# Small sastrugi (wind-carved ridges) in middle ground
+let snow_ground_sast1_start : vec = (10, 145)
+let snow_ground_sast1_end : vec = (25, 147)
+trace stroke from snow_ground_sast1_start to snow_ground_sast1_end
+
+let snow_ground_sast2_start : vec = (60, 140)
+let snow_ground_sast2_end : vec = (80, 142)
+trace stroke from snow_ground_sast2_start to snow_ground_sast2_end
+
+let snow_ground_sast3_start : vec = (170, 138)
+let snow_ground_sast3_end : vec = (190, 140)
+trace stroke from snow_ground_sast3_start to snow_ground_sast3_end
+
+# --- Sparse texture marks suggesting vast emptiness ---
+
+# Distant subtle marks
+let snow_ground_dist1 : vec = (35, 110)
+draw dash at snow_ground_dist1
+let snow_ground_dist2 : vec = (68, 105)
+draw dash at snow_ground_dist2
+let snow_ground_dist3 : vec = (175, 102)
+draw dash at snow_ground_dist3
+let snow_ground_dist4 : vec = (188, 115)
+draw dash at snow_ground_dist4
+
+# Ice glint marks - very sparse
+let snow_ground_glint1 : vec = (22, 155)
+trace dot at snow_ground_glint1
+let snow_ground_glint2 : vec = (78, 152)
+trace dot at snow_ground_glint2
+let snow_ground_glint3 : vec = (182, 148)
+trace dot at snow_ground_glint3
+
+# --- Connection strokes near penguin area ---
+
+# Subtle ground contour connecting to penguin shadow area
+let snow_ground_connect1_start : vec = (90, 178)
+let snow_ground_connect1_end : vec = (108, 180)
+draw stroke from snow_ground_connect1_start to snow_ground_connect1_end
+
+let snow_ground_connect2_start : vec = (152, 180)
+let snow_ground_connect2_end : vec = (165, 178)
+draw stroke from snow_ground_connect2_start to snow_ground_connect2_end
+
+# Very faint marks suggesting compressed snow where penguin stands
+let snow_ground_compress1 : vec = (114, 178)
+draw dash at snow_ground_compress1
+let snow_ground_compress2 : vec = (146, 178)
+draw dash at snow_ground_compress2
+
+# Section: Distant Plains
+# --------------------------------------------
+# SECTION: Distant Plains - Detail Pass
+# Vast empty expanse emphasizing distance
+# Minimal marks to convey immensity
+# --------------------------------------------
+
+# Very subtle snow texture in far distance (near horizon)
+# Keep sparse to emphasize emptiness
+
+# Left side distant snow variations
+let plains_far_mark1_start : vec = (15, 60)
+let plains_far_mark1_end : vec = (25, 61)
+trace stroke from plains_far_mark1_start to plains_far_mark1_end
+
+let plains_far_mark2_start : vec = (50, 58)
+let plains_far_mark2_end : vec = (58, 59)
+trace stroke from plains_far_mark2_start to plains_far_mark2_end
+
+# Right side distant snow variations
+let plains_far_mark3_start : vec = (150, 59)
+let plains_far_mark3_end : vec = (162, 60)
+trace stroke from plains_far_mark3_start to plains_far_mark3_end
+
+let plains_far_mark4_start : vec = (180, 58)
+let plains_far_mark4_end : vec = (192, 59)
+trace stroke from plains_far_mark4_start to plains_far_mark4_end
+
+# Middle distance subtle ridges
+let plains_mid_ridge1_start : vec = (5, 85)
+let plains_mid_ridge1_end : vec = (35, 87)
+trace stroke from plains_mid_ridge1_start to plains_mid_ridge1_end via [(18, 86)]
+
+let plains_mid_ridge2_start : vec = (165, 82)
+let plains_mid_ridge2_end : vec = (195, 85)
+trace stroke from plains_mid_ridge2_start to plains_mid_ridge2_end via [(180, 83)]
+
+# Sparse dashes for distant snow texture - very minimal
+# These follow flow toward mountains/horizon
+
+# Far left field dashes
+let plains_dash1_pos : vec = (12, 65)
+trace dash at plains_dash1_pos
+
+let plains_dash2_pos : vec = (42, 63)
+trace dash at plains_dash2_pos
+
+let plains_dash3_pos : vec = (8, 72)
+trace dash at plains_dash3_pos
+
+# Far right field dashes
+let plains_dash4_pos : vec = (175, 64)
+trace dash at plains_dash4_pos
+
+let plains_dash5_pos : vec = (188, 62)
+trace dash at plains_dash5_pos
+
+let plains_dash6_pos : vec = (168, 70)
+trace dash at plains_dash6_pos
+
+# Mid-distance sparse marks (between ridges)
+let plains_mid_dash1_pos : vec = (25, 80)
+trace dash at plains_mid_dash1_pos
+
+let plains_mid_dash2_pos : vec = (55, 82)
+trace dash at plains_mid_dash2_pos
+
+let plains_mid_dash3_pos : vec = (170, 78)
+trace dash at plains_mid_dash3_pos
+
+let plains_mid_dash4_pos : vec = (185, 80)
+trace dash at plains_mid_dash4_pos
+
+# Continuing path/track marks toward mountains (penguin's journey)
+let plains_path4_start : vec = (124, 56)
+let plains_path4_end : vec = (120, 58)
+trace stroke from plains_path4_start to plains_path4_end
+
+# Very faint ice glint marks
+let plains_glint1_start : vec = (85, 75)
+let plains_glint1_end : vec = (92, 76)
+trace stroke from plains_glint1_start to plains_glint1_end
+
+let plains_glint2_start : vec = (108, 80)
+let plains_glint2_end : vec = (115, 81)
+trace stroke from plains_glint2_start to plains_glint2_end
+
+# Subtle wind-blown snow suggestion (sparse horizontal marks)
+let plains_wind1_start : vec = (30, 90)
+let plains_wind1_end : vec = (50, 91)
+trace stroke from plains_wind1_start to plains_wind1_end
+
+let plains_wind2_start : vec = (155, 88)
+let plains_wind2_end : vec = (178, 90)
+trace stroke from plains_wind2_start to plains_wind2_end
+
+# Isolated dots suggesting distant ice crystals catching light
+let plains_crystal1_pos : vec = (38, 68)
+trace dot at plains_crystal1_pos
+
+let plains_crystal2_pos : vec = (160, 66)
+trace dot at plains_crystal2_pos
+
+let plains_crystal3_pos : vec = (95, 85)
+trace dot at plains_crystal3_pos
+
+# Near-middle ground connection to snow ground section
+let plains_near_ridge1_start : vec = (0, 95)
+let plains_near_ridge1_end : vec = (45, 98)
+trace stroke from plains_near_ridge1_start to plains_near_ridge1_end via [(22, 96)]
+
+let plains_near_ridge2_start : vec = (160, 92)
+let plains_near_ridge2_end : vec = (200, 95)
+trace stroke from plains_near_ridge2_start to plains_near_ridge2_end via [(180, 93)]
+
+# Sparse middle-ground dashes
+let plains_near_dash1_pos : vec = (20, 100)
+trace dash at plains_near_dash1_pos
+
+let plains_near_dash2_pos : vec = (50, 105)
+trace dash at plains_near_dash2_pos
+
+let plains_near_dash3_pos : vec = (175, 98)
+trace dash at plains_near_dash3_pos
+
+let plains_near_dash4_pos : vec = (185, 102)
+trace dash at plains_near_dash4_pos
+
+# Extremely subtle shadow hints under distant formations
+let plains_shadow1_start : vec = (76, 71)
+let plains_shadow1_end : vec = (94, 72)
+trace stroke from plains_shadow1_start to plains_shadow1_end
+
+# Central emptiness - only a few marks to maintain vast feeling
+let plains_center_mark1_pos : vec = (100, 75)
+trace dash at plains_center_mark1_pos
+
+let plains_center_mark2_pos : vec = (130, 78)
+trace dash at plains_center_mark2_pos
+
+# Section: Mountain Range
+# ============================================
+# MOUNTAIN RANGE - Detail Pass
+# Adding ridge lines, shadows, and snow texture
+# ============================================
+
+# --------------------------------------------
+# Left mountain cluster - ridge details
+# --------------------------------------------
+
+# Secondary ridge on left mountain
+let mtn_range_ridge1_start : vec = (15, 38)
+let mtn_range_ridge1_end : vec = (38, 52)
+draw stroke from mtn_range_ridge1_start to mtn_range_ridge1_end via [(22, 42), (30, 48)]
+
+# Shadow side strokes - left mountain
+let mtn_range_shadow1a : vec = (26, 30)
+let mtn_range_shadow1b : vec = (35, 45)
+draw stroke from mtn_range_shadow1a to mtn_range_shadow1b via [(30, 36), (33, 42)]
+
+let mtn_range_shadow1c : vec = (28, 34)
+let mtn_range_shadow1d : vec = (40, 50)
+draw stroke from mtn_range_shadow1c to mtn_range_shadow1d via [(33, 40), (37, 46)]
+
+# --------------------------------------------
+# Central dominant peak - detailed ridges
+# --------------------------------------------
+
+# Main ridge line catching light
+let mtn_range_central_ridge1_start : vec = (70, 18)
+let mtn_range_central_ridge1_end : vec = (55, 42)
+trace stroke from mtn_range_central_ridge1_start to mtn_range_central_ridge1_end via [(65, 26), (60, 34)]
+
+# Secondary ridge - left face
+let mtn_range_central_ridge2_start : vec = (58, 32)
+let mtn_range_central_ridge2_end : vec = (48, 50)
+draw stroke from mtn_range_central_ridge2_start to mtn_range_central_ridge2_end via [(53, 40), (50, 46)]
+
+# Right face shadow strokes
+let mtn_range_central_shadow1a : vec = (72, 22)
+let mtn_range_central_shadow1b : vec = (85, 38)
+draw stroke from mtn_range_central_shadow1a to mtn_range_central_shadow1b via [(77, 28), (82, 34)]
+
+let mtn_range_central_shadow2a : vec = (75, 28)
+let mtn_range_central_shadow2b : vec = (90, 45)
+draw stroke from mtn_range_central_shadow2a to mtn_range_central_shadow2b via [(82, 35), (87, 42)]
+
+let mtn_range_central_shadow3a : vec = (78, 32)
+let mtn_range_central_shadow3b : vec = (95, 50)
+draw stroke from mtn_range_central_shadow3a to mtn_range_central_shadow3b via [(85, 40), (92, 47)]
+
+# Snow patches on central peak - horizontal texture
+let mtn_range_snow1_start : vec = (62, 28)
+let mtn_range_snow1_end : vec = (68, 27)
+trace stroke from mtn_range_snow1_start to mtn_range_snow1_end
+
+let mtn_range_snow2_start : vec = (55, 36)
+let mtn_range_snow2_end : vec = (63, 35)
+trace stroke from mtn_range_snow2_start to mtn_range_snow2_end
+
+# Shading dashes on shadow side
+let mtn_range_dash1 : vec = (80, 30)
+draw dash at mtn_range_dash1
+
+let mtn_range_dash2 : vec = (83, 34)
+draw dash at mtn_range_dash2
+
+let mtn_range_dash3 : vec = (86, 38)
+draw dash at mtn_range_dash3
+
+let mtn_range_dash4 : vec = (88, 42)
+draw dash at mtn_range_dash4
+
+let mtn_range_dash5 : vec = (76, 35)
+draw dash at mtn_range_dash5
+
+let mtn_range_dash6 : vec = (79, 39)
+draw dash at mtn_range_dash6
+
+# --------------------------------------------
+# Right mountain cluster - ridges and texture
+# --------------------------------------------
+
+# Ridge line on right peak
+let mtn_range_right_ridge1_start : vec = (120, 32)
+let mtn_range_right_ridge1_end : vec = (108, 48)
+draw stroke from mtn_range_right_ridge1_start to mtn_range_right_ridge1_end via [(115, 38), (112, 44)]
+
+# Shadow strokes right side
+let mtn_range_right_shadow1a : vec = (122, 35)
+let mtn_range_right_shadow1b : vec = (135, 48)
+draw stroke from mtn_range_right_shadow1a to mtn_range_right_shadow1b via [(128, 40), (132, 45)]
+
+let mtn_range_right_shadow2a : vec = (125, 40)
+let mtn_range_right_shadow2b : vec = (140, 52)
+draw stroke from mtn_range_right_shadow2a to mtn_range_right_shadow2b via [(132, 45), (137, 50)]
+
+# Light side detail
+let mtn_range_right_light1 : vec = (105, 42)
+let mtn_range_right_light2 : vec = (115, 38)
+trace stroke from mtn_range_right_light1 to mtn_range_right_light2
+
+# --------------------------------------------
+# Far right peak - minimal detail for distance
+# --------------------------------------------
+
+# Single ridge suggestion
+let mtn_range_far_ridge_start : vec = (165, 40)
+let mtn_range_far_ridge_end : vec = (155, 50)
+draw stroke from mtn_range_far_ridge_start to mtn_range_far_ridge_end via [(160, 45)]
+
+# Light shading
+let mtn_range_far_dash1 : vec = (168, 44)
+draw dash at mtn_range_far_dash1
+
+let mtn_range_far_dash2 : vec = (172, 47)
+draw dash at mtn_range_far_dash2
+
+# --------------------------------------------
+# Atmospheric haze at mountain bases
+# Light dashes near horizon for depth
+# --------------------------------------------
+
+let mtn_range_haze1 : vec = (15, 53)
+trace dash at mtn_range_haze1
+
+let mtn_range_haze2 : vec = (45, 54)
+trace dash at mtn_range_haze2
+
+let mtn_range_haze3 : vec = (80, 53)
+trace dash at mtn_range_haze3
+
+let mtn_range_haze4 : vec = (115, 54)
+trace dash at mtn_range_haze4
+
+let mtn_range_haze5 : vec = (155, 53)
+trace dash at mtn_range_haze5
+
+let mtn_range_haze6 : vec = (185, 54)
+trace dash at mtn_range_haze6
+
+# --------------------------------------------
+# Rocky texture details on peaks
+# --------------------------------------------
+
+# Central peak texture
+let mtn_range_rock1_start : vec = (66, 24)
+let mtn_range_rock1_end : vec = (69, 26)
+draw stroke from mtn_range_rock1_start to mtn_range_rock1_end
+
+let mtn_range_rock2_start : vec = (72, 30)
+let mtn_range_rock2_end : vec = (74, 32)
+draw stroke from mtn_range_rock2_start to mtn_range_rock2_end
+
+# Left peak texture
+let mtn_range_rock3_start : vec = (23, 32)
+let mtn_range_rock3_end : vec = (26, 34)
+draw stroke from mtn_range_rock3_start to mtn_range_rock3_end
+
+# Right peak texture
+let mtn_range_rock4_start : vec = (118, 36)
+let mtn_range_rock4_end : vec = (121, 38)
+draw stroke from mtn_range_rock4_start to mtn_range_rock4_end
+
+# --------------------------------------------
+# Connecting detail between peaks (valleys)
+# --------------------------------------------
+
+# Valley shadow between left and center
+let mtn_range_valley1_start : vec = (42, 52)
+let mtn_range_valley1_end : vec = (50, 48)
+draw stroke from mtn_range_valley1_start to mtn_range_valley1_end
+
+# Valley between center and right
+let mtn_range_valley2_start : vec = (95, 52)
+let mtn_range_valley2_end : vec = (102, 50)
+draw stroke from mtn_range_valley2_start to mtn_range_valley2_end
+
+# ============================================
+# END MOUNTAIN RANGE DETAILS
+# ============================================
+
+# Section: Horizon Line
+# ============================================
+# SECTION DETAIL: Horizon Line
+# Adding atmospheric depth and subtle variation
+# where the vast ice plains meet the sky
+# ============================================
+
+# Secondary horizon lines for atmospheric haze effect
+# These create a sense of distance and cold air layers
+
+let horizon_haze1_left : vec = (0, 53)
+let horizon_haze1_right : vec = (200, 54)
+trace stroke from horizon_haze1_left to horizon_haze1_right via [(50, 53), (100, 54), (150, 53)]
+
+let horizon_haze2_left : vec = (0, 57)
+let horizon_haze2_right : vec = (200, 56)
+trace stroke from horizon_haze2_left to horizon_haze2_right via [(40, 57), (120, 56), (180, 57)]
+
+# Gaps in horizon where ice meets mountain bases
+# Small interruption strokes suggesting depth variation
+
+let horizon_break1_start : vec = (42, 55)
+let horizon_break1_end : vec = (48, 56)
+trace stroke from horizon_break1_start to horizon_break1_end
+
+let horizon_break2_start : vec = (88, 55)
+let horizon_break2_end : vec = (93, 54)
+trace stroke from horizon_break2_start to horizon_break2_end
+
+let horizon_break3_start : vec = (138, 55)
+let horizon_break3_end : vec = (143, 56)
+trace stroke from horizon_break3_start to horizon_break3_end
+
+# Subtle dashes suggesting distant atmospheric shimmer
+# These align with the horizontal flow of the horizon
+
+let horizon_dash1 : vec = (15, 54)
+trace dash at horizon_dash1
+
+let horizon_dash2 : vec = (55, 56)
+trace dash at horizon_dash2
+
+let horizon_dash3 : vec = (78, 54)
+trace dash at horizon_dash3
+
+let horizon_dash4 : vec = (112, 56)
+trace dash at horizon_dash4
+
+let horizon_dash5 : vec = (158, 54)
+trace dash at horizon_dash5
+
+let horizon_dash6 : vec = (185, 55)
+trace dash at horizon_dash6
+
+# Light reflection strokes on distant ice at horizon
+# Very faint marks suggesting gleaming ice surface
+
+let horizon_gleam1_start : vec = (8, 56)
+let horizon_gleam1_end : vec = (22, 56)
+trace stroke from horizon_gleam1_start to horizon_gleam1_end
+
+let horizon_gleam2_start : vec = (62, 55)
+let horizon_gleam2_end : vec = (72, 56)
+trace stroke from horizon_gleam2_start to horizon_gleam2_end
+
+let horizon_gleam3_start : vec = (175, 55)
+let horizon_gleam3_end : vec = (192, 56)
+trace stroke from horizon_gleam3_start to horizon_gleam3_end
+
+# Transition zone dashes - where plains fade into sky
+# Creates soft atmospheric perspective
+
+let horizon_fade1 : vec = (25, 52)
+trace dash at horizon_fade1
+
+let horizon_fade2 : vec = (82, 52)
+trace dash at horizon_fade2
+
+let horizon_fade3 : vec = (130, 52)
+trace dash at horizon_fade3
+
+let horizon_fade4 : vec = (168, 52)
+trace dash at horizon_fade4
+
+# Lower atmosphere marks connecting to distant plains
+let horizon_ground1 : vec = (10, 58)
+trace dash at horizon_ground1
+
+let horizon_ground2 : vec = (52, 58)
+trace dash at horizon_ground2
+
+let horizon_ground3 : vec = (98, 58)
+trace dash at horizon_ground3
+
+let horizon_ground4 : vec = (148, 58)
+trace dash at horizon_ground4
+
+let horizon_ground5 : vec = (188, 58)
+trace dash at horizon_ground5
+
+# Subtle undulation in horizon suggesting ice shelf edge
+let horizon_wave1_start : vec = (102, 55)
+let horizon_wave1_mid : vec = (108, 54)
+let horizon_wave1_end : vec = (115, 55)
+trace stroke from horizon_wave1_start to horizon_wave1_end via [(horizon_wave1_mid)]
+
+let horizon_wave2_start : vec = (155, 55)
+let horizon_wave2_mid : vec = (162, 56)
+let horizon_wave2_end : vec = (170, 55)
+trace stroke from horizon_wave2_start to horizon_wave2_end via [(horizon_wave2_mid)]

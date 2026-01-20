@@ -1,0 +1,206 @@
+# ============================================
+# THE LONG MARCH - Initial Contours
+# A lone penguin facing distant mountains
+# Canvas: 200mm x 200mm
+# ============================================
+
+# --------------------------------------------
+# SECTION: Mountain Range (Background)
+# Jagged peaks on the horizon
+# --------------------------------------------
+
+# Left mountain cluster
+let mtn1_base_left : vec = (0, 55)
+let mtn1_peak : vec = (25, 28)
+let mtn1_base_right : vec = (45, 55)
+draw stroke from mtn1_base_left to mtn1_peak via [(10, 48), (18, 35)]
+draw stroke from mtn1_peak to mtn1_base_right via [(32, 38), (40, 50)]
+
+# Central dominant peak
+let mtn2_base_left : vec = (35, 55)
+let mtn2_peak : vec = (70, 18)
+let mtn2_base_right : vec = (100, 55)
+draw stroke from mtn2_base_left to mtn2_peak via [(45, 45), (55, 30), (62, 22)]
+draw stroke from mtn2_peak to mtn2_base_right via [(78, 25), (88, 40), (95, 50)]
+
+# Right mountain cluster
+let mtn3_base_left : vec = (90, 55)
+let mtn3_peak : vec = (120, 32)
+let mtn3_base_right : vec = (145, 55)
+draw stroke from mtn3_base_left to mtn3_peak via [(100, 48), (110, 38)]
+draw stroke from mtn3_peak to mtn3_base_right via [(130, 42), (140, 52)]
+
+# Far right smaller peak
+let mtn4_base_left : vec = (140, 55)
+let mtn4_peak : vec = (165, 40)
+let mtn4_base_right : vec = (200, 55)
+draw stroke from mtn4_base_left to mtn4_peak via [(150, 50), (158, 44)]
+draw stroke from mtn4_peak to mtn4_base_right via [(175, 45), (190, 52)]
+
+# --------------------------------------------
+# SECTION: Horizon Line
+# Where land meets sky
+# --------------------------------------------
+
+let horizon_left : vec = (0, 55)
+let horizon_right : vec = (200, 55)
+trace stroke from horizon_left to horizon_right
+
+# --------------------------------------------
+# SECTION: Penguin Body (Main Subject)
+# Viewed from behind, lower right of canvas
+# --------------------------------------------
+
+# Body outline - left side (black plumage)
+let body_top_left : vec = (115, 105)
+let body_mid_left : vec = (108, 140)
+let body_bottom_left : vec = (112, 175)
+draw stroke from body_top_left to body_bottom_left via [(110, 115), (106, 130), (body_mid_left), (107, 155), (109, 168)]
+
+# Body outline - right side (black plumage)
+let body_top_right : vec = (145, 105)
+let body_mid_right : vec = (152, 140)
+let body_bottom_right : vec = (148, 175)
+draw stroke from body_top_right to body_bottom_right via [(150, 115), (154, 130), (body_mid_right), (153, 155), (151, 168)]
+
+# White belly edge - left visible side
+let white_left_top : vec = (110, 120)
+let white_left_bottom : vec = (113, 170)
+draw stroke from white_left_top to white_left_bottom via [(107, 135), (108, 150), (110, 165)]
+
+# White belly edge - right visible side  
+let white_right_top : vec = (150, 120)
+let white_right_bottom : vec = (147, 170)
+draw stroke from white_right_top to white_right_bottom via [(153, 135), (152, 150), (150, 165)]
+
+# --------------------------------------------
+# SECTION: Penguin Head
+# Turned slightly left, looking at mountains
+# --------------------------------------------
+
+# Head outline - back of head
+let head_back_top : vec = (120, 88)
+let head_crown : vec = (128, 82)
+let head_back_bottom : vec = (115, 105)
+draw stroke from head_back_bottom to head_crown via [(117, 98), (119, 92), (head_back_top)]
+
+# Head outline - front/face side
+let head_front_bottom : vec = (145, 105)
+let beak_base : vec = (138, 90)
+let beak_tip : vec = (132, 86)
+draw stroke from head_front_bottom to beak_base via [(144, 100), (142, 95)]
+draw stroke from beak_base to beak_tip
+draw stroke from beak_tip to head_crown via [(130, 84)]
+
+# Neck connection
+draw stroke from head_back_bottom to body_top_left
+draw stroke from head_front_bottom to body_top_right
+
+# Eye indication
+let eye_pos : vec = (136, 92)
+draw dot at eye_pos
+
+# Yellow/orange ear patch outline (left visible)
+let ear_patch_top : vec = (122, 94)
+let ear_patch_bottom : vec = (118, 104)
+draw stroke from ear_patch_top to ear_patch_bottom via [(120, 99)]
+
+# --------------------------------------------
+# SECTION: Penguin Flippers
+# Held at sides
+# --------------------------------------------
+
+# Left flipper
+let flipper_left_top : vec = (106, 118)
+let flipper_left_tip : vec = (100, 150)
+let flipper_left_back : vec = (108, 145)
+draw stroke from flipper_left_top to flipper_left_tip via [(103, 130), (100, 142)]
+draw stroke from flipper_left_tip to flipper_left_back via [(104, 150)]
+
+# Right flipper (partially hidden)
+let flipper_right_top : vec = (154, 118)
+let flipper_right_tip : vec = (160, 148)
+let flipper_right_back : vec = (152, 144)
+draw stroke from flipper_right_top to flipper_right_tip via [(157, 130), (160, 142)]
+draw stroke from flipper_right_tip to flipper_right_back via [(156, 149)]
+
+# --------------------------------------------
+# SECTION: Penguin Feet
+# Planted on ice
+# --------------------------------------------
+
+# Left foot
+let foot_left_heel : vec = (115, 175)
+let foot_left_front : vec = (108, 182)
+let foot_left_outer : vec = (104, 180)
+draw stroke from foot_left_heel to foot_left_front via [(112, 180)]
+draw stroke from foot_left_front to foot_left_outer
+draw stroke from foot_left_outer to foot_left_heel via [(108, 176)]
+
+# Right foot
+let foot_right_heel : vec = (145, 175)
+let foot_right_front : vec = (152, 182)
+let foot_right_outer : vec = (156, 180)
+draw stroke from foot_right_heel to foot_right_front via [(148, 180)]
+draw stroke from foot_right_front to foot_right_outer
+draw stroke from foot_right_outer to foot_right_heel via [(152, 176)]
+
+# --------------------------------------------
+# SECTION: Snow Ground (Foreground)
+# Immediate terrain around penguin
+# --------------------------------------------
+
+# Snow drift near penguin - left
+let drift1_start : vec = (0, 178)
+let drift1_end : vec = (95, 182)
+draw stroke from drift1_start to drift1_end via [(30, 180), (60, 179), (80, 181)]
+
+# Snow drift near penguin - right
+let drift2_start : vec = (165, 180)
+let drift2_end : vec = (200, 176)
+draw stroke from drift2_start to drift2_end via [(180, 179), (195, 177)]
+
+# Small ice features
+let ice1_start : vec = (20, 185)
+let ice1_end : vec = (45, 188)
+draw stroke from ice1_start to ice1_end via [(32, 184)]
+
+let ice2_start : vec = (170, 190)
+let ice2_end : vec = (195, 188)
+draw stroke from ice2_start to ice2_end via [(182, 192)]
+
+# --------------------------------------------
+# SECTION: Distant Plains
+# Sparse marks indicating vast distance
+# --------------------------------------------
+
+# Subtle snow ridges in middle distance
+let ridge1_start : vec = (0, 75)
+let ridge1_end : vec = (60, 78)
+trace stroke from ridge1_start to ridge1_end via [(20, 76), (40, 77)]
+
+let ridge2_start : vec = (140, 72)
+let ridge2_end : vec = (200, 75)
+trace stroke from ridge2_start to ridge2_end via [(160, 73), (180, 74)]
+
+# Distant ice formation
+let distant_ice_start : vec = (75, 68)
+let distant_ice_end : vec = (95, 70)
+trace stroke from distant_ice_start to distant_ice_end
+
+# Track marks suggesting the path ahead (very subtle)
+let path1_start : vec = (125, 95)
+let path1_end : vec = (122, 85)
+trace stroke from path1_start to path1_end
+
+let path2_start : vec = (128, 80)
+let path2_end : vec = (125, 70)
+trace stroke from path2_start to path2_end
+
+let path3_start : vec = (126, 65)
+let path3_end : vec = (124, 58)
+trace stroke from path3_start to path3_end
+
+# ============================================
+# END CONTOURS
+# ============================================
