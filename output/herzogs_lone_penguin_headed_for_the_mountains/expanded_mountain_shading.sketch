@@ -1,0 +1,364 @@
+# <title>Herzog's Lone Penguin Headed for the Mountains</title>
+# <summary>
+# A solitary penguin waddles determinedly toward distant mountain peaks,
+# inspired by Werner Herzog's documentary about the Antarctic penguin
+# that inexplicably walks away from the ocean toward certain doom in
+# the mountains. A meditation on instinct, madness, and sublime futility.
+# </summary>
+# <metadata>
+#   <subject>Penguin walking toward mountains</subject>
+#   <perspective>Side view, low horizon</perspective>
+#   <style>Sketchy, documentary sketch aesthetic</style>
+# </metadata>
+
+# <section>HORIZON AND GROUND</section>
+# <description>Establishes the barren Antarctic landscape with a low horizon line suggesting endless ice.</description>
+let horizon_y : number = 140
+let horizon_start : vec = (0, horizon_y)
+let horizon_end : vec = (200, horizon_y)
+draw stroke from horizon_start to horizon_end
+
+# <section>DISTANT MOUNTAINS</section>
+# <description>Multiple mountain peaks in the background, creating layers of depth. The penguin's doomed destination.</description>
+let mountain_base : number = horizon_y
+
+# Far left peak
+let peak1_x : number = 30
+let peak1_top : vec = (peak1_x, 60)
+let peak1_left : vec = (10, mountain_base)
+let peak1_right : vec = (50, mountain_base)
+trace stroke from peak1_left to peak1_top
+trace stroke from peak1_top to peak1_right
+
+# Central peak - tallest
+let peak2_x : number = 100
+let peak2_top : vec = (peak2_x, 40)
+let peak2_left : vec = (70, mountain_base)
+let peak2_right : vec = (130, mountain_base)
+trace stroke from peak2_left to peak2_top
+trace stroke from peak2_top to peak2_right
+
+# Right peak
+let peak3_x : number = 170
+let peak3_top : vec = (peak3_x, 70)
+let peak3_left : vec = (150, mountain_base)
+let peak3_right : vec = (190, mountain_base)
+trace stroke from peak3_left to peak3_top
+trace stroke from peak3_top to peak3_right
+
+# <section>MOUNTAIN SHADING</section>
+# <description>Dashes suggest the harsh texture and shadows of the mountain faces.</description>
+let mountain_shadow_1 : sketch = [
+    dash at (85, 80),
+    dash at (90, 95),
+    dash at (95, 110),
+    dash at (100, 125),
+    dash at (80, 100),
+    dash at (75, 115)
+]
+
+let mountain_shadow_2 : sketch = [
+    dash at (25, 90),
+    dash at (30, 105),
+    dash at (35, 120),
+    dash at (165, 100),
+    dash at (170, 115)
+]
+
+scribble [mountain_shadow_1, mountain_shadow_2]
+
+# <section>PENGUIN BODY</section>
+# <description>The lone penguin figure in the middle ground, walking left to right toward the mountains.</description>
+let penguin_anchor : vec = (60, 160)
+let penguin_x : number = 60
+let penguin_base_y : number = 160
+
+# Body - rounded oval shape
+let body_top : vec = (penguin_x, penguin_base_y + (-35))
+let body_bottom : vec = (penguin_x, penguin_base_y + (-5))
+let body_left : vec = (penguin_x + (-8), penguin_base_y + (-20))
+let body_right : vec = (penguin_x + 8, penguin_base_y + (-20))
+
+let penguin_body : sketch = stroke from body_bottom to body_left via [(penguin_x + (-8), penguin_base_y + (-30))]
+let penguin_body_2 : sketch = stroke from body_left to body_top
+let penguin_body_3 : sketch = stroke from body_top to body_right
+let penguin_body_4 : sketch = stroke from body_right to body_bottom via [(penguin_x + 8, penguin_base_y + (-10))]
+
+draw [penguin_body, penguin_body_2, penguin_body_3, penguin_body_4]
+
+# <section>PENGUIN HEAD</section>
+# <description>Head and beak giving the penguin character and forward-facing determination.</description>
+let head_center : vec = (penguin_x, penguin_base_y + (-40))
+let head_top : vec = (penguin_x, penguin_base_y + (-48))
+let head_left : vec = (penguin_x + (-6), penguin_base_y + (-40))
+let head_right : vec = (penguin_x + 6, penguin_base_y + (-40))
+
+let penguin_head : sketch = stroke from head_left to head_top via [(penguin_x + (-4), penguin_base_y + (-46))]
+let penguin_head_2 : sketch = stroke from head_top to head_right via [(penguin_x + 4, penguin_base_y + (-46))]
+draw [penguin_head, penguin_head_2]
+
+# Beak pointing toward mountains
+let beak_tip : vec = (penguin_x + 9, penguin_base_y + (-42))
+let beak_top : vec = (penguin_x + 5, penguin_base_y + (-44))
+let beak_bottom : vec = (penguin_x + 5, penguin_base_y + (-40))
+draw stroke from beak_top to beak_tip
+draw stroke from beak_tip to beak_bottom
+
+# Eye
+let eye_pos : vec = (penguin_x + 2, penguin_base_y + (-43))
+trace dot at eye_pos
+
+# <section>PENGUIN WINGS</section>
+# <description>Flippers at the penguin's sides, slightly back suggesting waddling motion.</description>
+let wing_left_top : vec = (penguin_x + (-8), penguin_base_y + (-30))
+let wing_left_bottom : vec = (penguin_x + (-10), penguin_base_y + (-15))
+draw stroke from wing_left_top to wing_left_bottom
+
+let wing_right_top : vec = (penguin_x + 8, penguin_base_y + (-30))
+let wing_right_bottom : vec = (penguin_x + 10, penguin_base_y + (-15))
+draw stroke from wing_right_top to wing_right_bottom
+
+# <section>PENGUIN FEET</section>
+# <description>Simple feet suggesting the waddle, one slightly forward.</description>
+let foot_left : vec = (penguin_x + (-4), penguin_base_y)
+let foot_right : vec = (penguin_x + 5, penguin_base_y + 2)
+draw dash at foot_left
+draw dash at foot_right
+
+# <section>PENGUIN TRACKS</section>
+# <description>A trail of footprints behind the penguin showing where it came from - away from the ocean, toward mountains.</description>
+let tracks : sketch = [
+    dash at (50, 162),
+    dash at (48, 164),
+    dash at (40, 163),
+    dash at (38, 165),
+    dash at (30, 164),
+    dash at (28, 166),
+    dash at (20, 165),
+    dash at (18, 167),
+    dash at (10, 166),
+    dash at (8, 168)
+]
+scribble tracks
+
+# <section>FOREGROUND TEXTURE</section>
+# <description>Sparse marks in the immediate foreground suggesting ice, snow, and desolation.</description>
+let foreground_marks : sketch = [
+    dash at (75, 175),
+    dash at (90, 180),
+    dash at (110, 178),
+    dash at (135, 185),
+    dash at (160, 182)
+]
+scribble foreground_marks
+
+# <section>SKY TEXTURE</section>
+# <description>Minimal marks in the sky suggesting the emptiness and cold of Antarctica.</description>
+let sky_marks : sketch = [
+    dash at (15, 25),
+    dash at (180, 30),
+    dash at (120, 15)
+]
+scribble sky_marks
+
+# <section>MOVEMENT LINES</section>
+# <description>Subtle directional marks suggesting the penguin's inexorable forward motion.</description>
+let motion_guide : vec = (70, 155)
+draw stroke from penguin_anchor to motion_guide
+
+# === EXPANDED DETAILS ===
+
+
+# Section: HORIZON AND GROUND
+# <section>HORIZON AND GROUND</section>
+# <description>Establishes the barren Antarctic landscape with a low horizon line suggesting endless ice.</description>
+
+# Original anchors - preserved
+let horizon_y : number = 140
+let horizon_start : vec = (0, horizon_y)
+let horizon_end : vec = (200, horizon_y)
+
+# Main horizon line
+draw stroke from horizon_start to horizon_end
+
+# Subtle variation in horizon - distant ice ridges
+let horizon_and_ground_ridge1 : vec = (45, horizon_y - 1)
+let horizon_and_ground_ridge2 : vec = (65, horizon_y + 1)
+let horizon_and_ground_ridge3 : vec = (120, horizon_y - 0.5)
+let horizon_and_ground_ridge4 : vec = (155, horizon_y + 0.5)
+
+draw stroke from (40, horizon_y) to (70, horizon_y) via [horizon_and_ground_ridge1, horizon_and_ground_ridge2]
+draw stroke from (115, horizon_y) to (165, horizon_y) via [horizon_and_ground_ridge3, horizon_and_ground_ridge4]
+
+# Foreground ice texture - sparse marks suggesting snow and ice
+let horizon_and_ground_fg_base : number = horizon_y + 15
+let horizon_and_ground_crack1_start : vec = (20, horizon_and_ground_fg_base + 5)
+let horizon_and_ground_crack1_end : vec = (35, horizon_and_ground_fg_base + 8)
+
+let horizon_and_ground_crack2_start : vec = (80, horizon_and_ground_fg_base + 12)
+let horizon_and_ground_crack2_end : vec = (95, horizon_and_ground_fg_base + 10)
+
+let horizon_and_ground_crack3_start : vec = (150, horizon_and_ground_fg_base + 7)
+let horizon_and_ground_crack3_end : vec = (170, horizon_and_ground_fg_base + 6)
+
+# Ice cracks and texture
+draw stroke from horizon_and_ground_crack1_start to horizon_and_ground_crack1_end
+draw stroke from horizon_and_ground_crack2_start to horizon_and_ground_crack2_end
+draw stroke from horizon_and_ground_crack3_start to horizon_and_ground_crack3_end
+
+# Scattered snow texture with dashes
+scribble dash at (15, horizon_y + 20)
+scribble dash at (25, horizon_y + 25)
+scribble dash at (50, horizon_y + 18)
+scribble dash at (70, horizon_y + 22)
+scribble dash at (110, horizon_y + 28)
+scribble dash at (130, horizon_y + 24)
+scribble dash at (165, horizon_y + 19)
+scribble dash at (185, horizon_y + 26)
+
+# Section: DISTANT MOUNTAINS
+# <section>DISTANT MOUNTAINS</section>
+# <description>Multiple mountain peaks in the background, creating layers of depth. The penguin's doomed destination.</description>
+let mountain_base : number = horizon_y
+
+# Far left peak
+let peak1_x : number = 30
+let peak1_top : vec = (peak1_x, 60)
+let peak1_left : vec = (10, mountain_base)
+let peak1_right : vec = (50, mountain_base)
+draw stroke from peak1_left to peak1_top
+draw stroke from peak1_top to peak1_right
+
+# Add ridge detail to left peak
+let distant_mountains_ridge1a : vec = (20, 80)
+let distant_mountains_ridge1b : vec = (40, 75)
+draw stroke from peak1_left to distant_mountains_ridge1a
+draw stroke from distant_mountains_ridge1b to peak1_right
+
+# Shading on left peak
+scribble dash at (25, 75)
+scribble dash at (30, 70)
+scribble dash at (35, 72)
+
+# Central peak - tallest
+let peak2_x : number = 100
+let peak2_top : vec = (peak2_x, 40)
+let peak2_left : vec = (70, mountain_base)
+let peak2_right : vec = (130, mountain_base)
+draw stroke from peak2_left to peak2_top
+draw stroke from peak2_top to peak2_right
+
+# Add dramatic ridges to central peak
+let distant_mountains_ridge2a : vec = (85, 60)
+let distant_mountains_ridge2b : vec = (90, 50)
+let distant_mountains_ridge2c : vec = (110, 55)
+let distant_mountains_ridge2d : vec = (115, 65)
+draw stroke from peak2_left to distant_mountains_ridge2a
+draw stroke from distant_mountains_ridge2b to peak2_top
+draw stroke from peak2_top to distant_mountains_ridge2c
+draw stroke from distant_mountains_ridge2d to peak2_right
+
+# Heavy shading on central peak (tallest, most dramatic)
+scribble dash at (95, 55)
+scribble dash at (100, 50)
+scribble dash at (105, 52)
+scribble dash at (92, 60)
+scribble dash at (108, 58)
+scribble dash at (98, 48)
+
+# Right peak
+let peak3_x : number = 170
+let peak3_top : vec = (peak3_x, 70)
+let peak3_left : vec = (150, mountain_base)
+let peak3_right : vec = (190, mountain_base)
+draw stroke from peak3_left to peak3_top
+draw stroke from peak3_top to peak3_right
+
+# Add ridge detail to right peak
+let distant_mountains_ridge3a : vec = (160, 85)
+let distant_mountains_ridge3b : vec = (180, 82)
+draw stroke from peak3_left to distant_mountains_ridge3a
+draw stroke from distant_mountains_ridge3b to peak3_right
+
+# Light shading on right peak
+scribble dash at (165, 80)
+scribble dash at (170, 78)
+scribble dash at (175, 79)
+
+# Snow caps on peaks (lighter strokes)
+let distant_mountains_snow1 : vec = peak1_top + (0, 3)
+let distant_mountains_snow2 : vec = peak2_top + (0, 2)
+let distant_mountains_snow3 : vec = peak3_top + (0, 3)
+trace stroke from (peak1_x - 5, 62) to distant_mountains_snow1
+trace stroke from distant_mountains_snow1 to (peak1_x + 5, 62)
+trace stroke from (peak2_x - 8, 42) to distant_mountains_snow2
+trace stroke from distant_mountains_snow2 to (peak2_x + 8, 42)
+trace stroke from (peak3_x - 6, 72) to distant_mountains_snow3
+trace stroke from distant_mountains_snow3 to (peak3_x + 6, 72)
+
+# Section: MOUNTAIN SHADING
+# <section>MOUNTAIN SHADING</section>
+# <description>Dashes suggest the harsh texture and shadows of the mountain faces.</description>
+
+# Original anchor positions preserved
+let mountain_shadow_1 : sketch = [
+    dash at (85, 80),
+    dash at (90, 95),
+    dash at (95, 110),
+    dash at (100, 125),
+    dash at (80, 100),
+    dash at (75, 115)
+]
+
+let mountain_shadow_2 : sketch = [
+    dash at (25, 90),
+    dash at (30, 105),
+    dash at (35, 120),
+    dash at (165, 100),
+    dash at (170, 115)
+]
+
+# Additional detail around shadow_1 cluster
+let mountain_shading_detail_1 : sketch = [
+    dash at (87, 85),
+    dash at (92, 100),
+    dash at (97, 115),
+    dash at (102, 130),
+    dash at (88, 108),
+    dash at (83, 95),
+    dash at (78, 110),
+    dash at (93, 88),
+    dash at (98, 103),
+    dash at (85, 120),
+    dash at (90, 125),
+    dash at (82, 108),
+    dash at (77, 120)
+]
+
+# Additional detail around shadow_2 cluster
+let mountain_shading_detail_2 : sketch = [
+    dash at (27, 95),
+    dash at (32, 110),
+    dash at (37, 125),
+    dash at (28, 100),
+    dash at (33, 115),
+    dash at (167, 105),
+    dash at (172, 120),
+    dash at (168, 110),
+    dash at (163, 95),
+    dash at (26, 98),
+    dash at (31, 112),
+    dash at (166, 108)
+]
+
+# Sparse mid-tone dashes between clusters
+let mountain_shading_midtones : sketch = [
+    dash at (105, 118),
+    dash at (110, 128),
+    dash at (70, 108),
+    dash at (65, 120),
+    dash at (40, 112),
+    dash at (160, 108)
+]
+
+scribble [mountain_shadow_1, mountain_shadow_2, mountain_shading_detail_1, mountain_shading_detail_2, mountain_shading_midtones]

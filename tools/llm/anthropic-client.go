@@ -22,23 +22,23 @@ type AnthropicClient struct {
 // NewAnthropicClient creates a new Anthropic API client
 func NewAnthropicClient(apiKey, model string) *AnthropicClient {
 	if model == "" {
-		model = "claude-opus-4-5"
+		model = "claude-sonnet-4-5"
 	}
 	return &AnthropicClient{
 		apiKey: apiKey,
 		model:  model,
 		httpClient: &http.Client{
-			Timeout: 5 * time.Minute, // generous timeout for long responses
+			Timeout: 10 * time.Minute,
 		},
 	}
 }
 
 // anthropicRequest is the API request structure
 type anthropicRequest struct {
-	Model     string            `json:"model"`
-	MaxTokens int               `json:"max_tokens"`
-	System    string            `json:"system,omitempty"`
-	Messages  []anthropicMsg    `json:"messages"`
+	Model     string         `json:"model"`
+	MaxTokens int            `json:"max_tokens"`
+	System    string         `json:"system,omitempty"`
+	Messages  []anthropicMsg `json:"messages"`
 }
 
 type anthropicMsg struct {
@@ -73,8 +73,14 @@ type anthropicError struct {
 }
 
 // Complete sends a prompt to Claude and returns the response
-func (c *AnthropicClient) Complete(ctx context.Context, systemPrompt string, messages []Message) (*Response, error) {
+func (c *AnthropicClient) Complete(ctx context.Context, systemPrompt string, messages []Message, opts *RequestOptions) (*Response, error) {
 	start := time.Now()
+
+	// Default to 16K tokens for detailed sketch generation
+	maxTokens := 16384
+	if opts != nil && opts.MaxTokens > 0 {
+		maxTokens = opts.MaxTokens
+	}
 
 	// Convert messages to Anthropic format
 	anthropicMsgs := make([]anthropicMsg, len(messages))
@@ -87,7 +93,7 @@ func (c *AnthropicClient) Complete(ctx context.Context, systemPrompt string, mes
 
 	reqBody := anthropicRequest{
 		Model:     c.model,
-		MaxTokens: 8192,
+		MaxTokens: maxTokens,
 		System:    systemPrompt,
 		Messages:  anthropicMsgs,
 	}
@@ -144,15 +150,16 @@ func (c *AnthropicClient) Complete(ctx context.Context, systemPrompt string, mes
 		OutputTokens: apiResp.Usage.OutputTokens,
 		Duration:     time.Since(start),
 		Model:        apiResp.Model,
+		StopReason:   apiResp.StopReason,
 	}, nil
 }
 
 // CompleteWithRetry attempts completion with retries on failure
-func (c *AnthropicClient) CompleteWithRetry(ctx context.Context, systemPrompt string, messages []Message, maxRetries int) (*Response, error) {
+func (c *AnthropicClient) CompleteWithRetry(ctx context.Context, systemPrompt string, messages []Message, maxRetries int, opts *RequestOptions) (*Response, error) {
 	var lastErr error
 
 	for i := 0; i < maxRetries; i++ {
-		resp, err := c.Complete(ctx, systemPrompt, messages)
+		resp, err := c.Complete(ctx, systemPrompt, messages, opts)
 		if err == nil {
 			return resp, nil
 		}

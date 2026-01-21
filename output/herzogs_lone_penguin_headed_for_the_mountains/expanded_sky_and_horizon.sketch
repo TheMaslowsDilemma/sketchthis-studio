@@ -1,0 +1,361 @@
+# HERZOG'S LONE PENGUIN HEADED FOR THE MOUNTAINS
+# Canvas: 200x200mm
+# Composition: Penguin in lower third, mountains in upper third
+
+# ============================================
+# SECTION: SKY AND HORIZON
+# ============================================
+
+# Establish horizon line - mountains will rise from this
+let horizon_y : number = 60
+let horizon_left : vec = (0, horizon_y)
+let horizon_right : vec = (200, horizon_y)
+
+# Atmospheric depth lines - sparse, contemplative
+let sky_line_1 : sketch = stroke from (10, 30) to (190, 32)
+let sky_line_2 : sketch = stroke from (20, 45) to (180, 44)
+let sky_line_3 : sketch = stroke from (0, 55) to (200, 56)
+
+let sky : sketch = [sky_line_1, sky_line_2, sky_line_3]
+
+# ============================================
+# SECTION: MOUNTAIN RANGE
+# ============================================
+
+# Define mountain peaks - jagged and imposing
+# Leftmost peak
+let peak_1_base_left : vec = (0, horizon_y)
+let peak_1_summit : vec = (25, 25)
+let peak_1_base_right : vec = (45, horizon_y)
+
+let mountain_1 : sketch = [
+  stroke from peak_1_base_left to peak_1_summit via [(15, 40)],
+  stroke from peak_1_summit to peak_1_base_right via [(35, 45)]
+]
+
+# Central dominant peak - tallest
+let peak_2_base_left : vec = (45, horizon_y)
+let peak_2_summit : vec = (85, 15)
+let peak_2_base_right : vec = (125, horizon_y)
+
+let mountain_2 : sketch = [
+  stroke from peak_2_base_left to peak_2_summit via [(60, 35), (70, 22)],
+  stroke from peak_2_summit to peak_2_base_right via [(100, 30), (115, 50)]
+]
+
+# Right peak cluster
+let peak_3_base_left : vec = (110, horizon_y)
+let peak_3_summit : vec = (140, 28)
+let peak_3_base_right : vec = (165, horizon_y)
+
+let mountain_3 : sketch = [
+  stroke from peak_3_base_left to peak_3_summit via [(125, 45)],
+  stroke from peak_3_summit to peak_3_base_right via [(155, 48)]
+]
+
+# Far right smaller peak
+let peak_4_base_left : vec = (160, horizon_y)
+let peak_4_summit : vec = (180, 40)
+let peak_4_base_right : vec = (200, horizon_y)
+
+let mountain_4 : sketch = [
+  stroke from peak_4_base_left to peak_4_summit via [(170, 50)],
+  stroke from peak_4_summit to peak_4_base_right via [(190, 52)]
+]
+
+# Mountain internal detail - crevasses and ridges
+let ridge_1 : sketch = stroke from (70, 22) to (75, 45)
+let ridge_2 : sketch = stroke from (90, 25) to (95, 50)
+let ridge_3 : sketch = stroke from (135, 35) to (138, 55)
+
+let mountains : sketch = [
+  mountain_1, mountain_2, mountain_3, mountain_4,
+  ridge_1, ridge_2, ridge_3
+]
+
+# ============================================
+# SECTION: ICE PLAIN
+# ============================================
+
+# The vast empty plain with subtle texture
+# Establish foreground plane boundary
+let ice_plain_top : number = horizon_y
+let ice_plain_bottom : number = 200
+
+# Subtle contour lines suggesting ice undulation
+let contour_1 : sketch = stroke from (0, 85) to (200, 87) via [(100, 86)]
+let contour_2 : sketch = stroke from (0, 120) to (200, 118) via [(100, 119)]
+let contour_3 : sketch = stroke from (0, 155) to (200, 157) via [(100, 156)]
+
+# Ice texture using dashes - sparse in distance, denser near bottom
+let ice_texture_far : sketch = [
+  dash at (30, 70),
+  dash at (80, 72),
+  dash at (150, 68),
+  dash at (45, 75),
+  dash at (120, 73),
+  dash at (180, 71)
+]
+
+let ice_texture_mid : sketch = [
+  dash at (20, 95),
+  dash at (55, 98),
+  dash at (90, 93),
+  dash at (135, 96),
+  dash at (170, 92),
+  dash at (40, 105),
+  dash at (110, 108),
+  dash at (160, 103)
+]
+
+let ice_texture_near : sketch = [
+  dash at (15, 130),
+  dash at (50, 135),
+  dash at (85, 128),
+  dash at (125, 133),
+  dash at (165, 131),
+  dash at (35, 145),
+  dash at (70, 148),
+  dash at (105, 142),
+  dash at (145, 147),
+  dash at (185, 144),
+  dash at (25, 165),
+  dash at (60, 168),
+  dash at (95, 163),
+  dash at (130, 167),
+  dash at (170, 162),
+  dash at (45, 180),
+  dash at (80, 183),
+  dash at (115, 178),
+  dash at (155, 182),
+  dash at (190, 177)
+]
+
+let ice_plain : sketch = [
+  contour_1, contour_2, contour_3,
+  ice_texture_far, ice_texture_mid, ice_texture_near
+]
+
+# ============================================
+# SECTION: THE PENGUIN
+# ============================================
+
+# Penguin positioned in lower third, off-center for dynamic composition
+let penguin_center : vec = (75, 140)
+
+# Penguin body - main contours
+# Head and beak
+let head_top : vec = penguin_center + (0, -8)
+let beak_tip : vec = penguin_center + (3, -7)
+let head_back : vec = penguin_center + (-2, -6)
+
+let penguin_head : sketch = [
+  stroke from head_back to head_top via [(0, -7)],
+  stroke from head_top to beak_tip via [(2, -7)],
+  stroke from beak_tip to penguin_center + (1, -5)
+]
+
+# Body outline - characteristic penguin shape
+let back_top : vec = penguin_center + (-3, -5)
+let back_curve : vec = penguin_center + (-4, 0)
+let tail_point : vec = penguin_center + (-3, 5)
+let belly_bottom : vec = penguin_center + (0, 6)
+let chest_curve : vec = penguin_center + (3, -2)
+
+let penguin_body : sketch = [
+  stroke from back_top to back_curve via [(head_back + (-2, 2))],
+  stroke from back_curve to tail_point,
+  stroke from tail_point to belly_bottom via [(penguin_center + (-1, 6))],
+  stroke from belly_bottom to chest_curve via [(penguin_center + (2, 3))],
+  stroke from chest_curve to penguin_center + (1, -5)
+]
+
+# Left flipper - extended in waddle motion
+let flipper_left_top : vec = penguin_center + (-3, -2)
+let flipper_left_tip : vec = penguin_center + (-7, 2)
+let flipper_left_bottom : vec = penguin_center + (-4, 3)
+
+let flipper_left : sketch = [
+  stroke from flipper_left_top to flipper_left_tip via [(penguin_center + (-5, -1))],
+  stroke from flipper_left_tip to flipper_left_bottom via [(penguin_center + (-6, 3))]
+]
+
+# Right flipper - closer to body
+let flipper_right_top : vec = penguin_center + (3, 0)
+let flipper_right_tip : vec = penguin_center + (6, 3)
+let flipper_right_bottom : vec = penguin_center + (4, 4)
+
+let flipper_right : sketch = [
+  stroke from flipper_right_top to flipper_right_tip via [(penguin_center + (5, 1))],
+  stroke from flipper_right_tip to flipper_right_bottom
+]
+
+# Feet - simple wedges
+let foot_left : sketch = stroke from penguin_center + (-2, 6) to penguin_center + (-3, 7)
+let foot_right : sketch = stroke from penguin_center + (1, 6) to penguin_center + (2, 7)
+
+# Eye detail
+let eye : sketch = dot at penguin_center + (0, -6)
+
+# White belly patch suggestion
+let belly_line : sketch = stroke from penguin_center + (-1, -4) to penguin_center + (0, 4)
+
+let penguin : sketch = [
+  penguin_head, penguin_body,
+  flipper_left, flipper_right,
+  foot_left, foot_right,
+  eye, belly_line
+]
+
+# ============================================
+# SECTION: FOOTPRINTS
+# ============================================
+
+# Trail of footprints showing journey from lower right toward penguin
+# Each print is a pair of small marks
+
+let print_1_left : vec = (95, 165)
+let print_1_right : vec = (98, 165)
+let print_1 : sketch = [
+  dash at print_1_left,
+  dash at print_1_right
+]
+
+let print_2_left : vec = (90, 160)
+let print_2_right : vec = (93, 160)
+let print_2 : sketch = [
+  dash at print_2_left,
+  dash at print_2_right
+]
+
+let print_3_left : vec = (86, 155)
+let print_3_right : vec = (89, 155)
+let print_3 : sketch = [
+  dash at print_3_left,
+  dash at print_3_right
+]
+
+let print_4_left : vec = (82, 150)
+let print_4_right : vec = (85, 150)
+let print_4 : sketch = [
+  dash at print_4_left,
+  dash at print_4_right
+]
+
+let print_5_left : vec = (78, 145)
+let print_5_right : vec = (81, 145)
+let print_5 : sketch = [
+  dash at print_5_left,
+  dash at print_5_right
+]
+
+let print_6_left : vec = (100, 170)
+let print_6_right : vec = (103, 170)
+let print_6 : sketch = [
+  dash at print_6_left,
+  dash at print_6_right
+]
+
+let print_7_left : vec = (105, 175)
+let print_7_right : vec = (108, 175)
+let print_7 : sketch = [
+  dash at print_7_left,
+  dash at print_7_right
+]
+
+let footprints : sketch = [
+  print_1, print_2, print_3, print_4, print_5,
+  print_6, print_7
+]
+
+# ============================================
+# FINAL COMPOSITION
+# ============================================
+
+# Sky rendered with subtle wobble
+draw sky
+
+# Mountains traced cleanly for sharp silhouettes
+trace mountains
+
+# Ice plain scribbled for texture
+scribble ice_plain
+
+# Penguin drawn with slight hand-drawn character
+draw penguin
+
+# Footprints scribbled to show weathering
+scribble footprints
+
+# === EXPANDED DETAILS ===
+
+
+# Section: Sky and Horizon
+# SECTION: SKY AND HORIZON
+# ============================================
+
+# Establish horizon line - mountains will rise from this
+let horizon_y : number = 60
+let horizon_left : vec = (0, horizon_y)
+let horizon_right : vec = (200, horizon_y)
+
+# Atmospheric depth lines - sparse, contemplative
+let sky_line_1 : sketch = stroke from (10, 30) to (190, 32)
+let sky_line_2 : sketch = stroke from (20, 45) to (180, 44)
+let sky_line_3 : sketch = stroke from (0, 55) to (200, 56)
+
+# Add texture above first atmospheric line - distant clouds
+let sky_and_horizon_cloud_wisp_1 : sketch = stroke from (40, 25) to (65, 26) via [(52, 23)]
+let sky_and_horizon_cloud_wisp_2 : sketch = stroke from (120, 28) to (150, 27) via [(135, 25)]
+
+# Subtle dashes for atmospheric texture around sky lines
+let sky_and_horizon_dash_1 : sketch = dash at (30, 31)
+let sky_and_horizon_dash_2 : sketch = dash at (85, 31)
+let sky_and_horizon_dash_3 : sketch = dash at (140, 31)
+let sky_and_horizon_dash_4 : sketch = dash at (50, 46)
+let sky_and_horizon_dash_5 : sketch = dash at (110, 45)
+let sky_and_horizon_dash_6 : sketch = dash at (160, 45)
+
+# Delicate wisps between atmospheric lines
+let sky_and_horizon_wisp_1 : sketch = stroke from (5, 38) to (25, 39)
+let sky_and_horizon_wisp_2 : sketch = stroke from (70, 37) to (95, 38) via [(82, 35)]
+let sky_and_horizon_wisp_3 : sketch = stroke from (155, 40) to (175, 39)
+
+# Textural marks near horizon suggesting ice crystals in air
+let sky_and_horizon_ice_1 : sketch = dash at (15, 57)
+let sky_and_horizon_ice_2 : sketch = dash at (45, 58)
+let sky_and_horizon_ice_3 : sketch = dash at (80, 57)
+let sky_and_horizon_ice_4 : sketch = dash at (125, 58)
+let sky_and_horizon_ice_5 : sketch = dash at (170, 57)
+let sky_and_horizon_ice_6 : sketch = dash at (195, 58)
+
+# Very subtle broken lines suggesting depth
+let sky_and_horizon_depth_1 : sketch = stroke from (60, 50) to (75, 50)
+let sky_and_horizon_depth_2 : sketch = stroke from (100, 52) to (115, 51)
+
+let sky : sketch = [
+  sky_line_1, 
+  sky_line_2, 
+  sky_line_3,
+  sky_and_horizon_cloud_wisp_1,
+  sky_and_horizon_cloud_wisp_2,
+  sky_and_horizon_dash_1,
+  sky_and_horizon_dash_2,
+  sky_and_horizon_dash_3,
+  sky_and_horizon_dash_4,
+  sky_and_horizon_dash_5,
+  sky_and_horizon_dash_6,
+  sky_and_horizon_wisp_1,
+  sky_and_horizon_wisp_2,
+  sky_and_horizon_wisp_3,
+  sky_and_horizon_ice_1,
+  sky_and_horizon_ice_2,
+  sky_and_horizon_ice_3,
+  sky_and_horizon_ice_4,
+  sky_and_horizon_ice_5,
+  sky_and_horizon_ice_6,
+  sky_and_horizon_depth_1,
+  sky_and_horizon_depth_2
+]
+
+# ============================================

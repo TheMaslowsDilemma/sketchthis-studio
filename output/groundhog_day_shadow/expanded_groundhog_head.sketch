@@ -1,0 +1,565 @@
+# ==========================================
+# GROUNDHOG DAY SHADOW - Initial Contours
+# Canvas: 200x200mm
+# ==========================================
+
+# ------------------------------------------
+# SECTION: Groundhog Body
+# Main torso standing upright
+# ------------------------------------------
+
+# Body outline - right side (fur side)
+let body_base_right : vec = (125, 145)
+let body_hip_right : vec = (130, 130)
+let body_belly_right : vec = (132, 110)
+let body_chest_right : vec = (128, 85)
+let body_shoulder_right : vec = (122, 75)
+
+draw stroke from body_base_right to body_hip_right via [(128, 138)]
+draw stroke from body_hip_right to body_belly_right via [(133, 120)]
+draw stroke from body_belly_right to body_chest_right via [(132, 95)]
+draw stroke from body_chest_right to body_shoulder_right via [(126, 78)]
+
+# Body outline - left side (back)
+let body_base_left : vec = (110, 145)
+let body_back_low : vec = (105, 125)
+let body_back_mid : vec = (103, 100)
+let body_back_upper : vec = (108, 80)
+
+draw stroke from body_base_left to body_back_low via [(106, 135)]
+draw stroke from body_back_low to body_back_mid via [(102, 112)]
+draw stroke from body_back_mid to body_back_upper via [(104, 88)]
+
+# Front paws held at chest
+let paw_left_top : vec = (112, 82)
+let paw_left_bottom : vec = (114, 92)
+let paw_right_top : vec = (120, 83)
+let paw_right_bottom : vec = (118, 93)
+
+draw stroke from paw_left_top to paw_left_bottom via [(110, 87)]
+draw stroke from paw_right_top to paw_right_bottom via [(122, 88)]
+
+# Hind feet at base
+let foot_left : vec = (108, 148)
+let foot_right : vec = (127, 148)
+draw stroke from body_base_left to foot_left via [(107, 147)]
+draw stroke from body_base_right to foot_right via [(128, 147)]
+draw stroke from foot_left to foot_right via [(118, 150)]
+
+# ------------------------------------------
+# SECTION: Groundhog Head
+# Distinctive blunt snout and small ears
+# ------------------------------------------
+
+# Head outline
+let head_top : vec = (115, 58)
+let head_forehead : vec = (120, 62)
+let snout_top : vec = (130, 68)
+let nose_tip : vec = (135, 75)
+let snout_bottom : vec = (128, 80)
+let chin : vec = (120, 82)
+let throat : vec = (115, 78)
+let head_back : vec = (108, 65)
+
+draw stroke from head_top to head_forehead via [(118, 59)]
+draw stroke from head_forehead to snout_top via [(126, 64)]
+draw stroke from snout_top to nose_tip via [(134, 70)]
+draw stroke from nose_tip to snout_bottom via [(133, 78)]
+draw stroke from snout_bottom to chin via [(124, 82)]
+draw stroke from chin to throat
+draw stroke from head_back to head_top via [(110, 60)]
+draw stroke from body_back_upper to head_back via [(106, 72)]
+
+# Ear
+let ear_base : vec = (110, 60)
+let ear_tip : vec = (107, 54)
+let ear_front : vec = (112, 57)
+draw stroke from ear_base to ear_tip via [(108, 56)]
+draw stroke from ear_tip to ear_front via [(110, 54)]
+
+# Eye
+let eye_center : vec = (122, 70)
+let eye_top : vec = (122, 68)
+let eye_bottom : vec = (122, 72)
+let eye_left : vec = (120, 70)
+let eye_right : vec = (124, 70)
+draw stroke from eye_top to eye_right via [(123, 68)]
+draw stroke from eye_right to eye_bottom via [(124, 71)]
+draw stroke from eye_bottom to eye_left via [(121, 72)]
+draw stroke from eye_left to eye_top via [(120, 69)]
+
+# Nose
+let nose_top_pt : vec = (134, 73)
+let nose_bottom_pt : vec = (134, 77)
+draw stroke from nose_top_pt to nose_bottom_pt
+
+# ------------------------------------------
+# SECTION: Groundhog Tail
+# Short furry tail
+# ------------------------------------------
+
+let tail_base : vec = (103, 130)
+let tail_end : vec = (95, 138)
+let tail_bottom : vec = (98, 142)
+
+draw stroke from tail_base to tail_end via [(98, 132)]
+draw stroke from tail_end to tail_bottom via [(94, 141)]
+draw stroke from tail_bottom to body_base_left via [(102, 144)]
+
+# ------------------------------------------
+# SECTION: Shadow
+# Elongated shadow cast to the left
+# ------------------------------------------
+
+# Shadow outline - stretched groundhog silhouette
+let shadow_head : vec = (35, 155)
+let shadow_ear : vec = (40, 150)
+let shadow_back : vec = (55, 148)
+let shadow_body_top : vec = (85, 145)
+let shadow_connect_top : vec = (108, 146)
+
+let shadow_base_front : vec = (30, 165)
+let shadow_belly : vec = (60, 168)
+let shadow_body_bottom : vec = (90, 165)
+let shadow_connect_bottom : vec = (125, 150)
+
+# Top edge of shadow
+draw stroke from shadow_head to shadow_ear via [(36, 151)]
+draw stroke from shadow_ear to shadow_back via [(48, 147)]
+draw stroke from shadow_back to shadow_body_top via [(70, 145)]
+draw stroke from shadow_body_top to shadow_connect_top via [(98, 144)]
+
+# Bottom edge of shadow
+draw stroke from shadow_head to shadow_base_front via [(28, 160)]
+draw stroke from shadow_base_front to shadow_belly via [(45, 170)]
+draw stroke from shadow_belly to shadow_body_bottom via [(75, 168)]
+draw stroke from shadow_body_bottom to shadow_connect_bottom via [(110, 158)]
+
+# Shadow head detail
+draw stroke from shadow_head to shadow_base_front via [(32, 158)]
+
+# ------------------------------------------
+# SECTION: Burrow
+# Dark entrance hole in earth mound
+# ------------------------------------------
+
+# Burrow entrance - oval hole
+let burrow_top : vec = (145, 138)
+let burrow_right : vec = (165, 148)
+let burrow_bottom : vec = (150, 158)
+let burrow_left : vec = (135, 150)
+
+draw stroke from burrow_top to burrow_right via [(158, 140)]
+draw stroke from burrow_right to burrow_bottom via [(162, 155)]
+draw stroke from burrow_bottom to burrow_left via [(140, 158)]
+draw stroke from burrow_left to burrow_top via [(138, 142)]
+
+# Earth mound around burrow
+let mound_left : vec = (125, 160)
+let mound_top_left : vec = (138, 132)
+let mound_top_right : vec = (168, 130)
+let mound_right : vec = (180, 155)
+
+draw stroke from mound_left to mound_top_left via [(128, 145)]
+draw stroke from mound_top_left to mound_top_right via [(152, 128)]
+draw stroke from mound_top_right to mound_right via [(178, 138)]
+
+# ------------------------------------------
+# SECTION: Ground Surface
+# Snowy ground with horizon line
+# ------------------------------------------
+
+# Ground line
+let ground_left : vec = (10, 165)
+let ground_mid : vec = (100, 162)
+let ground_right : vec = (190, 160)
+
+draw stroke from ground_left to ground_mid via [(55, 166)]
+draw stroke from ground_mid to ground_right via [(145, 158)]
+
+# Snow patches / ground texture
+let snow_patch1_start : vec = (15, 170)
+let snow_patch1_end : vec = (45, 172)
+draw stroke from snow_patch1_start to snow_patch1_end via [(30, 168)]
+
+let snow_patch2_start : vec = (70, 175)
+let snow_patch2_end : vec = (95, 173)
+draw stroke from snow_patch2_start to snow_patch2_end via [(82, 177)]
+
+# ------------------------------------------
+# SECTION: Winter Grass
+# Sparse dried grass tufts
+# ------------------------------------------
+
+# Grass tuft 1 - near burrow
+let grass1_base : vec = (170, 158)
+let grass1_tip1 : vec = (168, 148)
+let grass1_tip2 : vec = (172, 145)
+let grass1_tip3 : vec = (175, 150)
+
+draw stroke from grass1_base to grass1_tip1
+draw stroke from grass1_base to grass1_tip2
+draw stroke from grass1_base to grass1_tip3
+
+# Grass tuft 2 - left side
+let grass2_base : vec = (20, 163)
+let grass2_tip1 : vec = (17, 155)
+let grass2_tip2 : vec = (22, 152)
+let grass2_tip3 : vec = (25, 156)
+
+draw stroke from grass2_base to grass2_tip1
+draw stroke from grass2_base to grass2_tip2
+draw stroke from grass2_base to grass2_tip3
+
+# Grass tuft 3 - middle ground
+let grass3_base : vec = (75, 166)
+let grass3_tip1 : vec = (73, 158)
+let grass3_tip2 : vec = (77, 156)
+
+draw stroke from grass3_base to grass3_tip1
+draw stroke from grass3_base to grass3_tip2
+
+# Grass tuft 4 - near mound
+let grass4_base : vec = (130, 162)
+let grass4_tip1 : vec = (128, 154)
+let grass4_tip2 : vec = (133, 152)
+
+draw stroke from grass4_base to grass4_tip1
+draw stroke from grass4_base to grass4_tip2
+
+# === EXPANDED DETAILS ===
+
+
+# Section: Groundhog Body
+# ------------------------------------------
+# SECTION: Groundhog Body - Detail & Fur Texture
+# Adding thick fur, shading, and volume
+# ------------------------------------------
+
+# Fur texture strokes along the back (following body curve)
+let body_fur_back1_start : vec = (104, 122)
+let body_fur_back1_end : vec = (106, 118)
+draw stroke from body_fur_back1_start to body_fur_back1_end
+
+let body_fur_back2_start : vec = (103, 115)
+let body_fur_back2_end : vec = (105, 110)
+draw stroke from body_fur_back2_start to body_fur_back2_end
+
+let body_fur_back3_start : vec = (104, 105)
+let body_fur_back3_end : vec = (107, 100)
+draw stroke from body_fur_back3_start to body_fur_back3_end
+
+let body_fur_back4_start : vec = (105, 95)
+let body_fur_back4_end : vec = (108, 90)
+draw stroke from body_fur_back4_start to body_fur_back4_end
+
+let body_fur_back5_start : vec = (106, 88)
+let body_fur_back5_end : vec = (109, 84)
+draw stroke from body_fur_back5_start to body_fur_back5_end
+
+# Fur texture on the belly/right side
+let body_fur_belly1_start : vec = (130, 125)
+let body_fur_belly1_end : vec = (127, 122)
+draw stroke from body_fur_belly1_start to body_fur_belly1_end
+
+let body_fur_belly2_start : vec = (131, 115)
+let body_fur_belly2_end : vec = (128, 112)
+draw stroke from body_fur_belly2_start to body_fur_belly2_end
+
+let body_fur_belly3_start : vec = (131, 105)
+let body_fur_belly3_end : vec = (128, 102)
+draw stroke from body_fur_belly3_start to body_fur_belly3_end
+
+let body_fur_belly4_start : vec = (129, 95)
+let body_fur_belly4_end : vec = (126, 92)
+draw stroke from body_fur_belly4_start to body_fur_belly4_end
+
+# Shading on left side (shadow side) with dashes
+let body_shade1_pos : vec = (108, 130)
+scribble dash at body_shade1_pos
+
+let body_shade2_pos : vec = (107, 120)
+scribble dash at body_shade2_pos
+
+let body_shade3_pos : vec = (106, 110)
+scribble dash at body_shade3_pos
+
+let body_shade4_pos : vec = (107, 100)
+scribble dash at body_shade4_pos
+
+let body_shade5_pos : vec = (109, 92)
+scribble dash at body_shade5_pos
+
+# Inner body volume strokes
+let body_inner1_start : vec = (112, 135)
+let body_inner1_end : vec = (120, 132)
+draw stroke from body_inner1_start to body_inner1_end via [(116, 134)]
+
+let body_inner2_start : vec = (110, 120)
+let body_inner2_end : vec = (125, 118)
+draw stroke from body_inner2_start to body_inner2_end via [(118, 117)]
+
+let body_inner3_start : vec = (112, 105)
+let body_inner3_end : vec = (124, 103)
+draw stroke from body_inner3_start to body_inner3_end via [(118, 102)]
+
+# Chest fur detail (lighter, fluffier area)
+let body_chest_fur1_start : vec = (118, 88)
+let body_chest_fur1_end : vec = (115, 92)
+draw stroke from body_chest_fur1_start to body_chest_fur1_end
+
+let body_chest_fur2_start : vec = (122, 90)
+let body_chest_fur2_end : vec = (119, 94)
+draw stroke from body_chest_fur2_start to body_chest_fur2_end
+
+let body_chest_fur3_start : vec = (116, 94)
+let body_chest_fur3_end : vec = (118, 98)
+draw stroke from body_chest_fur3_start to body_chest_fur3_end
+
+# Paw details - claws and fur tufts
+let body_paw_left_claw1 : vec = (111, 93)
+let body_paw_left_claw1_end : vec = (109, 95)
+draw stroke from body_paw_left_claw1 to body_paw_left_claw1_end
+
+let body_paw_left_claw2 : vec = (113, 94)
+let body_paw_left_claw2_end : vec = (112, 96)
+draw stroke from body_paw_left_claw2 to body_paw_left_claw2_end
+
+let body_paw_right_claw1 : vec = (119, 94)
+let body_paw_right_claw1_end : vec = (120, 96)
+draw stroke from body_paw_right_claw1 to body_paw_right_claw1_end
+
+let body_paw_right_claw2 : vec = (117, 95)
+let body_paw_right_claw2_end : vec = (116, 97)
+draw stroke from body_paw_right_claw2 to body_paw_right_claw2_end
+
+# Paw pad hints
+let body_paw_pad_left : vec = (112, 90)
+draw dot at body_paw_pad_left
+
+let body_paw_pad_right : vec = (119, 91)
+draw dot at body_paw_pad_right
+
+# Hind leg muscle definition
+let body_hind_muscle1_start : vec = (112, 140)
+let body_hind_muscle1_end : vec = (115, 130)
+draw stroke from body_hind_muscle1_start to body_hind_muscle1_end via [(112, 135)]
+
+let body_hind_muscle2_start : vec = (122, 140)
+let body_hind_muscle2_end : vec = (125, 128)
+draw stroke from body_hind_muscle2_start to body_hind_muscle2_end via [(125, 135)]
+
+# Foot detail - toes
+let body_foot_toe1 : vec = (110, 150)
+let body_foot_toe2 : vec = (114, 151)
+let body_foot_toe3 : vec = (118, 151)
+let body_foot_toe4 : vec = (122, 151)
+let body_foot_toe5 : vec = (126, 150)
+
+draw dot at body_foot_toe1
+draw dot at body_foot_toe2
+draw dot at body_foot_toe3
+draw dot at body_foot_toe4
+draw dot at body_foot_toe5
+
+# Grizzled fur texture across midsection
+let body_grizzle1_start : vec = (115, 125)
+let body_grizzle1_end : vec = (118, 123)
+scribble stroke from body_grizzle1_start to body_grizzle1_end
+
+let body_grizzle2_start : vec = (120, 120)
+let body_grizzle2_end : vec = (123, 118)
+scribble stroke from body_grizzle2_start to body_grizzle2_end
+
+let body_grizzle3_start : vec = (114, 112)
+let body_grizzle3_end : vec = (117, 110)
+scribble stroke from body_grizzle3_start to body_grizzle3_end
+
+let body_grizzle4_start : vec = (121, 108)
+let body_grizzle4_end : vec = (124, 106)
+scribble stroke from body_grizzle4_start to body_grizzle4_end
+
+# Additional shading dashes for roundness
+let body_round_shade1 : vec = (110, 128)
+draw dash at body_round_shade1
+
+let body_round_shade2 : vec = (109, 118)
+draw dash at body_round_shade2
+
+let body_round_shade3 : vec = (110, 108)
+draw dash at body_round_shade3
+
+let body_round_shade4 : vec = (111, 98)
+draw dash at body_round_shade4
+
+# Subtle highlight area hints on belly
+let body_highlight1 : vec = (128, 118)
+trace dash at body_highlight1
+
+let body_highlight2 : vec = (127, 108)
+trace dash at body_highlight2
+
+# Connection to head - neck fur
+let body_neck_fur1_start : vec = (115, 78)
+let body_neck_fur1_end : vec = (113, 82)
+draw stroke from body_neck_fur1_start to body_neck_fur1_end
+
+let body_neck_fur2_start : vec = (118, 80)
+let body_neck_fur2_end : vec = (116, 84)
+draw stroke from body_neck_fur2_start to body_neck_fur2_end
+
+# Connection to tail area - rump fur
+let body_rump_fur1_start : vec = (106, 128)
+let body_rump_fur1_end : vec = (104, 132)
+draw stroke from body_rump_fur1_start to body_rump_fur1_end
+
+let body_rump_fur2_start : vec = (108, 132)
+let body_rump_fur2_end : vec = (105, 136)
+draw stroke from body_rump_fur2_start to body_rump_fur2_end
+
+# Section: Groundhog Head
+# ------------------------------------------
+# SECTION: Groundhog Head - Details
+# Adding fur texture, eye detail, whiskers, and facial features
+# ------------------------------------------
+
+# Eye detail - pupil and highlight
+let head_pupil_center : vec = (122, 70)
+let head_pupil_top : vec = (122, 69)
+let head_pupil_bottom : vec = (122, 71)
+let head_pupil_left : vec = (121, 70)
+let head_pupil_right : vec = (123, 70)
+
+trace stroke from head_pupil_top to head_pupil_right via [(122, 69)]
+trace stroke from head_pupil_right to head_pupil_bottom
+trace stroke from head_pupil_bottom to head_pupil_left
+trace stroke from head_pupil_left to head_pupil_top
+
+# Eye shading - dark fill around pupil
+let head_eye_shade1 : vec = (121, 69)
+let head_eye_shade2 : vec = (123, 71)
+draw dash at (121, 69)
+draw dash at (122, 69)
+draw dash at (123, 70)
+draw dash at (122, 71)
+draw dash at (121, 70)
+
+# Nose detail - nostril
+let head_nostril : vec = (135, 75)
+let head_nostril_top : vec = (134, 74)
+let head_nostril_left : vec = (133, 76)
+trace stroke from head_nostril_top to head_nostril via [(135, 74)]
+trace stroke from head_nostril to head_nostril_left via [(133, 75)]
+
+# Nose shading
+draw dash at (133, 74)
+draw dash at (134, 75)
+draw dash at (133, 76)
+
+# Whiskers - radiating from snout
+let head_whisker_base1 : vec = (130, 76)
+let head_whisker_end1 : vec = (145, 72)
+let head_whisker_base2 : vec = (129, 77)
+let head_whisker_end2 : vec = (146, 76)
+let head_whisker_base3 : vec = (128, 78)
+let head_whisker_end3 : vec = (144, 80)
+let head_whisker_base4 : vec = (129, 79)
+let head_whisker_end4 : vec = (142, 85)
+
+trace stroke from head_whisker_base1 to head_whisker_end1
+trace stroke from head_whisker_base2 to head_whisker_end2
+trace stroke from head_whisker_base3 to head_whisker_end3
+trace stroke from head_whisker_base4 to head_whisker_end4
+
+# Shorter whiskers on other side
+let head_whisker_base5 : vec = (127, 78)
+let head_whisker_end5 : vec = (120, 84)
+trace stroke from head_whisker_base5 to head_whisker_end5
+
+# Fur texture on forehead
+let head_fur1_start : vec = (116, 60)
+let head_fur1_end : vec = (118, 63)
+let head_fur2_start : vec = (118, 61)
+let head_fur2_end : vec = (121, 64)
+let head_fur3_start : vec = (114, 62)
+let head_fur3_end : vec = (116, 65)
+
+scribble stroke from head_fur1_start to head_fur1_end
+scribble stroke from head_fur2_start to head_fur2_end
+scribble stroke from head_fur3_start to head_fur3_end
+
+# Fur texture on cheek
+let head_cheek_fur1_start : vec = (124, 74)
+let head_cheek_fur1_end : vec = (126, 77)
+let head_cheek_fur2_start : vec = (125, 76)
+let head_cheek_fur2_end : vec = (127, 79)
+let head_cheek_fur3_start : vec = (123, 78)
+let head_cheek_fur3_end : vec = (125, 81)
+
+draw stroke from head_cheek_fur1_start to head_cheek_fur1_end
+draw stroke from head_cheek_fur2_start to head_cheek_fur2_end
+draw stroke from head_cheek_fur3_start to head_cheek_fur3_end
+
+# Fur texture on back of head
+let head_back_fur1_start : vec = (108, 62)
+let head_back_fur1_end : vec = (106, 65)
+let head_back_fur2_start : vec = (109, 64)
+let head_back_fur2_end : vec = (107, 68)
+let head_back_fur3_start : vec = (107, 67)
+let head_back_fur3_end : vec = (105, 71)
+
+draw stroke from head_back_fur1_start to head_back_fur1_end
+draw stroke from head_back_fur2_start to head_back_fur2_end
+draw stroke from head_back_fur3_start to head_back_fur3_end
+
+# Ear inner detail
+let head_ear_inner1 : vec = (109, 56)
+let head_ear_inner2 : vec = (110, 59)
+draw stroke from head_ear_inner1 to head_ear_inner2
+
+# Ear fur tufts
+let head_ear_tuft1 : vec = (108, 57)
+let head_ear_tuft1_end : vec = (106, 58)
+scribble stroke from head_ear_tuft1 to head_ear_tuft1_end
+
+# Shading under chin and jaw
+let head_jaw_shade1 : vec = (118, 80)
+let head_jaw_shade2 : vec = (116, 79)
+let head_jaw_shade3 : vec = (117, 81)
+draw dash at head_jaw_shade1
+draw dash at head_jaw_shade2
+draw dash at head_jaw_shade3
+draw dash at (119, 81)
+draw dash at (118, 82)
+
+# Shading on snout underside
+let head_snout_shade1 : vec = (129, 79)
+let head_snout_shade2 : vec = (130, 80)
+let head_snout_shade3 : vec = (131, 79)
+draw dash at head_snout_shade1
+draw dash at head_snout_shade2
+draw dash at head_snout_shade3
+
+# Brow line detail
+let head_brow1 : vec = (119, 67)
+let head_brow2 : vec = (124, 66)
+draw stroke from head_brow1 to head_brow2 via [(121, 66)]
+
+# Muzzle crease line
+let head_muzzle_crease1 : vec = (126, 72)
+let head_muzzle_crease2 : vec = (130, 74)
+draw stroke from head_muzzle_crease1 to head_muzzle_crease2
+
+# Additional fur strokes near neck transition
+let head_neck_fur1 : vec = (112, 76)
+let head_neck_fur1_end : vec = (110, 79)
+let head_neck_fur2 : vec = (114, 78)
+let head_neck_fur2_end : vec = (112, 82)
+
+draw stroke from head_neck_fur1 to head_neck_fur1_end
+draw stroke from head_neck_fur2 to head_neck_fur2_end
+
+# Subtle mouth line
+let head_mouth1 : vec = (128, 80)
+let head_mouth2 : vec = (124, 81)
+trace stroke from head_mouth1 to head_mouth2 via [(126, 80)]

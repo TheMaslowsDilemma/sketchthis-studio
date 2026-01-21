@@ -1,0 +1,923 @@
+# THE HUNDRED GUILDER PRINT - REMBRANDT VAN RIJN
+# A complete reproduction with full detail, shading, and texture
+# Canvas approximately 280mm x 390mm
+
+# ============================================================================
+# ARCHITECTURAL FRAMEWORK - VAULTED SPACE
+# ============================================================================
+
+# Background arch structure - deep in space
+let arch_top_center : vec = (195, 20)
+let arch_left_spring : vec = (80, 60)
+let arch_right_spring : vec = (310, 60)
+
+# Main background arch
+let background_arch : sketch = [
+  stroke from arch_left_spring to arch_top_center via [(120, 30), (160, 22)],
+  stroke from arch_top_center to arch_right_spring via [(230, 22), (270, 30)]
+]
+
+# Secondary architectural details - pillars and supports
+let left_pillar_base : vec = (75, 200)
+let left_pillar_top : vec = (78, 65)
+let right_pillar_base : vec = (315, 200)
+let right_pillar_top : vec = (312, 65)
+
+let architectural_verticals : sketch = [
+  stroke from left_pillar_base to left_pillar_top,
+  stroke from (77, 200) to (77, 65),
+  stroke from right_pillar_base to right_pillar_top,
+  stroke from (313, 200) to (313, 65)
+]
+
+# Background shadow masses in architecture
+let arch_shadow_left : sketch = [
+  dash at (85, 45), dash at (87, 47), dash at (89, 49),
+  dash at (91, 45), dash at (93, 47), dash at (95, 49),
+  dash at (85, 52), dash at (87, 54), dash at (89, 56),
+  dash at (91, 52), dash at (93, 54), dash at (95, 56),
+  dash at (97, 45), dash at (99, 47), dash at (101, 49),
+  dash at (103, 52), dash at (105, 54), dash at (107, 56)
+]
+
+let arch_shadow_right : sketch = [
+  dash at (285, 45), dash at (287, 47), dash at (289, 49),
+  dash at (291, 45), dash at (293, 47), dash at (295, 49),
+  dash at (285, 52), dash at (287, 54), dash at (289, 56),
+  dash at (291, 52), dash at (293, 54), dash at (295, 56),
+  dash at (297, 45), dash at (299, 47), dash at (301, 49),
+  dash at (303, 52), dash at (305, 54), dash at (307, 56)
+]
+
+# ============================================================================
+# CHRIST FIGURE - CENTRAL ILLUMINATED FORM
+# ============================================================================
+
+# Christ's head and halo - the focal point
+let christ_head_top : vec = (195, 85)
+let christ_head_center : vec = (195, 92)
+let christ_chin : vec = (195, 99)
+
+# Face outline
+let christ_face : sketch = [
+  stroke from (191, 86) to (191, 97) via [(190, 90), (190, 94)],
+  stroke from (199, 86) to (199, 97) via [(200, 90), (200, 94)],
+  stroke from (191, 97) to (199, 97) via [(195, 98)]
+]
+
+# Facial features - eyes, nose, mouth with Rembrandt's characteristic handling
+let christ_left_eye : vec = (192, 90)
+let christ_right_eye : vec = (198, 90)
+
+let christ_features : sketch = [
+  # Left eye
+  stroke from (191, 90) to (193, 90),
+  dash at (192, 89),
+  # Right eye
+  stroke from (197, 90) to (199, 90),
+  dash at (198, 89),
+  # Nose
+  stroke from (195, 91) to (195, 95),
+  stroke from (195, 95) to (194, 96),
+  # Mouth - gentle, compassionate
+  stroke from (193, 97) to (197, 97) via [(195, 97.5)],
+  # Beard indication
+  dash at (193, 99), dash at (195, 100), dash at (197, 99),
+  dash at (194, 101), dash at (196, 101)
+]
+
+# Hair - flowing locks with cross-hatching
+let christ_hair_left : sketch = [
+  stroke from (190, 87) to (188, 95) via [(189, 90)],
+  stroke from (189, 88) to (187, 96) via [(188, 92)],
+  stroke from (188, 89) to (186, 97) via [(187, 93)],
+  dash at (187, 90), dash at (186, 92), dash at (185, 94)
+]
+
+let christ_hair_right : sketch = [
+  stroke from (200, 87) to (202, 95) via [(201, 90)],
+  stroke from (201, 88) to (203, 96) via [(202, 92)],
+  stroke from (202, 89) to (204, 97) via [(203, 93)],
+  dash at (203, 90), dash at (204, 92), dash at (205, 94)
+]
+
+# Halo - subtle radiance
+let halo_glow : sketch = [
+  stroke from (185, 88) to (205, 88) via [(195, 84)],
+  dash at (188, 86), dash at (192, 85), dash at (198, 85), dash at (202, 86)
+]
+
+# Christ's neck and shoulders
+let christ_neck : sketch = [
+  stroke from (192, 99) to (192, 106),
+  stroke from (198, 99) to (198, 106)
+]
+
+let christ_left_shoulder : vec = (180, 115)
+let christ_right_shoulder : vec = (210, 115)
+
+# Robe and drapery - flowing fabric with rich folds
+let christ_robe_outline : sketch = [
+  # Left side of robe
+  stroke from (192, 106) to christ_left_shoulder via [(188, 110)],
+  stroke from christ_left_shoulder to (175, 145) via [(178, 125), (176, 135)],
+  stroke from (175, 145) to (170, 185) via [(173, 160), (171, 175)],
+  # Right side of robe
+  stroke from (198, 106) to christ_right_shoulder via [(202, 110)],
+  stroke from christ_right_shoulder to (215, 145) via [(212, 125), (214, 135)],
+  stroke from (215, 145) to (220, 185) via [(217, 160), (219, 175)],
+  # Bottom hem
+  stroke from (170, 185) to (220, 185) via [(180, 188), (195, 189), (210, 188)]
+]
+
+# Robe folds - vertical drapery
+let christ_robe_folds : sketch = [
+  stroke from (185, 110) to (183, 180) via [(184, 140), (183, 160)],
+  stroke from (190, 112) to (188, 182) via [(189, 145), (188, 165)],
+  stroke from (195, 113) to (195, 185) via [(195, 150), (195, 170)],
+  stroke from (200, 112) to (202, 182) via [(201, 145), (202, 165)],
+  stroke from (205, 110) to (207, 180) via [(206, 140), (207, 160)]
+]
+
+# Robe shadow masses - dense hatching on left side of folds
+let christ_robe_shadows : sketch = [
+  dash at (181, 120), dash at (182, 122), dash at (183, 124),
+  dash at (181, 126), dash at (182, 128), dash at (183, 130),
+  dash at (181, 132), dash at (182, 134), dash at (183, 136),
+  dash at (181, 138), dash at (182, 140), dash at (183, 142),
+  dash at (181, 144), dash at (182, 146), dash at (183, 148),
+  dash at (181, 150), dash at (182, 152), dash at (183, 154),
+  dash at (181, 156), dash at (182, 158), dash at (183, 160),
+  dash at (181, 162), dash at (182, 164), dash at (183, 166),
+  dash at (186, 125), dash at (187, 127), dash at (188, 129),
+  dash at (186, 131), dash at (187, 133), dash at (188, 135),
+  dash at (186, 145), dash at (187, 147), dash at (188, 149),
+  dash at (186, 155), dash at (187, 157), dash at (188, 159)
+]
+
+# Christ's right arm - extended in blessing/teaching gesture
+let christ_right_arm_shoulder : vec = (210, 115)
+let christ_right_elbow : vec = (235, 130)
+let christ_right_wrist : vec = (250, 135)
+let christ_right_hand : vec = (258, 138)
+
+let christ_right_arm_outline : sketch = [
+  stroke from christ_right_arm_shoulder to christ_right_elbow via [(220, 120)],
+  stroke from christ_right_elbow to christ_right_wrist via [(242, 132)],
+  stroke from christ_right_wrist to christ_right_hand via [(254, 136)]
+]
+
+# Right hand details - blessing gesture
+let christ_right_hand_detail : sketch = [
+  # Palm base
+  stroke from (250, 133) to (250, 140),
+  stroke from (258, 135) to (258, 142),
+  # Fingers
+  stroke from (251, 133) to (251, 128), # index
+  stroke from (253, 133) to (254, 129), # middle
+  stroke from (255, 134) to (256, 131), # ring
+  stroke from (257, 136) to (259, 135), # pinky
+  # Thumb
+  stroke from (250, 137) to (248, 139),
+  # Hand shadows
+  dash at (252, 136), dash at (253, 138), dash at (254, 137)
+]
+
+# Sleeve draping over right arm
+let christ_right_sleeve : sketch = [
+  stroke from (208, 116) to (235, 128) via [(220, 118), (228, 123)],
+  stroke from (212, 118) to (237, 130) via [(224, 121), (231, 126)],
+  # Sleeve folds
+  stroke from (218, 120) to (220, 127),
+  stroke from (225, 124) to (226, 130),
+  stroke from (230, 127) to (231, 132),
+  # Sleeve shadows
+  dash at (215, 122), dash at (216, 124), dash at (217, 126),
+  dash at (222, 125), dash at (223, 127), dash at (224, 129)
+]
+
+# Christ's left arm - more relaxed, at side
+let christ_left_elbow : vec = (165, 135)
+let christ_left_hand : vec = (160, 155)
+
+let christ_left_arm : sketch = [
+  stroke from christ_left_shoulder to christ_left_elbow via [(172, 125)],
+  stroke from christ_left_elbow to christ_left_hand via [(162, 145)],
+  # Left hand simplified
+  stroke from (159, 155) to (159, 160),
+  stroke from (161, 155) to (161, 160),
+  dash at (160, 157), dash at (160, 159)
+]
+
+# ============================================================================
+# LEFT SIDE - THE SICK AND SUFFERING SEEKING HEALING
+# ============================================================================
+
+# Elderly bearded man in foreground - kneeling/bowing
+let old_man_head : vec = (125, 165)
+let old_man_back : vec = (115, 180)
+
+let old_man_figure : sketch = [
+  # Head bowed down
+  stroke from (123, 163) to (123, 170) via [(122, 166)],
+  stroke from (127, 163) to (127, 170) via [(128, 166)],
+  stroke from (123, 170) to (127, 170),
+  # Beard - long and flowing
+  stroke from (124, 170) to (122, 180) via [(123, 175)],
+  stroke from (126, 170) to (128, 180) via [(127, 175)],
+  dash at (124, 172), dash at (125, 174), dash at (126, 176),
+  dash at (124, 178), dash at (125, 180), dash at (126, 182),
+  # Hunched back
+  stroke from (125, 165) to old_man_back via [(120, 172)],
+  stroke from old_man_back to (110, 200) via [(112, 190)],
+  # Arms reaching forward
+  stroke from (118, 175) to (135, 172) via [(126, 173)],
+  stroke from (116, 178) to (133, 175) via [(124, 176)]
+]
+
+# Old man's cloak - heavy fabric
+let old_man_cloak_shadows : sketch = [
+  dash at (114, 182), dash at (115, 184), dash at (116, 186),
+  dash at (114, 188), dash at (115, 190), dash at (116, 192),
+  dash at (114, 194), dash at (115, 196), dash at (116, 198),
+  dash at (117, 183), dash at (118, 185), dash at (119, 187),
+  dash at (117, 189), dash at (118, 191), dash at (119, 193)
+]
+
+# Woman with child - middle left, reaching toward Christ
+let woman_head : vec = (140, 155)
+let woman_child_in_arms : vec = (145, 170)
+
+let woman_with_child : sketch = [
+  # Woman's head with head covering
+  stroke from (138, 152) to (138, 160) via [(137, 156)],
+  stroke from (142, 152) to (142, 160) via [(143, 156)],
+  # Head covering drape
+  stroke from (136, 153) to (144, 153) via [(140, 151)],
+  stroke from (136, 153) to (135, 162) via [(135, 157)],
+  stroke from (144, 153) to (145, 162) via [(145, 157)],
+  # Face details
+  dash at (139, 155), dash at (141, 155),
+  stroke from (140, 157) to (140, 159),
+  # Arms holding child
+  stroke from (137, 160) to (143, 168) via [(140, 164)],
+  stroke from (143, 160) to (147, 168) via [(145, 164)],
+  # Child's head
+  stroke from (143, 168) to (143, 174) via [(142, 171)],
+  stroke from (147, 168) to (147, 174) via [(148, 171)],
+  stroke from (143, 174) to (147, 174),
+  # Child's small face
+  dash at (144, 170), dash at (146, 170),
+  dash at (145, 172)
+]
+
+# Woman's robe with deep shadows
+let woman_robe_shadows : sketch = [
+  dash at (136, 165), dash at (137, 167), dash at (138, 169),
+  dash at (136, 171), dash at (137, 173), dash at (138, 175),
+  dash at (136, 177), dash at (137, 179), dash at (138, 181),
+  dash at (139, 166), dash at (140, 168), dash at (141, 170),
+  dash at (139, 172), dash at (140, 174), dash at (141, 176)
+]
+
+# Another sick figure behind - emaciated form
+let sick_figure_back : vec = (110, 140)
+
+let sick_figure_rear : sketch = [
+  # Gaunt head
+  stroke from (108, 137) to (108, 145) via [(107, 141)],
+  stroke from (112, 137) to (112, 145) via [(113, 141)],
+  # Skeletal shoulders
+  stroke from (105, 145) to (115, 145),
+  stroke from (105, 145) to (103, 155),
+  stroke from (115, 145) to (117, 155),
+  # Shadow mass for depth
+  dash at (106, 142), dash at (107, 144), dash at (108, 146),
+  dash at (109, 143), dash at (110, 145), dash at (111, 147)
+]
+
+# Young child standing - lower left
+let standing_child : vec = (95, 175)
+
+let child_standing : sketch = [
+  # Small head
+  stroke from (93, 173) to (93, 178) via [(92, 175)],
+  stroke from (97, 173) to (97, 178) via [(98, 175)],
+  stroke from (93, 178) to (97, 178),
+  # Simple body
+  stroke from (95, 178) to (95, 195),
+  stroke from (92, 182) to (98, 182),
+  stroke from (93, 195) to (97, 195),
+  # Little arms
+  stroke from (92, 180) to (88, 183),
+  stroke from (98, 180) to (102, 183)
+]
+
+# Additional crowd figures in left background
+let left_crowd_figure_1 : vec = (85, 125)
+let left_crowd_figure_2 : vec = (100, 115)
+let left_crowd_figure_3 : vec = (120, 105)
+
+let left_background_crowd : sketch = [
+  # Figure 1 - head and shoulders
+  stroke from (83, 123) to (83, 130),
+  stroke from (87, 123) to (87, 130),
+  stroke from (82, 130) to (88, 130),
+  stroke from (82, 130) to (80, 145),
+  stroke from (88, 130) to (90, 145),
+  # Figure 2
+  stroke from (98, 113) to (98, 120),
+  stroke from (102, 113) to (102, 120),
+  stroke from (97, 120) to (103, 120),
+  dash at (99, 116), dash at (101, 116),
+  # Figure 3 - partially visible
+  stroke from (118, 103) to (118, 112),
+  stroke from (122, 103) to (122, 112),
+  dash at (119, 107), dash at (121, 107)
+]
+
+# Dense shadow mass for left crowd area
+let left_crowd_shadows : sketch = [
+  dash at (82, 135), dash at (84, 137), dash at (86, 139),
+  dash at (82, 141), dash at (84, 143), dash at (86, 145),
+  dash at (88, 136), dash at (90, 138), dash at (92, 140),
+  dash at (88, 142), dash at (90, 144), dash at (92, 146),
+  dash at (94, 120), dash at (96, 122), dash at (98, 124),
+  dash at (94, 126), dash at (96, 128), dash at (98, 130),
+  dash at (100, 121), dash at (102, 123), dash at (104, 125),
+  dash at (106, 110), dash at (108, 112), dash at (110, 114),
+  dash at (112, 108), dash at (114, 110), dash at (116, 112)
+]
+
+# ============================================================================
+# RIGHT SIDE - MOTHERS, CHILDREN, AND APPROACHING FAITHFUL
+# ============================================================================
+
+# Mother bringing child to Christ - foreground right
+let mother_right_head : vec = (265, 150)
+let mother_child : vec = (260, 165)
+
+let mother_and_child_right : sketch = [
+  # Mother's head with veil
+  stroke from (263, 147) to (263, 155) via [(262, 151)],
+  stroke from (267, 147) to (267, 155) via [(268, 151)],
+  stroke from (263, 155) to (267, 155),
+  # Veil draping
+  stroke from (261, 148) to (269, 148) via [(265, 146)],
+  stroke from (261, 148) to (259, 158) via [(260, 153)],
+  stroke from (269, 148) to (271, 158) via [(270, 153)],
+  # Mother's face - loving expression
+  dash at (264, 150), dash at (266, 150),
+  stroke from (265, 151) to (265, 153),
+  stroke from (264, 154) to (266, 154),
+  # Arms cradling child
+  stroke from (262, 155) to (258, 163) via [(260, 159)],
+  stroke from (268, 155) to (262, 163) via [(265, 159)],
+  # Child's head
+  stroke from (258, 163) to (258, 169) via [(257, 166)],
+  stroke from (262, 163) to (262, 169) via [(263, 166)],
+  stroke from (258, 169) to (262, 169),
+  # Child's small features
+  dash at (259, 165), dash at (261, 165),
+  dash at (260, 167)
+]
+
+# Mother's garment folds
+let mother_right_garment : sketch = [
+  stroke from (260, 158) to (258, 180) via [(259, 168), (258, 174)],
+  stroke from (265, 158) to (263, 180) via [(264, 168), (263, 174)],
+  stroke from (270, 158) to (268, 180) via [(269, 168), (268, 174)],
+  # Garment shadows
+  dash at (257, 162), dash at (258, 164), dash at (259, 166),
+  dash at (257, 168), dash at (258, 170), dash at (259, 172),
+  dash at (257, 174), dash at (258, 176), dash at (259, 178)
+]
+
+# Another child figure - being led forward
+let child_led_forward : vec = (280, 170)
+
+let child_figure_right : sketch = [
+  # Child's head
+  stroke from (278, 168) to (278, 174) via [(277, 171)],
+  stroke from (282, 168) to (282, 174) via [(283, 171)],
+  stroke from (278, 174) to (282, 174),
+  # Hair
+  stroke from (277, 169) to (275, 173) via [(276, 171)],
+  stroke from (283, 169) to (285, 173) via [(284, 171)],
+  # Small body
+  stroke from (280, 174) to (280, 190),
+  stroke from (277, 178) to (283, 178),
+  # Tunic
+  stroke from (277, 178) to (275, 190),
+  stroke from (283, 178) to (285, 190),
+  stroke from (275, 190) to (285, 190),
+  # Arms
+  stroke from (277, 176) to (273, 180),
+  stroke from (283, 176) to (287, 180)
+]
+
+# Woman standing behind - elegant figure
+let elegant_woman : vec = (290, 135)
+
+let elegant_woman_figure : sketch = [
+  # Head with elaborate head covering
+  stroke from (288, 132) to (288, 140) via [(287, 136)],
+  stroke from (292, 132) to (292, 140) via [(293, 136)],
+  stroke from (288, 140) to (292, 140),
+  # Headdress
+  stroke from (286, 133) to (294, 133) via [(290, 130)],
+  stroke from (286, 133) to (286, 138),
+  stroke from (294, 133) to (294, 138),
+  # Facial features
+  dash at (289, 135), dash at (291, 135),
+  stroke from (290, 136) to (290, 138),
+  # Graceful neck and shoulders
+  stroke from (289, 140) to (287, 148),
+  stroke from (291, 140) to (293, 148),
+  stroke from (287, 148) to (282, 165),
+  stroke from (293, 148) to (298, 165)
+]
+
+# Elegant woman's rich garment with folds
+let elegant_woman_garment : sketch = [
+  stroke from (285, 150) to (283, 180) via [(284, 165)],
+  stroke from (290, 152) to (290, 182) via [(290, 167)],
+  stroke from (295, 150) to (297, 180) via [(296, 165)],
+  # Shadow cross-hatching
+  dash at (284, 155), dash at (285, 157), dash at (286, 159),
+  dash at (284, 161), dash at (285, 163), dash at (286, 165),
+  dash at (284, 167), dash at (285, 169), dash at (286, 171),
+  dash at (288, 156), dash at (289, 158), dash at (290, 160),
+  dash at (288, 162), dash at (289, 164), dash at (290, 166)
+]
+
+# Young man - attendant or disciple figure
+let young_man_right : vec = (305, 145)
+
+let young_man_figure : sketch = [
+  # Head with cap
+  stroke from (303, 142) to (303, 150) via [(302, 146)],
+  stroke from (307, 142) to (307, 150) via [(308, 146)],
+  stroke from (303, 150) to (307, 150),
+  # Cap
+  stroke from (302, 142) to (308, 142) via [(305, 140)],
+  stroke from (302, 142) to (301, 144),
+  stroke from (308, 142) to (309, 144),
+  # Face
+  dash at (304, 145), dash at (306, 145),
+  stroke from (305, 146) to (305, 148),
+  # Body and cloak
+  stroke from (304, 150) to (302, 165) via [(303, 157)],
+  stroke from (306, 150) to (308, 165) via [(307, 157)],
+  stroke from (302, 165) to (300, 185) via [(301, 175)],
+  stroke from (308, 165) to (310, 185) via [(309, 175)]
+]
+
+# Background figures on right - additional crowd
+let right_background_fig_1 : vec = (320, 125)
+let right_background_fig_2 : vec = (310, 115)
+
+let right_background_crowd : sketch = [
+  # Figure 1
+  stroke from (318, 123) to (318, 130),
+  stroke from (322, 123) to (322, 130),
+  stroke from (317, 130) to (323, 130),
+  stroke from (317, 130) to (315, 145),
+  stroke from (323, 130) to (325, 145),
+  # Figure 2
+  stroke from (308, 113) to (308, 120),
+  stroke from (312, 113) to (312, 120),
+  stroke from (307, 120) to (313, 120),
+  dash at (309, 116), dash at (311, 116)
+]
+
+# ============================================================================
+# FAR RIGHT - THE PHARISEES AND SKEPTICS IN SHADOW
+# ============================================================================
+
+# Chief Pharisee - bearded, turbaned figure in argument pose
+let pharisee_chief_head : vec = (340, 120)
+
+let pharisee_chief : sketch = [
+  # Turbaned head
+  stroke from (336, 115) to (344, 115) via [(340, 112)],
+  stroke from (336, 115) to (336, 125),
+  stroke from (344, 115) to (344, 125),
+  stroke from (336, 125) to (344, 125) via [(340, 126)],
+  # Face - stern expression
+  stroke from (337, 118) to (337, 124) via [(336, 121)],
+  stroke from (343, 118) to (343, 124) via [(344, 121)],
+  stroke from (337, 124) to (343, 124),
+  # Eyes - skeptical
+  dash at (338, 120), dash at (342, 120),
+  # Nose
+  stroke from (340, 121) to (340, 123),
+  # Beard - long and patriarchal
+  stroke from (338, 124) to (336, 135) via [(337, 129)],
+  stroke from (340, 124) to (340, 136),
+  stroke from (342, 124) to (344, 135) via [(343, 129)],
+  dash at (338, 127), dash at (339, 129), dash at (340, 131),
+  dash at (341, 129), dash at (342, 131), dash at (338, 133)
+]
+
+# Pharisee's rich robes
+let pharisee_robes : sketch = [
+  stroke from (337, 125) to (333, 145) via [(335, 135)],
+  stroke from (343, 125) to (347, 145) via [(345, 135)],
+  stroke from (333, 145) to (330, 175) via [(331, 160)],
+  stroke from (347, 145) to (350, 175) via [(349, 160)],
+  # Elaborate folds
+  stroke from (336, 130) to (334, 165) via [(335, 147)],
+  stroke from (340, 132) to (340, 168) via [(340, 150)],
+  stroke from (344, 130) to (346, 165) via [(345, 147)]
+]
+
+# Dense shadows on Pharisee - symbol of spiritual darkness
+let pharisee_shadows : sketch = [
+  dash at (332, 135), dash at (333, 137), dash at (334, 139),
+  dash at (332, 141), dash at (333, 143), dash at (334, 145),
+  dash at (332, 147), dash at (333, 149), dash at (334, 151),
+  dash at (332, 153), dash at (333, 155), dash at (334, 157),
+  dash at (332, 159), dash at (333, 161), dash at (334, 163),
+  dash at (335, 136), dash at (336, 138), dash at (337, 140),
+  dash at (335, 142), dash at (336, 144), dash at (337, 146),
+  dash at (335, 148), dash at (336, 150), dash at (337, 152),
+  dash at (335, 154), dash at (336, 156), dash at (337, 158),
+  dash at (338, 142), dash at (339, 144), dash at (340, 146),
+  dash at (338, 148), dash at (339, 150), dash at (340, 152)
+]
+
+# Second Pharisee - gesturing in debate
+let pharisee_second : vec = (360, 130)
+
+let pharisee_second_figure : sketch = [
+  # Head with cap
+  stroke from (358, 127) to (358, 135) via [(357, 131)],
+  stroke from (362, 127) to (362, 135) via [(363, 131)],
+  stroke from (358, 135) to (362, 135),
+  # Scholar's cap
+  stroke from (356, 128) to (364, 128) via [(360, 125)],
+  # Bearded face
+  stroke from (359, 135) to (357, 142) via [(358, 138)],
+  stroke from (361, 135) to (363, 142) via [(362, 138)],
+  dash at (358, 133), dash at (362, 133),
+  # Raised arm in argument
+  stroke from (357, 135) to (350, 140) via [(353, 137)],
+  stroke from (350, 140) to (345, 142),
+  # Hand pointing
+  stroke from (345, 141) to (342, 140),
+  stroke from (345, 142) to (342, 143),
+  dash at (343, 141),
+  # Body
+  stroke from (360, 135) to (358, 155) via [(359, 145)],
+  stroke from (362, 135) to (364, 155) via [(363, 145)]
+]
+
+# Third figure in shadow - partially visible
+let pharisee_third_shadow : sketch = [
+  stroke from (370, 135) to (370, 150),
+  stroke from (373, 135) to (373, 150),
+  dash at (371, 140), dash at (372, 142), dash at (371, 144),
+  dash at (371, 146), dash at (372, 148), dash at (371, 150),
+  # Deep shadow mass
+  dash at (368, 138), dash at (369, 140), dash at (370, 142),
+  dash at (368, 144), dash at (369, 146), dash at (370, 148),
+  dash at (368, 150), dash at (369, 152), dash at (370, 154)
+]
+
+# ============================================================================
+# FOREGROUND ELEMENTS - DEPTH AND ATMOSPHERE
+# ============================================================================
+
+# Foreground shadow mass - lower left corner
+let foreground_shadow_left : sketch = [
+  dash at (65, 190), dash at (67, 192), dash at (69, 194),
+  dash at (65, 196), dash at (67, 198), dash at (69, 200),
+  dash at (71, 191), dash at (73, 193), dash at (75, 195),
+  dash at (71, 197), dash at (73, 199), dash at (75, 201),
+  dash at (77, 192), dash at (79, 194), dash at (81, 196),
+  dash at (77, 198), dash at (79, 200), dash at (81, 202),
+  dash at (83, 193), dash at (85, 195), dash at (87, 197),
+  dash at (83, 199), dash at (85, 201), dash at (87, 203)
+]
+
+# Foreground shadow mass - lower right corner
+let foreground_shadow_right : sketch = [
+  dash at (315, 190), dash at (317, 192), dash at (319, 194),
+  dash at (315, 196), dash at (317, 198), dash at (319, 200),
+  dash at (321, 191), dash at (323, 193), dash at (325, 195),
+  dash at (321, 197), dash at (323, 199), dash at (325, 201),
+  dash at (327, 192), dash at (329, 194), dash at (331, 196),
+  dash at (327, 198), dash at (329, 200), dash at (331, 202),
+  dash at (333, 193), dash at (335, 195), dash at (337, 197),
+  dash at (333, 199), dash at (335, 201), dash at (337, 203)
+]
+
+# Ground line suggestions - perspective indicators
+let ground_lines : sketch = [
+  stroke from (70, 200) to (195, 190) via [(130, 195)],
+  stroke from (320, 200) to (195, 190) via [(260, 195)],
+  dash at (100, 197), dash at (120, 195), dash at (140, 193),
+  dash at (250, 193), dash at (270, 195), dash at (290, 197)
+]
+
+# ============================================================================
+# ATMOSPHERIC EFFECTS - LIGHT AND SHADOW GRADATIONS
+# ============================================================================
+
+# Radiant light emanating from Christ - the divine glow
+let christ_radiance_inner : sketch = [
+  dash at (190, 110), dash at (192, 108), dash at (194, 106),
+  dash at (196, 106), dash at (198, 108), dash at (200, 110),
+  dash at (188, 115), dash at (202, 115),
+  dash at (186, 120), dash at (204, 120),
+  dash at (184, 130), dash at (206, 130),
+  dash at (182, 140), dash at (208, 140)
+]
+
+# Middle ground atmospheric haze
+let middle_atmospheric : sketch = [
+  dash at (150, 100), dash at (155, 102), dash at (160, 104),
+  dash at (230, 104), dash at (235, 102), dash at (240, 100),
+  dash at (145, 110), dash at (150, 112), dash at (155, 114),
+  dash at (235, 114), dash at (240, 112), dash at (245, 110)
+]
+
+# Deep background darkness - upper corners
+let background_darkness_left : sketch = [
+  dash at (70, 30), dash at (72, 32), dash at (74, 34),
+  dash at (70, 36), dash at (72, 38), dash at (74, 40),
+  dash at (76, 31), dash at (78, 33), dash at (80, 35),
+  dash at (76, 37), dash at (78, 39), dash at (80, 41),
+  dash at (82, 32), dash at (84, 34), dash at (86, 36),
+  dash at (88, 33), dash at (90, 35), dash at (92, 37),
+  dash at (94, 34), dash at (96, 36), dash at (98, 38),
+  dash at (100, 35), dash at (102, 37), dash at (104, 39)
+]
+
+let background_darkness_right : sketch = [
+  dash at (320, 30), dash at (322, 32), dash at (324, 34),
+  dash at (320, 36), dash at (322, 38), dash at (324, 40),
+  dash at (326, 31), dash at (328, 33), dash at (330, 35),
+  dash at (326, 37), dash at (328, 39), dash at (330, 41),
+  dash at (332, 32), dash at (334, 34), dash at (336, 36),
+  dash at (338, 33), dash at (340, 35), dash at (342, 37),
+  dash at (344, 34), dash at (346, 36), dash at (348, 38),
+  dash at (350, 35), dash at (352, 37), dash at (354, 39)
+]
+
+# ============================================================================
+# ADDITIONAL DETAIL WORK - TEXTURES AND REFINEMENTS
+# ============================================================================
+
+# Cross-hatching for mid-tone transitions - left side
+let midtone_left_crosshatch : sketch = [
+  dash at (110, 155), dash at (112, 157), dash at (114, 159),
+  dash at (116, 156), dash at (118, 158), dash at (120, 160),
+  dash at (122, 157), dash at (124, 159), dash at (126, 161),
+  dash at (128, 152), dash at (130, 154), dash at (132, 156),
+  dash at (134, 153), dash at (136, 155), dash at (138, 157),
+  dash at (105, 168), dash at (107, 170), dash at (109, 172),
+  dash at (111, 169), dash at (113, 171), dash at (115, 173)
+]
+
+# Cross-hatching for mid-tone transitions - right side
+let midtone_right_crosshatch : sketch = [
+  dash at (270, 155), dash at (272, 157), dash at (274, 159),
+  dash at (276, 156), dash at (278, 158), dash at (280, 160),
+  dash at (282, 157), dash at (284, 159), dash at (286, 161),
+  dash at (288, 152), dash at (290, 154), dash at (292, 156),
+  dash at (294, 153), dash at (296, 155), dash at (298, 157),
+  dash at (300, 168), dash at (302, 170), dash at (304, 172),
+  dash at (306, 169), dash at (308, 171), dash at (310, 173)
+]
+
+# Additional fabric texture on robes throughout
+let fabric_texture_details : sketch = [
+  # Christ's robe texture
+  dash at (177, 135), dash at (179, 137), dash at (181, 139),
+  dash at (208, 135), dash at (210, 137), dash at (212, 139),
+  dash at (185, 155), dash at (187, 157), dash at (189, 159),
+  dash at (201, 155), dash at (203, 157), dash at (205, 159),
+  # Left crowd fabric
+  dash at (122, 148), dash at (124, 150), dash at (126, 152),
+  dash at (128, 149), dash at (130, 151), dash at (132, 153),
+  # Right crowd fabric
+  dash at (262, 148), dash at (264, 150), dash at (266, 152),
+  dash at (268, 149), dash at (270, 151), dash at (272, 153)
+]
+
+# Fine detail work on hands throughout composition
+let hand_details_additional : sketch = [
+  # Old man's gnarled hands
+  dash at (133, 173), dash at (134, 174), dash at (135, 175),
+  # Mother's gentle hands
+  dash at (259, 164), dash at (260, 165), dash at (261, 166),
+  # Pharisee's gesturing hand details
+  dash at (343, 141), dash at (344, 142), dash at (345, 143)
+]
+
+# Additional architectural detail - vault ribbing
+let vault_ribbing : sketch = [
+  stroke from (140, 35) to (195, 50) via [(165, 40)],
+  stroke from (250, 35) to (195, 50) via [(225, 40)],
+  stroke from (160, 32) to (180, 45) via [(170, 37)],
+  stroke from (230, 32) to (210, 45) via [(220, 37)]
+]
+
+# Floor texture suggestions
+let floor_texture : sketch = [
+  dash at (150, 195), dash at (155, 196), dash at (160, 197),
+  dash at (165, 195), dash at (170, 196), dash at (175, 197),
+  dash at (215, 197), dash at (220, 196), dash at (225, 195),
+  dash at (230, 197), dash at (235, 196), dash at (240, 195)
+]
+
+# Edge accents - emphasizing key contours with stronger lines
+let contour_accents : sketch = [
+  # Christ's silhouette emphasis
+  stroke from (191, 88) to (192, 106),
+  stroke from (199, 88) to (198, 106),
+  # Strong shadow edge left side
+  stroke from (110, 180) to (115, 200),
+  # Strong shadow edge right side  
+  stroke from (330, 140) to (335, 165)
+]
+
+# ============================================================================
+# FINAL REFINEMENTS - LAST DETAILS AND TOUCHES
+# ============================================================================
+
+# Hair and beard texture throughout
+let hair_texture_all_figures : sketch = [
+  # Christ's hair strands
+  dash at (189, 91), dash at (188, 93), dash at (187, 95),
+  dash at (201, 91), dash at (202, 93), dash at (203, 95),
+  # Old man's beard texture
+  dash at (123, 177), dash at (124, 179), dash at (125, 181),
+  # Pharisee's beard texture
+  dash at (337, 130), dash at (338, 132), dash at (339, 134)
+]
+
+# Eye details for main figures
+let eye_details_all : sketch = [
+  # Christ's eyes - compassionate gaze
+  dash at (192, 90), dash at (198, 90),
+  # Woman's eyes - hopeful
+  dash at (264, 150), dash at (266, 150),
+  # Pharisee's eyes - skeptical
+  dash at (338, 120), dash at (342, 120),
+  # Child's eyes - innocent
+  dash at (144, 170), dash at (146, 170)
+]
+
+# Additional children in scene - symbolic innocence
+let more_children : sketch = [
+  # Small child near mother's feet
+  stroke from (255, 180) to (255, 190),
+  stroke from (257, 180) to (257, 190),
+  dash at (256, 182), dash at (256, 184),
+  # Toddler at edge
+  stroke from (245, 185) to (245, 195),
+  stroke from (247, 185) to (247, 195),
+  dash at (246, 187)
+]
+
+# Staffs and walking sticks for elderly
+let walking_aids : sketch = [
+  # Staff for old man
+  stroke from (112, 175) to (110, 200),
+  # Walking stick for background figure
+  stroke from (86, 140) to (84, 160)
+]
+
+# Book or scroll in Pharisee's hand - symbol of law
+let pharisee_scroll : sketch = [
+  stroke from (335, 150) to (340, 148),
+  stroke from (335, 153) to (340, 151),
+  stroke from (335, 150) to (335, 153),
+  stroke from (340, 148) to (340, 151),
+  dash at (336, 151), dash at (337, 152), dash at (338, 151)
+]
+
+# Additional shadow depth in far background
+let deep_background_shadows : sketch = [
+  dash at (108, 50), dash at (110, 52), dash at (112, 54),
+  dash at (114, 51), dash at (116, 53), dash at (118, 55),
+  dash at (272, 50), dash at (274, 52), dash at (276, 54),
+  dash at (278, 51), dash at (280, 53), dash at (282, 55)
+]
+
+# Window or light source indication - upper left
+let light_source_window : sketch = [
+  stroke from (90, 48) to (110, 48),
+  stroke from (90, 48) to (90, 65),
+  stroke from (110, 48) to (110, 65),
+  stroke from (90, 65) to (110, 65),
+  # Light rays
+  dash at (95, 58), dash at (100, 60), dash at (105, 58)
+]
+
+# ============================================================================
+# FINAL ASSEMBLY AND RENDERING
+# ============================================================================
+
+# Combine all architectural elements
+let architecture : sketch = [
+  background_arch,
+  architectural_verticals,
+  arch_shadow_left,
+  arch_shadow_right,
+  vault_ribbing,
+  light_source_window
+]
+
+# Combine Christ figure
+let christ_complete : sketch = [
+  halo_glow,
+  christ_face,
+  christ_features,
+  christ_hair_left,
+  christ_hair_right,
+  christ_neck,
+  christ_robe_outline,
+  christ_robe_folds,
+  christ_robe_shadows,
+  christ_right_arm_outline,
+  christ_right_hand_detail,
+  christ_right_sleeve,
+  christ_left_arm
+]
+
+# Combine left side figures (the sick and suffering)
+let left_side_complete : sketch = [
+  old_man_figure,
+  old_man_cloak_shadows,
+  woman_with_child,
+  woman_robe_shadows,
+  sick_figure_rear,
+  child_standing,
+  left_background_crowd,
+  left_crowd_shadows,
+  midtone_left_crosshatch
+]
+
+# Combine right side figures (mothers, children, faithful)
+let right_side_complete : sketch = [
+  mother_and_child_right,
+  mother_right_garment,
+  child_figure_right,
+  elegant_woman_figure,
+  elegant_woman_garment,
+  young_man_figure,
+  right_background_crowd,
+  more_children,
+  midtone_right_crosshatch
+]
+
+# Combine Pharisees group
+let pharisees_complete : sketch = [
+  pharisee_chief,
+  pharisee_robes,
+  pharisee_shadows,
+  pharisee_second_figure,
+  pharisee_third_shadow,
+  pharisee_scroll
+]
+
+# Combine atmospheric and environmental elements
+let atmosphere_complete : sketch = [
+  christ_radiance_inner,
+  middle_atmospheric,
+  background_darkness_left,
+  background_darkness_right,
+  foreground_shadow_left,
+  foreground_shadow_right,
+  ground_lines,
+  deep_background_shadows
+]
+
+# Combine all detail refinements
+let detail_refinements : sketch = [
+  fabric_texture_details,
+  hand_details_additional,
+  floor_texture,
+  contour_accents,
+  hair_texture_all_figures,
+  eye_details_all,
+  walking_aids
+]
+
+# Master composition - all elements in proper layering order
+let hundred_guilder_print : sketch = [
+  architecture,
+  atmosphere_complete,
+  pharisees_complete,
+  left_side_complete,
+  christ_complete,
+  right_side_complete,
+  detail_refinements
+]
+
+# Render with draw command for organic, hand-etched quality
+draw hundred_guilder_print

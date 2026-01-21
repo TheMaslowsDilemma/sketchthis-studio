@@ -1,0 +1,195 @@
+# Notre Dame Cathedral - Ground-level perspective
+# Vanishing point slightly above and centered for dramatic upward view
+
+# === ANCHOR POINTS ===
+# Base width narrows as it rises (perspective)
+let ground_left : vec = (20, 180)
+let ground_right : vec = (180, 180)
+let ground_center : vec = (100, 185)
+
+# Portal level
+let portal_base_left : vec = (35, 165)
+let portal_base_right : vec = (165, 165)
+let portal_top_left : vec = (40, 120)
+let portal_top_right : vec = (160, 120)
+
+# Gallery level (horizontal band)
+let gallery_left : vec = (42, 115)
+let gallery_right : vec = (158, 115)
+let gallery_top_left : vec = (44, 105)
+let gallery_top_right : vec = (156, 105)
+
+# Rose window level
+let rose_center : vec = (100, 80)
+let rose_level_left : vec = (46, 100)
+let rose_level_right : vec = (154, 100)
+
+# Tower bases
+let tower_divide_left : vec = (70, 60)
+let tower_divide_right : vec = (130, 60)
+
+# Tower tops (converging slightly)
+let left_tower_top_left : vec = (52, 15)
+let left_tower_top_right : vec = (72, 15)
+let right_tower_top_left : vec = (128, 15)
+let right_tower_top_right : vec = (148, 15)
+
+# === GROUND PLANE ===
+let ground_line : sketch = stroke from ground_left to ground_right
+let perspective_left : sketch = stroke from (0, 190) to ground_left
+let perspective_right : sketch = stroke from (200, 190) to ground_right
+draw [ground_line, perspective_left, perspective_right]
+
+# === THREE PORTALS ===
+# Central portal (largest)
+let central_portal_left : vec = (75, 165)
+let central_portal_right : vec = (125, 165)
+let central_portal_peak : vec = (100, 130)
+let central_portal : sketch = [
+  stroke from central_portal_left to central_portal_peak,
+  stroke from central_portal_peak to central_portal_right,
+  stroke from central_portal_left to (75, 140),
+  stroke from central_portal_right to (125, 140)
+]
+
+# Left portal
+let left_portal_left : vec = (38, 165)
+let left_portal_right : vec = (68, 165)
+let left_portal_peak : vec = (53, 140)
+let left_portal : sketch = [
+  stroke from left_portal_left to left_portal_peak,
+  stroke from left_portal_peak to left_portal_right
+]
+
+# Right portal
+let right_portal_left : vec = (132, 165)
+let right_portal_right : vec = (162, 165)
+let right_portal_peak : vec = (147, 140)
+let right_portal : sketch = [
+  stroke from right_portal_left to right_portal_peak,
+  stroke from right_portal_peak to right_portal_right
+]
+
+draw [central_portal, left_portal, right_portal]
+
+# Portal arches (nested for depth)
+let inner_arch : sketch = stroke from (80, 160) to (100, 135) via [(90, 140)]
+let inner_arch2 : sketch = stroke from (100, 135) to (120, 160) via [(110, 140)]
+draw [inner_arch, inner_arch2]
+
+# === GALLERY OF KINGS ===
+let gallery_base : sketch = stroke from gallery_left to gallery_right
+let gallery_top : sketch = stroke from gallery_top_left to gallery_top_right
+draw [gallery_base, gallery_top]
+
+# Suggesting statues with vertical dashes
+let king1 : sketch = dash at (55, 110)
+let king2 : sketch = dash at (70, 110)
+let king3 : sketch = dash at (85, 110)
+let king4 : sketch = dash at (100, 110)
+let king5 : sketch = dash at (115, 110)
+let king6 : sketch = dash at (130, 110)
+let king7 : sketch = dash at (145, 110)
+scribble [king1, king2, king3, king4, king5, king6, king7]
+
+# === ROSE WINDOW ===
+# Outer circle suggested with curved strokes
+let rose_top : vec = rose_center + (0, -18)
+let rose_bottom : vec = rose_center + (0, 18)
+let rose_left_pt : vec = rose_center + (-18, 0)
+let rose_right_pt : vec = rose_center + (18, 0)
+
+let rose_curve1 : sketch = stroke from rose_top to rose_right_pt via [(rose_center + (14, -14))]
+let rose_curve2 : sketch = stroke from rose_right_pt to rose_bottom via [(rose_center + (14, 14))]
+let rose_curve3 : sketch = stroke from rose_bottom to rose_left_pt via [(rose_center + (-14, 14))]
+let rose_curve4 : sketch = stroke from rose_left_pt to rose_top via [(rose_center + (-14, -14))]
+draw [rose_curve1, rose_curve2, rose_curve3, rose_curve4]
+
+# Rose inner detail
+let rose_inner : sketch = dot at rose_center
+trace rose_inner
+
+# Flanking windows (pointed arches)
+let left_window : sketch = [
+  stroke from (48, 100) to (55, 70),
+  stroke from (55, 70) to (62, 100)
+]
+let right_window : sketch = [
+  stroke from (138, 100) to (145, 70),
+  stroke from (145, 70) to (152, 100)
+]
+draw [left_window, right_window]
+
+# === FACADE OUTLINE ===
+# Left edge rising
+let left_edge : sketch = stroke from portal_base_left to (50, 60)
+# Right edge rising  
+let right_edge : sketch = stroke from portal_base_right to (150, 60)
+draw [left_edge, right_edge]
+
+# === TWIN BELL TOWERS ===
+# Left tower
+let left_tower_left : vec = (50, 60)
+let left_tower_right : vec = (70, 60)
+let left_tower : sketch = [
+  stroke from left_tower_left to left_tower_top_left,
+  stroke from left_tower_right to left_tower_top_right,
+  stroke from left_tower_top_left to left_tower_top_right
+]
+
+# Right tower
+let right_tower_left : vec = (130, 60)
+let right_tower_right : vec = (150, 60)
+let right_tower : sketch = [
+  stroke from right_tower_left to right_tower_top_left,
+  stroke from right_tower_right to right_tower_top_right,
+  stroke from right_tower_top_left to right_tower_top_right
+]
+
+draw [left_tower, right_tower]
+
+# Tower windows (belfry openings)
+let left_belfry1 : sketch = stroke from (54, 45) to (54, 30)
+let left_belfry2 : sketch = stroke from (62, 45) to (62, 30)
+let right_belfry1 : sketch = stroke from (138, 45) to (138, 30)
+let right_belfry2 : sketch = stroke from (146, 45) to (146, 30)
+draw [left_belfry1, left_belfry2, right_belfry1, right_belfry2]
+
+# Central section between towers
+let center_top : sketch = stroke from (70, 60) to (130, 60)
+draw center_top
+
+# === GOTHIC DETAILS ===
+# Flying buttress hints on sides
+let buttress_left : sketch = stroke from (20, 140) to (35, 100) via [(15, 120)]
+let buttress_right : sketch = stroke from (180, 140) to (165, 100) via [(185, 120)]
+scribble [buttress_left, buttress_right]
+
+# Vertical buttress lines on facade
+let vert_buttress1 : sketch = stroke from (50, 165) to (50, 60)
+let vert_buttress2 : sketch = stroke from (70, 165) to (70, 60)
+let vert_buttress3 : sketch = stroke from (130, 165) to (130, 60)
+let vert_buttress4 : sketch = stroke from (150, 165) to (150, 60)
+draw [vert_buttress1, vert_buttress2, vert_buttress3, vert_buttress4]
+
+# Pinnacle suggestions atop buttresses
+let pinnacle1 : sketch = stroke from (50, 60) to (50, 52)
+let pinnacle2 : sketch = stroke from (70, 60) to (70, 52)
+let pinnacle3 : sketch = stroke from (130, 60) to (130, 52)
+let pinnacle4 : sketch = stroke from (150, 60) to (150, 52)
+scribble [pinnacle1, pinnacle2, pinnacle3, pinnacle4]
+
+# === SHADOW AND DEPTH ===
+# Shading under portals
+let portal_shadow1 : sketch = dash at (53, 155)
+let portal_shadow2 : sketch = dash at (100, 155)
+let portal_shadow3 : sketch = dash at (100, 150)
+let portal_shadow4 : sketch = dash at (147, 155)
+scribble [portal_shadow1, portal_shadow2, portal_shadow3, portal_shadow4]
+
+# Tower shadow dashes
+let tower_shade1 : sketch = dash at (55, 40)
+let tower_shade2 : sketch = dash at (58, 35)
+let tower_shade3 : sketch = dash at (140, 40)
+let tower_shade4 : sketch = dash at (143, 35)
+scribble [tower_shade1, tower_shade2, tower_shade3, tower_shade4]

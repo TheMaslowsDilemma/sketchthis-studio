@@ -1,0 +1,846 @@
+# Notre Dame from the Seine - Initial Contours
+# Canvas: 200x200mm
+
+# =====================
+# HORIZON AND PERSPECTIVE GUIDES
+# =====================
+
+let horizon_y : number = 85
+let vanish_x : number = 100
+let vanish : vec = (100, 85)
+
+# Horizon line (subtle)
+let horizon : sketch = stroke from (0, 85) to (200, 85)
+
+# =====================
+# MAIN CATHEDRAL MASS - NAVE
+# =====================
+
+# Base of cathedral sits on island
+let nave_left_bottom : vec = (45, 120)
+let nave_right_bottom : vec = (155, 120)
+let nave_left_top : vec = (55, 65)
+let nave_right_top : vec = (145, 65)
+
+# South facade wall
+let south_wall : sketch = stroke from (45, 120) to (155, 120)
+let south_wall_left : sketch = stroke from (45, 120) to (55, 65)
+let south_wall_right : sketch = stroke from (155, 120) to (145, 65)
+
+# Roof ridge line
+let roof_ridge : sketch = stroke from (55, 55) to (145, 55)
+let roof_left_slope : sketch = stroke from (55, 65) to (55, 55)
+let roof_right_slope : sketch = stroke from (145, 65) to (145, 55)
+
+# =====================
+# TWIN WESTERN TOWERS (LEFT SIDE)
+# =====================
+
+# Left tower (closer, larger due to perspective)
+let tower_left_base_l : vec = (25, 120)
+let tower_left_base_r : vec = (50, 120)
+let tower_left_top_l : vec = (30, 35)
+let tower_left_top_r : vec = (52, 35)
+
+let left_tower_left : sketch = stroke from (25, 120) to (30, 35)
+let left_tower_right : sketch = stroke from (50, 120) to (52, 35)
+let left_tower_top : sketch = stroke from (30, 35) to (52, 35)
+let left_tower_cap_l : sketch = stroke from (30, 35) to (35, 28)
+let left_tower_cap_r : sketch = stroke from (52, 35) to (47, 28)
+let left_tower_cap_top : sketch = stroke from (35, 28) to (47, 28)
+
+# Right tower (further, slightly smaller)
+let right_tower_left : sketch = stroke from (148, 120) to (146, 40)
+let right_tower_right : sketch = stroke from (170, 120) to (165, 40)
+let right_tower_top : sketch = stroke from (146, 40) to (165, 40)
+let right_tower_cap_l : sketch = stroke from (146, 40) to (150, 33)
+let right_tower_cap_r : sketch = stroke from (165, 40) to (161, 33)
+let right_tower_cap_top : sketch = stroke from (150, 33) to (161, 33)
+
+# =====================
+# CENTRAL SPIRE
+# =====================
+
+let spire_base_l : vec = (90, 55)
+let spire_base_r : vec = (110, 55)
+let spire_tip : vec = (100, 8)
+
+let spire_left : sketch = stroke from (90, 55) to (100, 8)
+let spire_right : sketch = stroke from (110, 55) to (100, 8)
+let spire_base : sketch = stroke from (90, 55) to (110, 55)
+
+# Spire decorative bands
+let spire_band1 : sketch = stroke from (93, 45) to (107, 45)
+let spire_band2 : sketch = stroke from (96, 30) to (104, 30)
+
+# =====================
+# FLYING BUTTRESSES (SOUTH SIDE)
+# =====================
+
+# Buttress 1 (leftmost)
+let buttress1_top : vec = (58, 70)
+let buttress1_pier : vec = (52, 115)
+let buttress1_arc : sketch = stroke from (58, 70) to (52, 115) via [(48, 90)]
+let buttress1_pier_l : sketch = stroke from (50, 115) to (50, 120)
+let buttress1_pier_r : sketch = stroke from (54, 115) to (54, 120)
+
+# Buttress 2
+let buttress2_arc : sketch = stroke from (75, 68) to (70, 115) via [(65, 88)]
+let buttress2_pier_l : sketch = stroke from (68, 115) to (68, 120)
+let buttress2_pier_r : sketch = stroke from (72, 115) to (72, 120)
+
+# Buttress 3
+let buttress3_arc : sketch = stroke from (92, 67) to (88, 115) via [(83, 87)]
+let buttress3_pier_l : sketch = stroke from (86, 115) to (86, 120)
+let buttress3_pier_r : sketch = stroke from (90, 115) to (90, 120)
+
+# Buttress 4
+let buttress4_arc : sketch = stroke from (108, 67) to (105, 115) via [(100, 87)]
+let buttress4_pier_l : sketch = stroke from (103, 115) to (103, 120)
+let buttress4_pier_r : sketch = stroke from (107, 115) to (107, 120)
+
+# Buttress 5
+let buttress5_arc : sketch = stroke from (125, 68) to (122, 115) via [(117, 88)]
+let buttress5_pier_l : sketch = stroke from (120, 115) to (120, 120)
+let buttress5_pier_r : sketch = stroke from (124, 115) to (124, 120)
+
+# Buttress 6 (rightmost)
+let buttress6_arc : sketch = stroke from (142, 70) to (140, 115) via [(135, 90)]
+let buttress6_pier_l : sketch = stroke from (138, 115) to (138, 120)
+let buttress6_pier_r : sketch = stroke from (142, 115) to (142, 120)
+
+# =====================
+# SOUTH ROSE WINDOW (TRANSEPT)
+# =====================
+
+# Rose window - circular form approximated
+let rose_center : vec = (100, 85)
+let rose_top : sketch = stroke from (88, 78) to (100, 73) via [(94, 74)]
+let rose_top_r : sketch = stroke from (100, 73) to (112, 78) via [(106, 74)]
+let rose_right : sketch = stroke from (112, 78) to (115, 90) via [(115, 84)]
+let rose_bottom_r : sketch = stroke from (115, 90) to (100, 97) via [(110, 96)]
+let rose_bottom_l : sketch = stroke from (100, 97) to (85, 90) via [(90, 96)]
+let rose_left : sketch = stroke from (85, 90) to (88, 78) via [(85, 84)]
+
+# Rose window frame
+let rose_frame_top : sketch = stroke from (82, 72) to (118, 72)
+let rose_frame_left : sketch = stroke from (82, 72) to (82, 100)
+let rose_frame_right : sketch = stroke from (118, 72) to (118, 100)
+let rose_frame_bottom : sketch = stroke from (82, 100) to (118, 100)
+
+# =====================
+# RIVER SEINE
+# =====================
+
+# Riverbank edge
+let riverbank : sketch = stroke from (0, 145) to (200, 145)
+
+# Water ripples
+let ripple1 : sketch = stroke from (5, 155) to (45, 153) via [(25, 158)]
+let ripple2 : sketch = stroke from (40, 165) to (90, 162) via [(65, 168)]
+let ripple3 : sketch = stroke from (85, 175) to (140, 172) via [(112, 178)]
+let ripple4 : sketch = stroke from (130, 160) to (180, 158) via [(155, 164)]
+let ripple5 : sketch = stroke from (160, 180) to (200, 178) via [(180, 183)]
+let ripple6 : sketch = stroke from (0, 170) to (50, 168) via [(25, 173)]
+let ripple7 : sketch = stroke from (70, 185) to (130, 183) via [(100, 188)]
+
+# River bottom edge
+let river_bottom : sketch = stroke from (0, 195) to (200, 195)
+
+# =====================
+# QUAY AND EMBANKMENT
+# =====================
+
+# Stone quay wall
+let quay_top : sketch = stroke from (0, 140) to (200, 140)
+let quay_bottom : sketch = stroke from (0, 145) to (200, 145)
+
+# Trees on left bank (simple shapes)
+let tree1_trunk : sketch = stroke from (8, 140) to (8, 125)
+let tree1_canopy_l : sketch = stroke from (2, 125) to (8, 115) via [(3, 118)]
+let tree1_canopy_r : sketch = stroke from (8, 115) to (15, 125) via [(14, 118)]
+
+let tree2_trunk : sketch = stroke from (20, 140) to (20, 128)
+let tree2_canopy_l : sketch = stroke from (14, 128) to (20, 118) via [(15, 121)]
+let tree2_canopy_r : sketch = stroke from (20, 118) to (27, 128) via [(26, 121)]
+
+# Trees on right
+let tree3_trunk : sketch = stroke from (185, 140) to (185, 130)
+let tree3_canopy_l : sketch = stroke from (178, 130) to (185, 120) via [(179, 123)]
+let tree3_canopy_r : sketch = stroke from (185, 120) to (193, 130) via [(192, 123)]
+
+# =====================
+# RENDER ALL CONTOURS
+# =====================
+
+# Cathedral structure
+draw [south_wall, south_wall_left, south_wall_right]
+draw [roof_ridge, roof_left_slope, roof_right_slope]
+
+# Towers
+draw [left_tower_left, left_tower_right, left_tower_top]
+draw [left_tower_cap_l, left_tower_cap_r, left_tower_cap_top]
+draw [right_tower_left, right_tower_right, right_tower_top]
+draw [right_tower_cap_l, right_tower_cap_r, right_tower_cap_top]
+
+# Spire
+draw [spire_left, spire_right, spire_base, spire_band1, spire_band2]
+
+# Flying buttresses
+draw [buttress1_arc, buttress1_pier_l, buttress1_pier_r]
+draw [buttress2_arc, buttress2_pier_l, buttress2_pier_r]
+draw [buttress3_arc, buttress3_pier_l, buttress3_pier_r]
+draw [buttress4_arc, buttress4_pier_l, buttress4_pier_r]
+draw [buttress5_arc, buttress5_pier_l, buttress5_pier_r]
+draw [buttress6_arc, buttress6_pier_l, buttress6_pier_r]
+
+# Rose window
+draw [rose_top, rose_top_r, rose_right, rose_bottom_r, rose_bottom_l, rose_left]
+draw [rose_frame_top, rose_frame_left, rose_frame_right, rose_frame_bottom]
+
+# River and environment
+draw [riverbank, river_bottom, quay_top, quay_bottom]
+scribble [ripple1, ripple2, ripple3, ripple4, ripple5, ripple6, ripple7]
+
+# Trees
+draw [tree1_trunk, tree1_canopy_l, tree1_canopy_r]
+draw [tree2_trunk, tree2_canopy_l, tree2_canopy_r]
+draw [tree3_trunk, tree3_canopy_l, tree3_canopy_r]
+
+# Light horizon reference
+trace horizon
+
+# === EXPANDED DETAILS ===
+
+
+# Section: Horizon and Vanishing Point
+# Horizon line - slightly below center for dramatic upward view
+let horizon_and_vanishing_point_horizon_left : vec = (0, 65)
+let horizon_and_vanishing_point_horizon_right : vec = (150, 65)
+let horizon_and_vanishing_point_horizon : sketch = stroke from horizon_and_vanishing_point_horizon_left to horizon_and_vanishing_point_horizon_right
+trace horizon_and_vanishing_point_horizon
+
+# Main vanishing point - behind the cathedral, slightly right of center
+let horizon_and_vanishing_point_vp : vec = (82, 65)
+let horizon_and_vanishing_point_vp_mark : sketch = dot at horizon_and_vanishing_point_vp
+trace horizon_and_vanishing_point_vp_mark
+
+# Primary perspective guidelines radiating from vanishing point
+# Left side guidelines - for Seine embankment and buildings
+let horizon_and_vanishing_point_guide_left_1 : sketch = stroke from horizon_and_vanishing_point_vp to (0, 95)
+let horizon_and_vanishing_point_guide_left_2 : sketch = stroke from horizon_and_vanishing_point_vp to (0, 110)
+let horizon_and_vanishing_point_guide_left_3 : sketch = stroke from horizon_and_vanishing_point_vp to (0, 130)
+let horizon_and_vanishing_point_guide_left_4 : sketch = stroke from horizon_and_vanishing_point_vp to (0, 45)
+let horizon_and_vanishing_point_guide_left_5 : sketch = stroke from horizon_and_vanishing_point_vp to (0, 30)
+
+# Right side guidelines - for quay and perspective depth
+let horizon_and_vanishing_point_guide_right_1 : sketch = stroke from horizon_and_vanishing_point_vp to (150, 90)
+let horizon_and_vanishing_point_guide_right_2 : sketch = stroke from horizon_and_vanishing_point_vp to (150, 105)
+let horizon_and_vanishing_point_guide_right_3 : sketch = stroke from horizon_and_vanishing_point_vp to (150, 125)
+let horizon_and_vanishing_point_guide_right_4 : sketch = stroke from horizon_and_vanishing_point_vp to (150, 50)
+let horizon_and_vanishing_point_guide_right_5 : sketch = stroke from horizon_and_vanishing_point_vp to (150, 35)
+
+# Trace perspective guidelines lightly
+draw [horizon_and_vanishing_point_guide_left_1, horizon_and_vanishing_point_guide_left_2, horizon_and_vanishing_point_guide_left_3]
+draw [horizon_and_vanishing_point_guide_left_4, horizon_and_vanishing_point_guide_left_5]
+draw [horizon_and_vanishing_point_guide_right_1, horizon_and_vanishing_point_guide_right_2, horizon_and_vanishing_point_guide_right_3]
+draw [horizon_and_vanishing_point_guide_right_4, horizon_and_vanishing_point_guide_right_5]
+
+# Secondary vanishing point for cathedral's angled facade (to the left)
+let horizon_and_vanishing_point_vp_secondary : vec = (-20, 65)
+let horizon_and_vanishing_point_sec_guide_1 : sketch = stroke from horizon_and_vanishing_point_vp_secondary to (60, 20)
+let horizon_and_vanishing_point_sec_guide_2 : sketch = stroke from horizon_and_vanishing_point_vp_secondary to (80, 25)
+let horizon_and_vanishing_point_sec_guide_3 : sketch = stroke from horizon_and_vanishing_point_vp_secondary to (100, 30)
+let horizon_and_vanishing_point_sec_guide_4 : sketch = stroke from horizon_and_vanishing_point_vp_secondary to (70, 100)
+draw [horizon_and_vanishing_point_sec_guide_1, horizon_and_vanishing_point_sec_guide_2, horizon_and_vanishing_point_sec_guide_3, horizon_and_vanishing_point_sec_guide_4]
+
+# Vertical reference lines for Gothic verticality
+let horizon_and_vanishing_point_vert_center : sketch = stroke from (82, 10) to (82, 140)
+let horizon_and_vanishing_point_vert_left_tower : sketch = stroke from (55, 15) to (55, 85)
+let horizon_and_vanishing_point_vert_right_tower : sketch = stroke from (95, 18) to (95, 82)
+let horizon_and_vanishing_point_vert_spire : sketch = stroke from (75, 5) to (75, 70)
+draw [horizon_and_vanishing_point_vert_center, horizon_and_vanishing_point_vert_left_tower, horizon_and_vanishing_point_vert_right_tower, horizon_and_vanishing_point_vert_spire]
+
+# Atmospheric perspective markers - subtle dashes indicating depth
+let horizon_and_vanishing_point_atmo_1 : sketch = dash at (82, 60)
+let horizon_and_vanishing_point_atmo_2 : sketch = dash at (78, 62)
+let horizon_and_vanishing_point_atmo_3 : sketch = dash at (86, 63)
+let horizon_and_vanishing_point_atmo_4 : sketch = dash at (80, 58)
+scribble [horizon_and_vanishing_point_atmo_1, horizon_and_vanishing_point_atmo_2, horizon_and_vanishing_point_atmo_3, horizon_and_vanishing_point_atmo_4]
+
+# Section: Main Cathedral Mass
+# Main Cathedral Mass - Primary rectangular volume of nave and choir
+# Establishing the solid Gothic form rising from the Seine's edge
+
+# Base corners of the main mass (three-quarter perspective)
+let main_cathedral_mass_base_left : vec = (25, 145)
+let main_cathedral_mass_base_front : vec = (85, 155)
+let main_cathedral_mass_base_right : vec = (160, 140)
+let main_cathedral_mass_base_back : vec = (120, 130)
+
+# Top of the main walls (clerestory level)
+let main_cathedral_mass_top_left : vec = (28, 65)
+let main_cathedral_mass_top_front : vec = (88, 72)
+let main_cathedral_mass_top_right : vec = (158, 62)
+let main_cathedral_mass_top_back : vec = (118, 55)
+
+# Main vertical edges - the strong Gothic uprights
+draw stroke from main_cathedral_mass_base_left to main_cathedral_mass_top_left
+draw stroke from main_cathedral_mass_base_front to main_cathedral_mass_top_front
+draw stroke from main_cathedral_mass_base_right to main_cathedral_mass_top_right
+
+# Base horizontal lines with perspective
+draw stroke from main_cathedral_mass_base_left to main_cathedral_mass_base_front
+draw stroke from main_cathedral_mass_base_front to main_cathedral_mass_base_right
+
+# Top horizontal lines - roofline of nave
+draw stroke from main_cathedral_mass_top_left to main_cathedral_mass_top_front
+draw stroke from main_cathedral_mass_top_front to main_cathedral_mass_top_right
+draw stroke from main_cathedral_mass_top_left to main_cathedral_mass_top_back
+draw stroke from main_cathedral_mass_top_back to main_cathedral_mass_top_right
+
+# Clerestory window rhythm on visible south face
+let main_cathedral_mass_window1_base : vec = (40, 120)
+let main_cathedral_mass_window1_top : vec = (42, 85)
+let main_cathedral_mass_window2_base : vec = (55, 122)
+let main_cathedral_mass_window2_top : vec = (57, 87)
+let main_cathedral_mass_window3_base : vec = (70, 124)
+let main_cathedral_mass_window3_top : vec = (72, 89)
+
+draw stroke from main_cathedral_mass_window1_base to main_cathedral_mass_window1_top
+draw stroke from main_cathedral_mass_window2_base to main_cathedral_mass_window2_top
+draw stroke from main_cathedral_mass_window3_base to main_cathedral_mass_window3_top
+
+# Window arches (Gothic pointed)
+draw stroke from main_cathedral_mass_window1_top to (44, 80) via [(43, 82)]
+draw stroke from (44, 80) to main_cathedral_mass_window1_top via [(45, 82)]
+draw stroke from main_cathedral_mass_window2_top to (59, 82) via [(58, 84)]
+draw stroke from (59, 82) to main_cathedral_mass_window2_top via [(60, 84)]
+
+# East face windows (receding in perspective)
+let main_cathedral_mass_east_win1_base : vec = (105, 118)
+let main_cathedral_mass_east_win1_top : vec = (106, 78)
+let main_cathedral_mass_east_win2_base : vec = (125, 115)
+let main_cathedral_mass_east_win2_top : vec = (126, 74)
+let main_cathedral_mass_east_win3_base : vec = (142, 112)
+let main_cathedral_mass_east_win3_top : vec = (143, 70)
+
+draw stroke from main_cathedral_mass_east_win1_base to main_cathedral_mass_east_win1_top
+draw stroke from main_cathedral_mass_east_win2_base to main_cathedral_mass_east_win2_top
+draw stroke from main_cathedral_mass_east_win3_base to main_cathedral_mass_east_win3_top
+
+# Buttress divisions on south face
+let main_cathedral_mass_buttress1_base : vec = (35, 145)
+let main_cathedral_mass_buttress1_top : vec = (36, 68)
+let main_cathedral_mass_buttress2_base : vec = (50, 148)
+let main_cathedral_mass_buttress2_top : vec = (51, 70)
+let main_cathedral_mass_buttress3_base : vec = (65, 150)
+let main_cathedral_mass_buttress3_top : vec = (66, 71)
+let main_cathedral_mass_buttress4_base : vec = (80, 153)
+let main_cathedral_mass_buttress4_top : vec = (81, 72)
+
+draw stroke from main_cathedral_mass_buttress1_base to main_cathedral_mass_buttress1_top
+draw stroke from main_cathedral_mass_buttress2_base to main_cathedral_mass_buttress2_top
+draw stroke from main_cathedral_mass_buttress3_base to main_cathedral_mass_buttress3_top
+draw stroke from main_cathedral_mass_buttress4_base to main_cathedral_mass_buttress4_top
+
+# Shadow hatching on the south face (lower portion in shade)
+scribble stroke from (30, 140) to (45, 142)
+scribble stroke from (32, 135) to (48, 137)
+scribble stroke from (34, 130) to (52, 132)
+scribble stroke from (45, 143) to (60, 146)
+scribble stroke from (48, 138) to (63, 141)
+scribble stroke from (60, 148) to (78, 152)
+scribble stroke from (62, 143) to (80, 147)
+
+# Cross-hatching for deeper shadow near base
+scribble stroke from (30, 142) to (38, 132)
+scribble stroke from (38, 144) to (46, 134)
+scribble stroke from (46, 146) to (54, 136)
+scribble stroke from (54, 149) to (62, 139)
+
+# Dashes for texture on shadowed wall areas
+scribble dash at (33, 125)
+scribble dash at (38, 127)
+scribble dash at (43, 129)
+scribble dash at (48, 131)
+scribble dash at (53, 133)
+scribble dash at (58, 135)
+scribble dash at (63, 137)
+scribble dash at (68, 139)
+
+# Horizontal string courses (decorative bands)
+draw stroke from (27, 100) to (86, 108)
+draw stroke from (88, 107) to (155, 98)
+draw stroke from (27, 115) to (86, 123)
+draw stroke from (88, 122) to (155, 113)
+
+# Roof slope indication
+let main_cathedral_mass_ridge : vec = (93, 45)
+draw stroke from main_cathedral_mass_top_front to main_cathedral_mass_ridge
+draw stroke from main_cathedral_mass_ridge to main_cathedral_mass_top_back
+draw stroke from main_cathedral_mass_top_left to (58, 50) via [(43, 57)]
+draw stroke from (58, 50) to main_cathedral_mass_ridge
+
+# Roof texture with light hatching
+scribble dash at (70, 55)
+scribble dash at (80, 52)
+scribble dash at (90, 50)
+scribble dash at (100, 52)
+scribble dash at (110, 54)
+scribble dash at (75, 60)
+scribble dash at (85, 58)
+scribble dash at (95, 56)
+
+# Additional wall texture dashes on east face
+draw dash at (110, 95)
+draw dash at (115, 92)
+draw dash at (120, 89)
+draw dash at (130, 93)
+draw dash at (135, 90)
+draw dash at (145, 88)
+draw dash at (150, 85)
+
+# Stone joint suggestions
+draw stroke from (30, 90) to (35, 91)
+draw stroke from (42, 92) to (48, 93)
+draw stroke from (55, 94) to (62, 95)
+draw stroke from (68, 96) to (75, 97)
+
+# Section: Twin Western Towers
+# Twin Western Towers - Notre Dame's iconic facade towers
+# Square towers with Gothic tracery, viewed from three-quarter angle
+
+# Left tower (western, closer to viewer) - main structure
+let twin_western_towers_left_base_bl : vec = (25, 45)
+let twin_western_towers_left_base_br : vec = (42, 48)
+let twin_western_towers_left_top_bl : vec = (26, 12)
+let twin_western_towers_left_top_br : vec = (43, 14)
+
+# Left tower vertical edges
+draw stroke from twin_western_towers_left_base_bl to twin_western_towers_left_top_bl
+draw stroke from twin_western_towers_left_base_br to twin_western_towers_left_top_br
+
+# Left tower top edge
+draw stroke from twin_western_towers_left_top_bl to twin_western_towers_left_top_br
+
+# Left tower crenellations
+let twin_western_towers_left_cren1 : vec = (28, 12)
+let twin_western_towers_left_cren2 : vec = (32, 12)
+let twin_western_towers_left_cren3 : vec = (36, 13)
+let twin_western_towers_left_cren4 : vec = (40, 13)
+
+draw stroke from twin_western_towers_left_cren1 to (28, 9)
+draw stroke from (28, 9) to (31, 9)
+draw stroke from (31, 9) to twin_western_towers_left_cren2
+
+draw stroke from twin_western_towers_left_cren3 to (36, 10)
+draw stroke from (36, 10) to (39, 10)
+draw stroke from (39, 10) to twin_western_towers_left_cren4
+
+# Right tower (eastern, further from viewer)
+let twin_western_towers_right_base_bl : vec = (46, 49)
+let twin_western_towers_right_base_br : vec = (61, 46)
+let twin_western_towers_right_top_bl : vec = (47, 15)
+let twin_western_towers_right_top_br : vec = (62, 13)
+
+# Right tower vertical edges
+draw stroke from twin_western_towers_right_base_bl to twin_western_towers_right_top_bl
+draw stroke from twin_western_towers_right_base_br to twin_western_towers_right_top_br
+
+# Right tower top edge
+draw stroke from twin_western_towers_right_top_bl to twin_western_towers_right_top_br
+
+# Right tower crenellations
+draw stroke from (49, 15) to (49, 11)
+draw stroke from (49, 11) to (52, 11)
+draw stroke from (52, 11) to (52, 14)
+
+draw stroke from (55, 14) to (55, 10)
+draw stroke from (55, 10) to (58, 10)
+draw stroke from (58, 10) to (58, 13)
+
+# Gothic tracery windows - Left tower (large bifora windows)
+let twin_western_towers_left_win_top : vec = (34, 20)
+let twin_western_towers_left_win_bl : vec = (29, 35)
+let twin_western_towers_left_win_br : vec = (40, 36)
+
+# Window arch
+draw stroke from twin_western_towers_left_win_bl to twin_western_towers_left_win_top via [(29, 24)]
+draw stroke from twin_western_towers_left_win_top to twin_western_towers_left_win_br via [(40, 25)]
+
+# Window base
+draw stroke from twin_western_towers_left_win_bl to twin_western_towers_left_win_br
+
+# Central mullion
+draw stroke from (34, 36) to (34, 22)
+
+# Tracery arches within
+draw stroke from (29, 26) to (34, 22) via [(31, 23)]
+draw stroke from (34, 22) to (40, 27) via [(37, 23)]
+
+# Gothic tracery windows - Right tower
+let twin_western_towers_right_win_top : vec = (54, 21)
+let twin_western_towers_right_win_bl : vec = (49, 36)
+let twin_western_towers_right_win_br : vec = (59, 35)
+
+draw stroke from twin_western_towers_right_win_bl to twin_western_towers_right_win_top via [(49, 25)]
+draw stroke from twin_western_towers_right_win_top to twin_western_towers_right_win_br via [(59, 24)]
+draw stroke from twin_western_towers_right_win_bl to twin_western_towers_right_win_br
+
+# Central mullion right
+draw stroke from (54, 36) to (54, 23)
+
+# Tracery arches right tower
+draw stroke from (49, 27) to (54, 23) via [(51, 24)]
+draw stroke from (54, 23) to (59, 26) via [(57, 24)]
+
+# Horizontal string courses - Left tower
+draw stroke from (26, 38) to (42, 40)
+draw stroke from (26, 18) to (42, 19)
+
+# Horizontal string courses - Right tower
+draw stroke from (47, 40) to (61, 38)
+draw stroke from (47, 19) to (61, 18)
+
+# Vertical buttress lines - Left tower
+draw stroke from (30, 45) to (30, 18)
+draw stroke from (38, 47) to (38, 19)
+
+# Vertical buttress lines - Right tower
+draw stroke from (51, 48) to (51, 19)
+draw stroke from (57, 47) to (57, 18)
+
+# Shadow hatching on right side of left tower (facing away from light)
+scribble stroke from (39, 20) to (42, 35)
+scribble stroke from (40, 22) to (42, 33)
+scribble stroke from (40, 25) to (42, 30)
+
+# Cross-hatching for deeper shadow
+scribble stroke from (42, 20) to (39, 35)
+scribble stroke from (41, 23) to (40, 32)
+
+# Shadow on inner face between towers
+scribble stroke from (43, 16) to (46, 48)
+scribble stroke from (44, 18) to (46, 45)
+scribble stroke from (44, 22) to (45, 42)
+
+# Dash shading for tower depth
+scribble dash at (41, 28)
+scribble dash at (41, 30)
+scribble dash at (41, 32)
+scribble dash at (44, 25)
+scribble dash at (44, 30)
+scribble dash at (44, 35)
+scribble dash at (44, 40)
+
+# Window depth shadows - left tower
+scribble stroke from (30, 26) to (33, 35)
+scribble stroke from (35, 26) to (39, 35)
+
+# Window depth shadows - right tower
+scribble stroke from (50, 27) to (53, 35)
+scribble stroke from (55, 26) to (58, 34)
+
+# Small decorative Gothic details - blind arcading left tower
+draw stroke from (28, 40) to (28, 43)
+draw stroke from (28, 40) to (31, 40) via [(29, 39)]
+draw stroke from (31, 40) to (31, 43)
+
+draw stroke from (34, 41) to (34, 44)
+draw stroke from (34, 41) to (37, 41) via [(35, 40)]
+draw stroke from (37, 41) to (37, 44)
+
+# Blind arcading right tower
+draw stroke from (50, 41) to (50, 44)
+draw stroke from (50, 41) to (53, 41) via [(51, 40)]
+draw stroke from (53, 41) to (53, 44)
+
+draw stroke from (55, 40) to (55, 43)
+draw stroke from (55, 40) to (58, 40) via [(56, 39)]
+draw stroke from (58, 40) to (58, 43)
+
+# Perspective depth lines connecting towers at base
+draw stroke from (42, 48) to (46, 49)
+draw stroke from (43, 14) to (47, 15)
+
+# Section: Central Spire
+# Central Spire - The reconstructed flèche rising from the crossing
+# Tall octagonal spire with Gothic detailing, tapering to a point
+
+# Spire base at the crossing roof level
+let central_spire_base_left : vec = (52, 68)
+let central_spire_base_right : vec = (68, 68)
+let central_spire_apex : vec = (60, 12)
+
+# Main spire silhouette - left edge
+draw stroke from central_spire_base_left to central_spire_apex
+# Main spire silhouette - right edge
+draw stroke from central_spire_base_right to central_spire_apex
+
+# Base platform beneath spire
+draw stroke from (48, 70) to (72, 70)
+draw stroke from (48, 70) to central_spire_base_left
+draw stroke from (72, 70) to central_spire_base_right
+
+# Octagonal facets - vertical ridges catching light
+let central_spire_ridge1 : vec = (56, 67)
+let central_spire_ridge2 : vec = (64, 67)
+draw stroke from central_spire_ridge1 to (58, 14)
+draw stroke from central_spire_ridge2 to (62, 14)
+
+# Horizontal bands marking spire sections
+draw stroke from (53, 55) to (67, 55)
+draw stroke from (54, 45) to (66, 45)
+draw stroke from (55, 35) to (65, 35)
+draw stroke from (57, 25) to (63, 25)
+
+# Dormers at spire base - small Gothic windows
+let central_spire_dormer1_base : vec = (54, 65)
+let central_spire_dormer1_peak : vec = (54, 61)
+draw stroke from (52, 65) to central_spire_dormer1_peak
+draw stroke from (56, 65) to central_spire_dormer1_peak
+trace stroke from (52, 65) to (56, 65)
+
+let central_spire_dormer2_base : vec = (66, 65)
+let central_spire_dormer2_peak : vec = (66, 61)
+draw stroke from (64, 65) to central_spire_dormer2_peak
+draw stroke from (68, 65) to central_spire_dormer2_peak
+trace stroke from (64, 65) to (68, 65)
+
+# Cross-hatching for shadow on left facet
+scribble stroke from (53, 60) to (56, 58)
+scribble stroke from (53, 56) to (57, 53)
+scribble stroke from (54, 50) to (57, 47)
+scribble stroke from (55, 44) to (58, 41)
+scribble stroke from (55, 38) to (58, 35)
+scribble stroke from (56, 32) to (58, 29)
+scribble stroke from (57, 26) to (58, 23)
+
+# Second layer of hatching - perpendicular for deeper shadow
+scribble stroke from (54, 52) to (53, 58)
+scribble stroke from (55, 46) to (54, 52)
+scribble stroke from (56, 40) to (55, 46)
+scribble stroke from (57, 34) to (56, 40)
+
+# Decorative crockets along edges
+let central_spire_crocket1 : sketch = dot at (52, 60)
+let central_spire_crocket2 : sketch = dot at (51, 52)
+let central_spire_crocket3 : sketch = dot at (53, 44)
+let central_spire_crocket4 : sketch = dot at (55, 36)
+let central_spire_crocket5 : sketch = dot at (57, 28)
+draw [central_spire_crocket1, central_spire_crocket2, central_spire_crocket3, central_spire_crocket4, central_spire_crocket5]
+
+# Right side crockets
+let central_spire_crocket6 : sketch = dot at (68, 60)
+let central_spire_crocket7 : sketch = dot at (69, 52)
+let central_spire_crocket8 : sketch = dot at (67, 44)
+let central_spire_crocket9 : sketch = dot at (65, 36)
+let central_spire_crocket10 : sketch = dot at (63, 28)
+draw [central_spire_crocket6, central_spire_crocket7, central_spire_crocket8, central_spire_crocket9, central_spire_crocket10]
+
+# Apex cross and rooster
+let central_spire_cross_base : vec = (60, 14)
+let central_spire_cross_top : vec = (60, 6)
+trace stroke from central_spire_cross_base to central_spire_cross_top
+trace stroke from (58, 9) to (62, 9)
+draw dot at (60, 7)
+
+# Subtle texture lines on illuminated right facet
+draw stroke from (64, 58) to (65, 56)
+draw stroke from (64, 50) to (65, 48)
+draw stroke from (63, 42) to (64, 40)
+draw stroke from (62, 34) to (63, 32)
+
+# Lead roofing texture - diagonal dashes following spire slope
+scribble dash at (58, 50)
+scribble dash at (62, 48)
+scribble dash at (57, 42)
+scribble dash at (63, 40)
+scribble dash at (59, 34)
+scribble dash at (61, 32)
+scribble dash at (60, 24)
+
+# Flying buttress connections at base
+draw stroke from (48, 72) to (44, 78)
+draw stroke from (72, 72) to (76, 78)
+
+# Section: Flying Buttresses
+# Flying Buttresses - South side of Notre Dame
+# Dramatic arched supports creating rhythm along the nave
+
+# Base pier positions along the riverbank
+let flying_buttresses_pier1_base : vec = (45, 85)
+let flying_buttresses_pier2_base : vec = (62, 82)
+let flying_buttresses_pier3_base : vec = (78, 79)
+let flying_buttresses_pier4_base : vec = (93, 76)
+
+# Pier tops where buttresses spring from
+let flying_buttresses_pier1_top : vec = (46, 52)
+let flying_buttresses_pier2_top : vec = (63, 50)
+let flying_buttresses_pier3_top : vec = (79, 48)
+let flying_buttresses_pier4_top : vec = (94, 46)
+
+# Connection points on the main nave wall
+let flying_buttresses_nave1 : vec = (52, 38)
+let flying_buttresses_nave2 : vec = (68, 36)
+let flying_buttresses_nave3 : vec = (83, 34)
+let flying_buttresses_nave4 : vec = (97, 32)
+
+# Draw the vertical piers with slight taper
+let flying_buttresses_pier1 : sketch = [
+  stroke from flying_buttresses_pier1_base to flying_buttresses_pier1_top,
+  stroke from (43, 85) to (44, 52),
+  stroke from (47, 85) to (48, 52)
+]
+draw flying_buttresses_pier1
+
+let flying_buttresses_pier2 : sketch = [
+  stroke from flying_buttresses_pier2_base to flying_buttresses_pier2_top,
+  stroke from (60, 82) to (61, 50),
+  stroke from (64, 82) to (65, 50)
+]
+draw flying_buttresses_pier2
+
+let flying_buttresses_pier3 : sketch = [
+  stroke from flying_buttresses_pier3_base to flying_buttresses_pier3_top,
+  stroke from (76, 79) to (77, 48),
+  stroke from (80, 79) to (81, 48)
+]
+draw flying_buttresses_pier3
+
+let flying_buttresses_pier4 : sketch = [
+  stroke from flying_buttresses_pier4_base to flying_buttresses_pier4_top,
+  stroke from (91, 76) to (92, 46),
+  stroke from (95, 76) to (96, 46)
+]
+draw flying_buttresses_pier4
+
+# Main flying arches - graceful curves reaching to nave
+let flying_buttresses_arch1_upper : sketch = stroke from flying_buttresses_pier1_top to flying_buttresses_nave1 via [(49, 42)]
+let flying_buttresses_arch1_lower : sketch = stroke from (46, 54) to (51, 40) via [(48, 45)]
+draw flying_buttresses_arch1_upper
+draw flying_buttresses_arch1_lower
+
+let flying_buttresses_arch2_upper : sketch = stroke from flying_buttresses_pier2_top to flying_buttresses_nave2 via [(65, 40)]
+let flying_buttresses_arch2_lower : sketch = stroke from (63, 52) to (67, 38) via [(64, 43)]
+draw flying_buttresses_arch2_upper
+draw flying_buttresses_arch2_lower
+
+let flying_buttresses_arch3_upper : sketch = stroke from flying_buttresses_pier3_top to flying_buttresses_nave3 via [(80, 38)]
+let flying_buttresses_arch3_lower : sketch = stroke from (79, 50) to (82, 36) via [(80, 41)]
+draw flying_buttresses_arch3_upper
+draw flying_buttresses_arch3_lower
+
+let flying_buttresses_arch4_upper : sketch = stroke from flying_buttresses_pier4_top to flying_buttresses_nave4 via [(95, 36)]
+let flying_buttresses_arch4_lower : sketch = stroke from (94, 48) to (96, 34) via [(95, 39)]
+draw flying_buttresses_arch4_upper
+draw flying_buttresses_arch4_lower
+
+# Secondary lower tier of buttresses
+let flying_buttresses_lower1 : sketch = stroke from (45, 68) to (50, 58) via [(47, 61)]
+let flying_buttresses_lower2 : sketch = stroke from (62, 66) to (66, 56) via [(63, 59)]
+let flying_buttresses_lower3 : sketch = stroke from (78, 64) to (81, 54) via [(79, 57)]
+let flying_buttresses_lower4 : sketch = stroke from (93, 62) to (96, 52) via [(94, 55)]
+draw [flying_buttresses_lower1, flying_buttresses_lower2, flying_buttresses_lower3, flying_buttresses_lower4]
+
+# Pinnacles atop the piers - Gothic decorative spires
+let flying_buttresses_pinnacle1 : sketch = [
+  stroke from (44, 52) to (46, 44),
+  stroke from (48, 52) to (46, 44),
+  stroke from (46, 44) to (46, 40)
+]
+trace flying_buttresses_pinnacle1
+
+let flying_buttresses_pinnacle2 : sketch = [
+  stroke from (61, 50) to (63, 42),
+  stroke from (65, 50) to (63, 42),
+  stroke from (63, 42) to (63, 38)
+]
+trace flying_buttresses_pinnacle2
+
+let flying_buttresses_pinnacle3 : sketch = [
+  stroke from (77, 48) to (79, 40),
+  stroke from (81, 48) to (79, 40),
+  stroke from (79, 40) to (79, 36)
+]
+trace flying_buttresses_pinnacle3
+
+let flying_buttresses_pinnacle4 : sketch = [
+  stroke from (92, 46) to (94, 38),
+  stroke from (96, 46) to (94, 38),
+  stroke from (94, 38) to (94, 34)
+]
+trace flying_buttresses_pinnacle4
+
+# Cross-hatching shadows under the arches
+let flying_buttresses_shadow1 : sketch = [
+  dash at (48, 50),
+  dash at (49, 48),
+  dash at (50, 46),
+  dash at (47, 51),
+  dash at (48, 49),
+  dash at (49, 47)
+]
+scribble flying_buttresses_shadow1
+
+let flying_buttresses_shadow2 : sketch = [
+  dash at (64, 48),
+  dash at (65, 46),
+  dash at (66, 44),
+  dash at (63, 49),
+  dash at (64, 47),
+  dash at (65, 45)
+]
+scribble flying_buttresses_shadow2
+
+let flying_buttresses_shadow3 : sketch = [
+  dash at (80, 46),
+  dash at (81, 44),
+  dash at (82, 42),
+  dash at (79, 47),
+  dash at (80, 45),
+  dash at (81, 43)
+]
+scribble flying_buttresses_shadow3
+
+# Stone texture details on piers
+let flying_buttresses_texture1 : sketch = [
+  stroke from (44, 70) to (47, 70),
+  stroke from (44, 62) to (47, 62),
+  stroke from (44, 75) to (47, 75)
+]
+scribble flying_buttresses_texture1
+
+let flying_buttresses_texture2 : sketch = [
+  stroke from (61, 68) to (64, 68),
+  stroke from (61, 60) to (64, 60),
+  stroke from (61, 73) to (64, 73)
+]
+scribble flying_buttresses_texture2
+
+let flying_buttresses_texture3 : sketch = [
+  stroke from (77, 66) to (80, 66),
+  stroke from (77, 58) to (80, 58),
+  stroke from (77, 71) to (80, 71)
+]
+scribble flying_buttresses_texture3
+
+# Decorative tracery details in arch spandrels
+let flying_buttresses_tracery1 : sketch = [
+  stroke from (48, 47) to (50, 44),
+  stroke from (50, 44) to (48, 41)
+]
+draw flying_buttresses_tracery1
+
+let flying_buttresses_tracery2 : sketch = [
+  stroke from (64, 45) to (66, 42),
+  stroke from (66, 42) to (64, 39)
+]
+draw flying_buttresses_tracery2
+
+let flying_buttresses_tracery3 : sketch = [
+  stroke from (80, 43) to (82, 40),
+  stroke from (82, 40) to (80, 37)
+]
+draw flying_buttresses_tracery3

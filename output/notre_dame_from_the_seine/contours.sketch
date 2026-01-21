@@ -1,0 +1,211 @@
+# Notre Dame from the Seine - Initial Contours
+# Canvas: 200x200mm
+
+# =====================
+# HORIZON AND PERSPECTIVE GUIDES
+# =====================
+
+let horizon_y : number = 85
+let vanish_x : number = 100
+let vanish : vec = (100, 85)
+
+# Horizon line (subtle)
+let horizon : sketch = stroke from (0, 85) to (200, 85)
+
+# =====================
+# MAIN CATHEDRAL MASS - NAVE
+# =====================
+
+# Base of cathedral sits on island
+let nave_left_bottom : vec = (45, 120)
+let nave_right_bottom : vec = (155, 120)
+let nave_left_top : vec = (55, 65)
+let nave_right_top : vec = (145, 65)
+
+# South facade wall
+let south_wall : sketch = stroke from (45, 120) to (155, 120)
+let south_wall_left : sketch = stroke from (45, 120) to (55, 65)
+let south_wall_right : sketch = stroke from (155, 120) to (145, 65)
+
+# Roof ridge line
+let roof_ridge : sketch = stroke from (55, 55) to (145, 55)
+let roof_left_slope : sketch = stroke from (55, 65) to (55, 55)
+let roof_right_slope : sketch = stroke from (145, 65) to (145, 55)
+
+# =====================
+# TWIN WESTERN TOWERS (LEFT SIDE)
+# =====================
+
+# Left tower (closer, larger due to perspective)
+let tower_left_base_l : vec = (25, 120)
+let tower_left_base_r : vec = (50, 120)
+let tower_left_top_l : vec = (30, 35)
+let tower_left_top_r : vec = (52, 35)
+
+let left_tower_left : sketch = stroke from (25, 120) to (30, 35)
+let left_tower_right : sketch = stroke from (50, 120) to (52, 35)
+let left_tower_top : sketch = stroke from (30, 35) to (52, 35)
+let left_tower_cap_l : sketch = stroke from (30, 35) to (35, 28)
+let left_tower_cap_r : sketch = stroke from (52, 35) to (47, 28)
+let left_tower_cap_top : sketch = stroke from (35, 28) to (47, 28)
+
+# Right tower (further, slightly smaller)
+let right_tower_left : sketch = stroke from (148, 120) to (146, 40)
+let right_tower_right : sketch = stroke from (170, 120) to (165, 40)
+let right_tower_top : sketch = stroke from (146, 40) to (165, 40)
+let right_tower_cap_l : sketch = stroke from (146, 40) to (150, 33)
+let right_tower_cap_r : sketch = stroke from (165, 40) to (161, 33)
+let right_tower_cap_top : sketch = stroke from (150, 33) to (161, 33)
+
+# =====================
+# CENTRAL SPIRE
+# =====================
+
+let spire_base_l : vec = (90, 55)
+let spire_base_r : vec = (110, 55)
+let spire_tip : vec = (100, 8)
+
+let spire_left : sketch = stroke from (90, 55) to (100, 8)
+let spire_right : sketch = stroke from (110, 55) to (100, 8)
+let spire_base : sketch = stroke from (90, 55) to (110, 55)
+
+# Spire decorative bands
+let spire_band1 : sketch = stroke from (93, 45) to (107, 45)
+let spire_band2 : sketch = stroke from (96, 30) to (104, 30)
+
+# =====================
+# FLYING BUTTRESSES (SOUTH SIDE)
+# =====================
+
+# Buttress 1 (leftmost)
+let buttress1_top : vec = (58, 70)
+let buttress1_pier : vec = (52, 115)
+let buttress1_arc : sketch = stroke from (58, 70) to (52, 115) via [(48, 90)]
+let buttress1_pier_l : sketch = stroke from (50, 115) to (50, 120)
+let buttress1_pier_r : sketch = stroke from (54, 115) to (54, 120)
+
+# Buttress 2
+let buttress2_arc : sketch = stroke from (75, 68) to (70, 115) via [(65, 88)]
+let buttress2_pier_l : sketch = stroke from (68, 115) to (68, 120)
+let buttress2_pier_r : sketch = stroke from (72, 115) to (72, 120)
+
+# Buttress 3
+let buttress3_arc : sketch = stroke from (92, 67) to (88, 115) via [(83, 87)]
+let buttress3_pier_l : sketch = stroke from (86, 115) to (86, 120)
+let buttress3_pier_r : sketch = stroke from (90, 115) to (90, 120)
+
+# Buttress 4
+let buttress4_arc : sketch = stroke from (108, 67) to (105, 115) via [(100, 87)]
+let buttress4_pier_l : sketch = stroke from (103, 115) to (103, 120)
+let buttress4_pier_r : sketch = stroke from (107, 115) to (107, 120)
+
+# Buttress 5
+let buttress5_arc : sketch = stroke from (125, 68) to (122, 115) via [(117, 88)]
+let buttress5_pier_l : sketch = stroke from (120, 115) to (120, 120)
+let buttress5_pier_r : sketch = stroke from (124, 115) to (124, 120)
+
+# Buttress 6 (rightmost)
+let buttress6_arc : sketch = stroke from (142, 70) to (140, 115) via [(135, 90)]
+let buttress6_pier_l : sketch = stroke from (138, 115) to (138, 120)
+let buttress6_pier_r : sketch = stroke from (142, 115) to (142, 120)
+
+# =====================
+# SOUTH ROSE WINDOW (TRANSEPT)
+# =====================
+
+# Rose window - circular form approximated
+let rose_center : vec = (100, 85)
+let rose_top : sketch = stroke from (88, 78) to (100, 73) via [(94, 74)]
+let rose_top_r : sketch = stroke from (100, 73) to (112, 78) via [(106, 74)]
+let rose_right : sketch = stroke from (112, 78) to (115, 90) via [(115, 84)]
+let rose_bottom_r : sketch = stroke from (115, 90) to (100, 97) via [(110, 96)]
+let rose_bottom_l : sketch = stroke from (100, 97) to (85, 90) via [(90, 96)]
+let rose_left : sketch = stroke from (85, 90) to (88, 78) via [(85, 84)]
+
+# Rose window frame
+let rose_frame_top : sketch = stroke from (82, 72) to (118, 72)
+let rose_frame_left : sketch = stroke from (82, 72) to (82, 100)
+let rose_frame_right : sketch = stroke from (118, 72) to (118, 100)
+let rose_frame_bottom : sketch = stroke from (82, 100) to (118, 100)
+
+# =====================
+# RIVER SEINE
+# =====================
+
+# Riverbank edge
+let riverbank : sketch = stroke from (0, 145) to (200, 145)
+
+# Water ripples
+let ripple1 : sketch = stroke from (5, 155) to (45, 153) via [(25, 158)]
+let ripple2 : sketch = stroke from (40, 165) to (90, 162) via [(65, 168)]
+let ripple3 : sketch = stroke from (85, 175) to (140, 172) via [(112, 178)]
+let ripple4 : sketch = stroke from (130, 160) to (180, 158) via [(155, 164)]
+let ripple5 : sketch = stroke from (160, 180) to (200, 178) via [(180, 183)]
+let ripple6 : sketch = stroke from (0, 170) to (50, 168) via [(25, 173)]
+let ripple7 : sketch = stroke from (70, 185) to (130, 183) via [(100, 188)]
+
+# River bottom edge
+let river_bottom : sketch = stroke from (0, 195) to (200, 195)
+
+# =====================
+# QUAY AND EMBANKMENT
+# =====================
+
+# Stone quay wall
+let quay_top : sketch = stroke from (0, 140) to (200, 140)
+let quay_bottom : sketch = stroke from (0, 145) to (200, 145)
+
+# Trees on left bank (simple shapes)
+let tree1_trunk : sketch = stroke from (8, 140) to (8, 125)
+let tree1_canopy_l : sketch = stroke from (2, 125) to (8, 115) via [(3, 118)]
+let tree1_canopy_r : sketch = stroke from (8, 115) to (15, 125) via [(14, 118)]
+
+let tree2_trunk : sketch = stroke from (20, 140) to (20, 128)
+let tree2_canopy_l : sketch = stroke from (14, 128) to (20, 118) via [(15, 121)]
+let tree2_canopy_r : sketch = stroke from (20, 118) to (27, 128) via [(26, 121)]
+
+# Trees on right
+let tree3_trunk : sketch = stroke from (185, 140) to (185, 130)
+let tree3_canopy_l : sketch = stroke from (178, 130) to (185, 120) via [(179, 123)]
+let tree3_canopy_r : sketch = stroke from (185, 120) to (193, 130) via [(192, 123)]
+
+# =====================
+# RENDER ALL CONTOURS
+# =====================
+
+# Cathedral structure
+draw [south_wall, south_wall_left, south_wall_right]
+draw [roof_ridge, roof_left_slope, roof_right_slope]
+
+# Towers
+draw [left_tower_left, left_tower_right, left_tower_top]
+draw [left_tower_cap_l, left_tower_cap_r, left_tower_cap_top]
+draw [right_tower_left, right_tower_right, right_tower_top]
+draw [right_tower_cap_l, right_tower_cap_r, right_tower_cap_top]
+
+# Spire
+draw [spire_left, spire_right, spire_base, spire_band1, spire_band2]
+
+# Flying buttresses
+draw [buttress1_arc, buttress1_pier_l, buttress1_pier_r]
+draw [buttress2_arc, buttress2_pier_l, buttress2_pier_r]
+draw [buttress3_arc, buttress3_pier_l, buttress3_pier_r]
+draw [buttress4_arc, buttress4_pier_l, buttress4_pier_r]
+draw [buttress5_arc, buttress5_pier_l, buttress5_pier_r]
+draw [buttress6_arc, buttress6_pier_l, buttress6_pier_r]
+
+# Rose window
+draw [rose_top, rose_top_r, rose_right, rose_bottom_r, rose_bottom_l, rose_left]
+draw [rose_frame_top, rose_frame_left, rose_frame_right, rose_frame_bottom]
+
+# River and environment
+draw [riverbank, river_bottom, quay_top, quay_bottom]
+scribble [ripple1, ripple2, ripple3, ripple4, ripple5, ripple6, ripple7]
+
+# Trees
+draw [tree1_trunk, tree1_canopy_l, tree1_canopy_r]
+draw [tree2_trunk, tree2_canopy_l, tree2_canopy_r]
+draw [tree3_trunk, tree3_canopy_l, tree3_canopy_r]
+
+# Light horizon reference
+trace horizon

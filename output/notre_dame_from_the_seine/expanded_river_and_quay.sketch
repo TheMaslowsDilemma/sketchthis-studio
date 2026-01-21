@@ -1,0 +1,263 @@
+# Notre Dame from the Seine - Initial Contours
+# Canvas: 200x200mm, Cathedral centered
+
+# ============================================
+# SECTION: River and Quay Foreground
+# ============================================
+
+# River bank - stone embankment wall
+let quay_left : sketch = stroke from (0, 145) to (200, 155)
+let quay_top : sketch = stroke from (0, 140) to (200, 150)
+
+# Water line at base
+let waterline : sketch = stroke from (0, 160) to (200, 165)
+
+# ============================================
+# SECTION: Cathedral Base and Portals
+# ============================================
+
+# Main facade base width
+let base_left : sketch = stroke from (45, 140) to (45, 75)
+let base_right : sketch = stroke from (155, 140) to (155, 75)
+let base_bottom : sketch = stroke from (45, 140) to (155, 140)
+
+# Three portal arches - Left portal
+let portal_left_l : sketch = stroke from (50, 140) to (50, 115)
+let portal_left_r : sketch = stroke from (75, 140) to (75, 115)
+let portal_left_arch : sketch = stroke from (50, 115) to (75, 115) via [(62, 100)]
+
+# Center portal (largest)
+let portal_center_l : sketch = stroke from (82, 140) to (82, 105)
+let portal_center_r : sketch = stroke from (118, 140) to (118, 105)
+let portal_center_arch : sketch = stroke from (82, 105) to (118, 105) via [(100, 85)]
+
+# Right portal
+let portal_right_l : sketch = stroke from (125, 140) to (125, 115)
+let portal_right_r : sketch = stroke from (150, 140) to (150, 115)
+let portal_right_arch : sketch = stroke from (125, 115) to (150, 115) via [(137, 100)]
+
+# Gallery of Kings horizontal band
+let gallery_line1 : sketch = stroke from (45, 95) to (155, 95)
+let gallery_line2 : sketch = stroke from (45, 88) to (155, 88)
+
+# ============================================
+# SECTION: Rose Window and Central Facade
+# ============================================
+
+# Rose window - outer circle approximated with strokes
+let rose_center : vec = (100, 70)
+let rose_top : sketch = stroke from (85, 70) to (100, 58) via [(88, 62)]
+let rose_right : sketch = stroke from (100, 58) to (115, 70) via [(112, 62)]
+let rose_bottom : sketch = stroke from (115, 70) to (100, 82) via [(112, 78)]
+let rose_left : sketch = stroke from (100, 82) to (85, 70) via [(88, 78)]
+
+# Horizontal band below towers
+let tower_base_line : sketch = stroke from (45, 75) to (155, 75)
+
+# ============================================
+# SECTION: Twin Towers
+# ============================================
+
+# Left tower outline
+let tower_l_left : sketch = stroke from (45, 75) to (45, 20)
+let tower_l_right : sketch = stroke from (75, 75) to (75, 20)
+let tower_l_top : sketch = stroke from (45, 20) to (75, 20)
+
+# Left tower - Gothic window openings
+let tower_l_win1_l : sketch = stroke from (50, 55) to (50, 35)
+let tower_l_win1_r : sketch = stroke from (58, 55) to (58, 35)
+let tower_l_win1_arch : sketch = stroke from (50, 35) to (58, 35) via [(54, 28)]
+
+let tower_l_win2_l : sketch = stroke from (62, 55) to (62, 35)
+let tower_l_win2_r : sketch = stroke from (70, 55) to (70, 35)
+let tower_l_win2_arch : sketch = stroke from (62, 35) to (70, 35) via [(66, 28)]
+
+# Right tower outline
+let tower_r_left : sketch = stroke from (125, 75) to (125, 20)
+let tower_r_right : sketch = stroke from (155, 75) to (155, 20)
+let tower_r_top : sketch = stroke from (125, 20) to (155, 20)
+
+# Right tower - Gothic window openings
+let tower_r_win1_l : sketch = stroke from (130, 55) to (130, 35)
+let tower_r_win1_r : sketch = stroke from (138, 55) to (138, 35)
+let tower_r_win1_arch : sketch = stroke from (130, 35) to (138, 35) via [(134, 28)]
+
+let tower_r_win2_l : sketch = stroke from (142, 55) to (142, 35)
+let tower_r_win2_r : sketch = stroke from (150, 55) to (150, 35)
+let tower_r_win2_arch : sketch = stroke from (142, 35) to (150, 35) via [(146, 28)]
+
+# ============================================
+# SECTION: Central Section Between Towers
+# ============================================
+
+# Triangular gable above rose window
+let gable_left : sketch = stroke from (75, 55) to (100, 35)
+let gable_right : sketch = stroke from (100, 35) to (125, 55)
+let gable_base : sketch = stroke from (75, 55) to (125, 55)
+
+# ============================================
+# SECTION: Flying Buttresses (Right Side - Perspective)
+# ============================================
+
+# Nave wall receding into perspective
+let nave_top : sketch = stroke from (155, 65) to (185, 55)
+let nave_bottom : sketch = stroke from (155, 130) to (185, 120)
+
+# Flying buttress arches
+let buttress1_arc : sketch = stroke from (160, 70) to (165, 115) via [(175, 85)]
+let buttress1_pier : sketch = stroke from (165, 115) to (165, 130)
+
+let buttress2_arc : sketch = stroke from (172, 65) to (177, 110) via [(187, 80)]
+let buttress2_pier : sketch = stroke from (177, 110) to (177, 125)
+
+# ============================================
+# SECTION: Spire
+# ============================================
+
+# Central spire rising from crossing
+let spire_left : sketch = stroke from (95, 35) to (100, 5)
+let spire_right : sketch = stroke from (105, 35) to (100, 5)
+let spire_base : sketch = stroke from (95, 35) to (105, 35)
+
+# ============================================
+# SECTION: Atmospheric Elements - Trees
+# ============================================
+
+# Trees on left bank
+let tree1_trunk : sketch = stroke from (15, 145) to (15, 120)
+let tree1_canopy_l : sketch = stroke from (5, 120) to (15, 100) via [(8, 110)]
+let tree1_canopy_r : sketch = stroke from (15, 100) to (25, 120) via [(22, 110)]
+
+let tree2_trunk : sketch = stroke from (30, 145) to (30, 125)
+let tree2_canopy : sketch = stroke from (20, 125) to (40, 125) via [(30, 108)]
+
+# ============================================
+# RENDER ALL CONTOURS
+# ============================================
+
+trace [quay_left, quay_top, waterline]
+trace [base_left, base_right, base_bottom]
+trace [portal_left_l, portal_left_r, portal_left_arch]
+trace [portal_center_l, portal_center_r, portal_center_arch]
+trace [portal_right_l, portal_right_r, portal_right_arch]
+trace [gallery_line1, gallery_line2]
+trace [rose_top, rose_right, rose_bottom, rose_left]
+trace [tower_base_line]
+trace [tower_l_left, tower_l_right, tower_l_top]
+trace [tower_l_win1_l, tower_l_win1_r, tower_l_win1_arch]
+trace [tower_l_win2_l, tower_l_win2_r, tower_l_win2_arch]
+trace [tower_r_left, tower_r_right, tower_r_top]
+trace [tower_r_win1_l, tower_r_win1_r, tower_r_win1_arch]
+trace [tower_r_win2_l, tower_r_win2_r, tower_r_win2_arch]
+trace [gable_left, gable_right, gable_base]
+trace [nave_top, nave_bottom]
+trace [buttress1_arc, buttress1_pier, buttress2_arc, buttress2_pier]
+trace [spire_left, spire_right, spire_base]
+draw [tree1_trunk, tree1_canopy_l, tree1_canopy_r]
+draw [tree2_trunk, tree2_canopy]
+
+# === EXPANDED DETAILS ===
+
+
+# Section: River and Quay
+# River and Quay - Seine foreground with embankment
+
+# Stone embankment wall - top edge
+let river_and_quay_wall_top_left : vec = (0, 145)
+let river_and_quay_wall_top_right : vec = (200, 138)
+trace stroke from river_and_quay_wall_top_left to river_and_quay_wall_top_right
+
+# Embankment wall face - horizontal stone courses
+let river_and_quay_course1_left : vec = (0, 152)
+let river_and_quay_course1_right : vec = (200, 145)
+draw stroke from river_and_quay_course1_left to river_and_quay_course1_right
+
+let river_and_quay_course2_left : vec = (0, 159)
+let river_and_quay_course2_right : vec = (200, 152)
+draw stroke from river_and_quay_course2_left to river_and_quay_course2_right
+
+let river_and_quay_course3_left : vec = (0, 166)
+let river_and_quay_course3_right : vec = (200, 159)
+draw stroke from river_and_quay_course3_left to river_and_quay_course3_right
+
+# Vertical stone joints in embankment
+draw stroke from (25, 145) to (25, 166)
+draw stroke from (55, 144) to (55, 165)
+draw stroke from (90, 143) to (90, 163)
+draw stroke from (120, 142) to (120, 161)
+draw stroke from (150, 141) to (150, 160)
+draw stroke from (180, 140) to (180, 159)
+
+# Water line at base of embankment
+let river_and_quay_waterline_left : vec = (0, 168)
+let river_and_quay_waterline_right : vec = (200, 161)
+trace stroke from river_and_quay_waterline_left to river_and_quay_waterline_right
+
+# Seine water ripples - gentle horizontal waves
+# Foreground ripples (larger, more defined)
+scribble stroke from (0, 185) to (65, 183) via [(32, 181)]
+scribble stroke from (50, 188) to (130, 185) via [(90, 183)]
+scribble stroke from (115, 190) to (200, 186) via [(160, 184)]
+
+# Mid-water ripples
+draw stroke from (0, 175) to (80, 172) via [(40, 170)]
+draw stroke from (60, 177) to (150, 174) via [(105, 171)]
+draw stroke from (130, 178) to (200, 174) via [(165, 172)]
+
+# Near-embankment ripples (smaller, tighter)
+draw stroke from (0, 170) to (50, 168) via [(25, 167)]
+draw stroke from (40, 171) to (100, 169) via [(70, 167)]
+draw stroke from (85, 172) to (145, 169) via [(115, 167)]
+draw stroke from (130, 171) to (200, 168) via [(165, 166)]
+
+# Reflection shadows under embankment
+scribble stroke from (0, 169) to (45, 167)
+scribble stroke from (50, 168) to (95, 166)
+scribble stroke from (100, 167) to (145, 165)
+scribble stroke from (150, 166) to (200, 163)
+
+# Distant ripples near horizon (finer lines)
+draw stroke from (20, 163) to (70, 162)
+draw stroke from (80, 164) to (125, 162)
+draw stroke from (135, 163) to (180, 161)
+
+# Quay walkway hint at top
+let river_and_quay_walkway_back : vec = (0, 140)
+let river_and_quay_walkway_back_right : vec = (200, 133)
+draw stroke from river_and_quay_walkway_back to river_and_quay_walkway_back_right
+
+# Walkway paving lines
+draw stroke from (0, 142) to (60, 139)
+draw stroke from (70, 138) to (140, 135)
+draw stroke from (150, 134) to (200, 132)
+
+# Mooring rings on embankment
+let river_and_quay_ring1 : vec = (40, 155)
+let river_and_quay_ring2 : vec = (110, 152)
+let river_and_quay_ring3 : vec = (170, 149)
+draw dot at river_and_quay_ring1
+draw dot at river_and_quay_ring2
+draw dot at river_and_quay_ring3
+
+# Water surface texture with dashes
+dash at (15, 180)
+dash at (35, 182)
+dash at (58, 179)
+dash at (82, 183)
+dash at (105, 181)
+dash at (128, 184)
+dash at (152, 180)
+dash at (175, 182)
+dash at (192, 179)
+
+# Additional water shimmer
+dash at (25, 172)
+dash at (68, 174)
+dash at (95, 171)
+dash at (140, 173)
+dash at (185, 170)
+
+# Embankment texture and weathering
+scribble stroke from (10, 150) to (18, 158)
+scribble stroke from (70, 148) to (78, 156)
+scribble stroke from (135, 146) to (143, 154)

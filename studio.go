@@ -8,259 +8,188 @@ import (
 	"strings"
 	"time"
 
-	"sketch-studio/entities/artist"
 	"sketch-studio/tools/compiler"
 	"sketch-studio/tools/llm"
 	"sketch-studio/tools/logger"
 )
 
-// Studio orchestrates the sketch generation process
+// Studio orchestrates sketch generation.
 type Studio struct {
 	config   StudioConfig
-	artist   *artist.Artist
+	artist   *Artist
 	compiler *compiler.Compiler
 	log      *logger.Logger
 }
 
-// NewStudio creates a new sketch studio
+// NewStudio creates a new Studio instance.
 func NewStudio(config StudioConfig, langSpec string) (*Studio, error) {
-	// Set defaults
-	if config.OutputDir == "" {
-		config.OutputDir = "./output"
-	}
-	if config.Model == "" {
-		config.Model = "claude-opus-4-5"
-	}
-	if config.MaxIterations == 0 {
-		config.MaxIterations = 1
+	if err := validateConfig(&config); err != nil {
+		return nil, err
 	}
 
-	// Validate
-	if config.AnthropicKey == "" {
-		return nil, fmt.Errorf("Anthropic API key is required")
-	}
-	if config.CompilerPath == "" {
-		return nil, fmt.Errorf("compiler path is required")
-	}
-
-	// Create output directory
 	if err := os.MkdirAll(config.OutputDir, 0755); err != nil {
-		return nil, fmt.Errorf("failed to create output directory: %w", err)
+		return nil, fmt.Errorf("create output dir: %w", err)
 	}
 
-	// Initialize logger
-	logLevel := logger.LevelInfo
-	if config.VerboseLogging {
-		logLevel = logger.LevelDebug
-	}
-	log := logger.New(os.Stdout, logLevel, "studio")
-
-	// Initialize LLM client
+	log := logger.New(os.Stdout, logLevel(config.VerboseLogging), "studio")
 	llmClient := llm.NewAnthropicClient(config.AnthropicKey, config.Model)
 
-	// Initialize artist
-	art := artist.New(llmClient, langSpec, log)
-
-	// Initialize compiler
 	comp, err := compiler.New(config.CompilerPath, config.OutputDir)
 	if err != nil {
-		return nil, fmt.Errorf("failed to create compiler: %w", err)
+		return nil, fmt.Errorf("create compiler: %w", err)
 	}
 
 	return &Studio{
 		config:   config,
-		artist:   art,
+		artist:   NewArtist(llmClient, langSpec, log),
 		compiler: comp,
 		log:      log,
 	}, nil
 }
 
-// Generate creates a sketch from a request
+// Generate creates a complete sketch from a request.
 func (s *Studio) Generate(ctx context.Context, req SketchRequest) (*Sketch, error) {
-	startTime := time.Now()
-	s.log.Info("═══════════════════════════════════════════════════════════════")
-	s.log.Info("Starting sketch generation")
-	s.log.Info("Description: %s", req.Description)
-	s.log.Info("═══════════════════════════════════════════════════════════════")
-
-	// Step 1: Create the initial plan
-	s.log.Info("")
-	s.log.Info("PHASE 1: Planning")
-	s.log.Info("─────────────────────────────────────────────────────────────────")
-
-	plan, planResp, err := s.artist.Plan(ctx, req.Description)
-	if err != nil {
-		return nil, fmt.Errorf("planning failed: %w", err)
-	}
-
-	// Create subdirectory for this sketch
-	sketchDir := sanitize(plan.Title)
-
-	s.log.Info("Title: %s", plan.Title)
-	s.log.Info("Output folder: %s", sketchDir)
-	s.log.Info("Summary: %s", truncate(plan.Summary, 100))
-	s.log.Info("Sections: %d", len(plan.Sections))
-	for _, sec := range plan.Sections {
-		s.log.Section(sec.Title, truncate(sec.Description, 60))
-	}
-
-	// Save raw response for debugging
-	if s.config.VerboseLogging {
-		rawDir := filepath.Join(s.config.OutputDir, sketchDir)
-		os.MkdirAll(rawDir, 0755)
-		rawPath := filepath.Join(rawDir, "plan_raw.txt")
-		os.WriteFile(rawPath, []byte(planResp.Content), 0644)
-	}
-
-	// Step 2: Compile initial contours
-	s.log.Info("")
-	s.log.Info("PHASE 2: Compiling Contours")
-	s.log.Info("─────────────────────────────────────────────────────────────────")
-
-	contourName := "contours"
-	contourOpts := compiler.Options{
-		GenSVG:   true,
-		GenGCode: true,
-		SubDir:   sketchDir,
-	}
-	contourResult, err := s.compiler.CompileWithOptions(plan.ContourCode, contourName, contourOpts)
-	if err != nil {
-		return nil, fmt.Errorf("contour compilation error: %w", err)
-	}
-
-	s.log.Compilation(contourResult.Success, contourResult.SVGPath, contourResult.Errors)
-
-	if !contourResult.Success {
-		// Save the failed code for inspection
-		failedDir := filepath.Join(s.config.OutputDir, sketchDir)
-		os.MkdirAll(failedDir, 0755)
-		failedPath := filepath.Join(failedDir, contourName+"_failed.sketch")
-		os.WriteFile(failedPath, []byte(plan.ContourCode), 0644)
-		s.log.Warn("Failed contour code saved to: %s", failedPath)
-		return nil, fmt.Errorf("contour compilation failed: %v", contourResult.Errors)
-	}
-
-	// Build the sketch object
-	sketch := &Sketch{
-		Summary: SketchSummary{
-			Title:       plan.Title,
-			Summary:     plan.Summary,
-			Subject:     plan.Subject,
-			Perspective: plan.Perspective,
-			Style:       plan.Style,
-			Metadata:    plan.Metadata,
-		},
-		Contours: plan.ContourCode,
-	}
-
-	for _, sec := range plan.Sections {
-		sketch.Sections = append(sketch.Sections, SketchSection{
-			Title:       sec.Title,
-			Description: sec.Description,
-			Neighbors:   sec.Neighbors,
-			Expanded:    false,
-		})
-	}
-
-	// Step 3: Expand each section
-	s.log.Info("")
-	s.log.Info("PHASE 3: Expanding Sections")
-	s.log.Info("─────────────────────────────────────────────────────────────────")
-
-	expandedCode := plan.ContourCode + "\n\n# === EXPANDED DETAILS ===\n"
-
-	for i, section := range plan.Sections {
-		s.log.Info("")
-		s.log.Info("[%d/%d] Expanding: %s", i+1, len(plan.Sections), section.Title)
-
-		expandedSection, _, err := s.artist.ExpandSection(ctx, plan, section, plan.ContourCode)
-		if err != nil {
-			s.log.Error("Failed to expand section %s: %v", section.Title, err)
-			continue
-		}
-
-		// Validate the expanded code compiles
-		sectionName := "expanded_" + sanitize(section.Title)
-		testCode := expandedCode + "\n\n# Section: " + section.Title + "\n" + expandedSection
-
-		sectionOpts := compiler.Options{
-			GenSVG:   true,
-			GenGCode: true,
-			SubDir:   sketchDir,
-		}
-		result, err := s.compiler.CompileWithOptions(testCode, sectionName, sectionOpts)
-		if err != nil {
-			s.log.Error("Compilation error for %s: %v", section.Title, err)
-			continue
-		}
-
-		if !result.Success {
-			s.log.Warn("Section %s failed to compile: %v", section.Title, result.Errors)
-			// Save failed code for inspection
-			failedPath := filepath.Join(s.config.OutputDir, sketchDir, sectionName+"_failed.sketch")
-			os.WriteFile(failedPath, []byte(testCode), 0644)
-			continue
-		}
-
-		s.log.Compilation(result.Success, result.SVGPath, result.Errors)
-
-		// Add to accumulated code
-		expandedCode = testCode
-		sketch.Sections[i].Content = expandedSection
-		sketch.Sections[i].Expanded = true
-	}
-
-	// Step 4: Final compilation
-	s.log.Info("")
-	s.log.Info("PHASE 4: Final Compilation")
-	s.log.Info("─────────────────────────────────────────────────────────────────")
-
-	finalName := "final"
-	finalOpts := compiler.Options{
-		GenSVG:   true,
-		GenGCode: true,
-		SubDir:   sketchDir,
-	}
-	finalResult, err := s.compiler.CompileWithOptions(expandedCode, finalName, finalOpts)
-	if err != nil {
-		return nil, fmt.Errorf("final compilation error: %w", err)
-	}
-
-	s.log.Compilation(finalResult.Success, finalResult.SVGPath, finalResult.Errors)
-
-	// Summary
-	s.log.Info("")
-	s.log.Info("═══════════════════════════════════════════════════════════════")
-	s.log.Info("Generation Complete")
-	s.log.Info("Total time: %v", time.Since(startTime).Round(time.Millisecond))
-	s.log.Info("Output folder: %s", filepath.Join(s.config.OutputDir, sketchDir))
-	s.log.Info("Final SVG: %s", finalResult.SVGPath)
-	s.log.Info("═══════════════════════════════════════════════════════════════")
-
-	return sketch, nil
+	return s.generate(ctx, req, false)
 }
 
-// sanitize creates a safe filename from a string
+// GenerateWithValidation creates a sketch with compile-time validation feedback.
+func (s *Studio) GenerateWithValidation(ctx context.Context, req SketchRequest) (*Sketch, error) {
+	return s.generate(ctx, req, true)
+}
+
+func (s *Studio) generate(ctx context.Context, req SketchRequest, validate bool) (*Sketch, error) {
+	start := time.Now()
+	s.logHeader("Starting sketch generation", req.Description)
+
+	// Generate sketch
+	s.log.Info("Generating sketch...")
+	s.logDivider()
+
+	var result *SketchResult
+	var resp *llm.Response
+	var err error
+
+	if validate {
+		result, resp, err = s.artist.CreateSketchWithValidation(ctx, req.Description, s.validateCode)
+	} else {
+		result, resp, err = s.artist.CreateSketch(ctx, req.Description)
+	}
+	if err != nil {
+		return nil, fmt.Errorf("generation failed: %w", err)
+	}
+
+	sketchDir := sanitize(result.Title)
+	s.log.Info("Title: %s", result.Title)
+	s.log.Info("Output: %s", sketchDir)
+
+	if s.config.VerboseLogging {
+		s.saveDebugFile(sketchDir, "response_raw.txt", resp.Content)
+	}
+
+	// Compile
+	s.log.Info("")
+	s.log.Info("Compiling...")
+	s.logDivider()
+
+	compResult, err := s.compiler.CompileWithOptions(result.Code, "sketch", compiler.Options{
+		GenSVG:   true,
+		GenGCode: true,
+		SubDir:   sketchDir,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("compilation error: %w", err)
+	}
+
+	s.log.Compilation(compResult.Success, compResult.SVGPath, compResult.Errors)
+
+	if !compResult.Success {
+		s.saveDebugFile(sketchDir, "failed.sketch", result.Code)
+		return nil, fmt.Errorf("compilation failed: %v", compResult.Errors)
+	}
+
+	s.logFooter(start, filepath.Join(s.config.OutputDir, sketchDir), compResult.SVGPath)
+
+	return &Sketch{
+		Title:    result.Title,
+		Summary:  result.Summary,
+		Metadata: result.Metadata,
+		Code:     result.Code,
+		SVGPath:  compResult.SVGPath,
+	}, nil
+}
+
+func (s *Studio) validateCode(code string) (bool, []string) {
+	result, err := s.compiler.CompileWithOptions(code, "validate", compiler.Options{})
+	if err != nil {
+		return false, []string{err.Error()}
+	}
+	return result.Success, result.Errors
+}
+
+func (s *Studio) saveDebugFile(dir, name, content string) {
+	path := filepath.Join(s.config.OutputDir, dir)
+	os.MkdirAll(path, 0755)
+	os.WriteFile(filepath.Join(path, name), []byte(content), 0644)
+}
+
+func (s *Studio) logHeader(title, description string) {
+	s.log.Info("═══════════════════════════════════════════════════════════════")
+	s.log.Info(title)
+	s.log.Info("Description: %s", description)
+	s.log.Info("═══════════════════════════════════════════════════════════════")
+	s.log.Info("")
+}
+
+func (s *Studio) logDivider() {
+	s.log.Info("───────────────────────────────────────────────────────────────")
+}
+
+func (s *Studio) logFooter(start time.Time, outputDir, svgPath string) {
+	s.log.Info("")
+	s.log.Info("═══════════════════════════════════════════════════════════════")
+	s.log.Info("Complete in %v", time.Since(start).Round(time.Millisecond))
+	s.log.Info("Output: %s", outputDir)
+	s.log.Info("SVG: %s", svgPath)
+	s.log.Info("═══════════════════════════════════════════════════════════════")
+}
+
+// --- Helpers ---
+
+func validateConfig(c *StudioConfig) error {
+	if c.OutputDir == "" {
+		c.OutputDir = "./output"
+	}
+	if c.Model == "" {
+		c.Model = "claude-sonnet-4-5"
+	}
+	if c.AnthropicKey == "" {
+		return fmt.Errorf("Anthropic API key required")
+	}
+	if c.CompilerPath == "" {
+		return fmt.Errorf("compiler path required")
+	}
+	return nil
+}
+
+func logLevel(verbose bool) logger.Level {
+	if verbose {
+		return logger.LevelDebug
+	}
+	return logger.LevelInfo
+}
+
 func sanitize(s string) string {
 	s = strings.ToLower(s)
 	s = strings.ReplaceAll(s, " ", "_")
-	safe := ""
+	var b strings.Builder
 	for _, c := range s {
 		if (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '_' || c == '-' {
-			safe += string(c)
+			b.WriteRune(c)
 		}
 	}
-	if len(safe) > 50 {
-		safe = safe[:50]
+	result := b.String()
+	if len(result) > 50 {
+		return result[:50]
 	}
-	return safe
-}
-
-// truncate shortens a string with ellipsis
-func truncate(s string, max int) string {
-	s = strings.ReplaceAll(s, "\n", " ")
-	if len(s) <= max {
-		return s
-	}
-	return s[:max-3] + "..."
+	return result
 }

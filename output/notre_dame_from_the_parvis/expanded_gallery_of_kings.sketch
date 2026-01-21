@@ -1,0 +1,483 @@
+# Notre Dame Cathedral - Ground-level perspective
+# Vanishing point slightly above and centered for dramatic upward view
+
+# === ANCHOR POINTS ===
+# Base width narrows as it rises (perspective)
+let ground_left : vec = (20, 180)
+let ground_right : vec = (180, 180)
+let ground_center : vec = (100, 185)
+
+# Portal level
+let portal_base_left : vec = (35, 165)
+let portal_base_right : vec = (165, 165)
+let portal_top_left : vec = (40, 120)
+let portal_top_right : vec = (160, 120)
+
+# Gallery level (horizontal band)
+let gallery_left : vec = (42, 115)
+let gallery_right : vec = (158, 115)
+let gallery_top_left : vec = (44, 105)
+let gallery_top_right : vec = (156, 105)
+
+# Rose window level
+let rose_center : vec = (100, 80)
+let rose_level_left : vec = (46, 100)
+let rose_level_right : vec = (154, 100)
+
+# Tower bases
+let tower_divide_left : vec = (70, 60)
+let tower_divide_right : vec = (130, 60)
+
+# Tower tops (converging slightly)
+let left_tower_top_left : vec = (52, 15)
+let left_tower_top_right : vec = (72, 15)
+let right_tower_top_left : vec = (128, 15)
+let right_tower_top_right : vec = (148, 15)
+
+# === GROUND PLANE ===
+let ground_line : sketch = stroke from ground_left to ground_right
+let perspective_left : sketch = stroke from (0, 190) to ground_left
+let perspective_right : sketch = stroke from (200, 190) to ground_right
+draw [ground_line, perspective_left, perspective_right]
+
+# === THREE PORTALS ===
+# Central portal (largest)
+let central_portal_left : vec = (75, 165)
+let central_portal_right : vec = (125, 165)
+let central_portal_peak : vec = (100, 130)
+let central_portal : sketch = [
+  stroke from central_portal_left to central_portal_peak,
+  stroke from central_portal_peak to central_portal_right,
+  stroke from central_portal_left to (75, 140),
+  stroke from central_portal_right to (125, 140)
+]
+
+# Left portal
+let left_portal_left : vec = (38, 165)
+let left_portal_right : vec = (68, 165)
+let left_portal_peak : vec = (53, 140)
+let left_portal : sketch = [
+  stroke from left_portal_left to left_portal_peak,
+  stroke from left_portal_peak to left_portal_right
+]
+
+# Right portal
+let right_portal_left : vec = (132, 165)
+let right_portal_right : vec = (162, 165)
+let right_portal_peak : vec = (147, 140)
+let right_portal : sketch = [
+  stroke from right_portal_left to right_portal_peak,
+  stroke from right_portal_peak to right_portal_right
+]
+
+draw [central_portal, left_portal, right_portal]
+
+# Portal arches (nested for depth)
+let inner_arch : sketch = stroke from (80, 160) to (100, 135) via [(90, 140)]
+let inner_arch2 : sketch = stroke from (100, 135) to (120, 160) via [(110, 140)]
+draw [inner_arch, inner_arch2]
+
+# === GALLERY OF KINGS ===
+let gallery_base : sketch = stroke from gallery_left to gallery_right
+let gallery_top : sketch = stroke from gallery_top_left to gallery_top_right
+draw [gallery_base, gallery_top]
+
+# Suggesting statues with vertical dashes
+let king1 : sketch = dash at (55, 110)
+let king2 : sketch = dash at (70, 110)
+let king3 : sketch = dash at (85, 110)
+let king4 : sketch = dash at (100, 110)
+let king5 : sketch = dash at (115, 110)
+let king6 : sketch = dash at (130, 110)
+let king7 : sketch = dash at (145, 110)
+scribble [king1, king2, king3, king4, king5, king6, king7]
+
+# === ROSE WINDOW ===
+# Outer circle suggested with curved strokes
+let rose_top : vec = rose_center + (0, -18)
+let rose_bottom : vec = rose_center + (0, 18)
+let rose_left_pt : vec = rose_center + (-18, 0)
+let rose_right_pt : vec = rose_center + (18, 0)
+
+let rose_curve1 : sketch = stroke from rose_top to rose_right_pt via [(rose_center + (14, -14))]
+let rose_curve2 : sketch = stroke from rose_right_pt to rose_bottom via [(rose_center + (14, 14))]
+let rose_curve3 : sketch = stroke from rose_bottom to rose_left_pt via [(rose_center + (-14, 14))]
+let rose_curve4 : sketch = stroke from rose_left_pt to rose_top via [(rose_center + (-14, -14))]
+draw [rose_curve1, rose_curve2, rose_curve3, rose_curve4]
+
+# Rose inner detail
+let rose_inner : sketch = dot at rose_center
+trace rose_inner
+
+# Flanking windows (pointed arches)
+let left_window : sketch = [
+  stroke from (48, 100) to (55, 70),
+  stroke from (55, 70) to (62, 100)
+]
+let right_window : sketch = [
+  stroke from (138, 100) to (145, 70),
+  stroke from (145, 70) to (152, 100)
+]
+draw [left_window, right_window]
+
+# === FACADE OUTLINE ===
+# Left edge rising
+let left_edge : sketch = stroke from portal_base_left to (50, 60)
+# Right edge rising  
+let right_edge : sketch = stroke from portal_base_right to (150, 60)
+draw [left_edge, right_edge]
+
+# === TWIN BELL TOWERS ===
+# Left tower
+let left_tower_left : vec = (50, 60)
+let left_tower_right : vec = (70, 60)
+let left_tower : sketch = [
+  stroke from left_tower_left to left_tower_top_left,
+  stroke from left_tower_right to left_tower_top_right,
+  stroke from left_tower_top_left to left_tower_top_right
+]
+
+# Right tower
+let right_tower_left : vec = (130, 60)
+let right_tower_right : vec = (150, 60)
+let right_tower : sketch = [
+  stroke from right_tower_left to right_tower_top_left,
+  stroke from right_tower_right to right_tower_top_right,
+  stroke from right_tower_top_left to right_tower_top_right
+]
+
+draw [left_tower, right_tower]
+
+# Tower windows (belfry openings)
+let left_belfry1 : sketch = stroke from (54, 45) to (54, 30)
+let left_belfry2 : sketch = stroke from (62, 45) to (62, 30)
+let right_belfry1 : sketch = stroke from (138, 45) to (138, 30)
+let right_belfry2 : sketch = stroke from (146, 45) to (146, 30)
+draw [left_belfry1, left_belfry2, right_belfry1, right_belfry2]
+
+# Central section between towers
+let center_top : sketch = stroke from (70, 60) to (130, 60)
+draw center_top
+
+# === GOTHIC DETAILS ===
+# Flying buttress hints on sides
+let buttress_left : sketch = stroke from (20, 140) to (35, 100) via [(15, 120)]
+let buttress_right : sketch = stroke from (180, 140) to (165, 100) via [(185, 120)]
+scribble [buttress_left, buttress_right]
+
+# Vertical buttress lines on facade
+let vert_buttress1 : sketch = stroke from (50, 165) to (50, 60)
+let vert_buttress2 : sketch = stroke from (70, 165) to (70, 60)
+let vert_buttress3 : sketch = stroke from (130, 165) to (130, 60)
+let vert_buttress4 : sketch = stroke from (150, 165) to (150, 60)
+draw [vert_buttress1, vert_buttress2, vert_buttress3, vert_buttress4]
+
+# Pinnacle suggestions atop buttresses
+let pinnacle1 : sketch = stroke from (50, 60) to (50, 52)
+let pinnacle2 : sketch = stroke from (70, 60) to (70, 52)
+let pinnacle3 : sketch = stroke from (130, 60) to (130, 52)
+let pinnacle4 : sketch = stroke from (150, 60) to (150, 52)
+scribble [pinnacle1, pinnacle2, pinnacle3, pinnacle4]
+
+# === SHADOW AND DEPTH ===
+# Shading under portals
+let portal_shadow1 : sketch = dash at (53, 155)
+let portal_shadow2 : sketch = dash at (100, 155)
+let portal_shadow3 : sketch = dash at (100, 150)
+let portal_shadow4 : sketch = dash at (147, 155)
+scribble [portal_shadow1, portal_shadow2, portal_shadow3, portal_shadow4]
+
+# Tower shadow dashes
+let tower_shade1 : sketch = dash at (55, 40)
+let tower_shade2 : sketch = dash at (58, 35)
+let tower_shade3 : sketch = dash at (140, 40)
+let tower_shade4 : sketch = dash at (143, 35)
+scribble [tower_shade1, tower_shade2, tower_shade3, tower_shade4]
+
+# === EXPANDED DETAILS ===
+
+
+# Section: Ground and Base
+# Ground and Base - Plaza stones and foundation establishing ground plane
+
+# Define the ground line and horizon
+let ground_and_base_ground_y : number = 85
+let ground_and_base_left_edge : number = 5
+let ground_and_base_right_edge : number = 95
+
+# Main ground line
+let ground_and_base_ground_line : sketch = stroke from (ground_and_base_left_edge, ground_and_base_ground_y) to (ground_and_base_right_edge, ground_and_base_ground_y)
+draw ground_and_base_ground_line
+
+# Vanishing point for perspective (slightly left of center, high up)
+let ground_and_base_vanish : vec = (42, -20)
+
+# Plaza stone grid - perspective lines receding to vanishing point
+let ground_and_base_stone_row_1 : vec = (10, 90)
+let ground_and_base_stone_row_2 : vec = (30, 92)
+let ground_and_base_stone_row_3 : vec = (50, 91)
+let ground_and_base_stone_row_4 : vec = (70, 93)
+let ground_and_base_stone_row_5 : vec = (85, 90)
+
+# Horizontal stone joints across the parvis
+let ground_and_base_joint_1 : sketch = stroke from (5, 88) to (95, 88)
+let ground_and_base_joint_2 : sketch = stroke from (8, 91) to (92, 91)
+let ground_and_base_joint_3 : sketch = stroke from (3, 95) to (97, 95)
+draw [ground_and_base_joint_1, ground_and_base_joint_2, ground_and_base_joint_3]
+
+# Perspective lines on plaza stones converging toward cathedral
+let ground_and_base_persp_1 : sketch = stroke from (15, 95) to (25, 85)
+let ground_and_base_persp_2 : sketch = stroke from (35, 95) to (38, 85)
+let ground_and_base_persp_3 : sketch = stroke from (55, 95) to (52, 85)
+let ground_and_base_persp_4 : sketch = stroke from (75, 95) to (65, 85)
+draw [ground_and_base_persp_1, ground_and_base_persp_2, ground_and_base_persp_3, ground_and_base_persp_4]
+
+# Foundation base of cathedral - heavy stone course
+let ground_and_base_foundation_left : vec = (18, ground_and_base_ground_y)
+let ground_and_base_foundation_right : vec = (82, ground_and_base_ground_y)
+let ground_and_base_foundation_line : sketch = stroke from ground_and_base_foundation_left to ground_and_base_foundation_right
+trace ground_and_base_foundation_line
+
+# Foundation depth - slight step up
+let ground_and_base_step_y : number = 83
+let ground_and_base_step_line : sketch = stroke from (20, ground_and_base_step_y) to (80, ground_and_base_step_y)
+draw ground_and_base_step_line
+
+# Vertical risers for the step
+let ground_and_base_riser_left : sketch = stroke from (20, ground_and_base_ground_y) to (20, ground_and_base_step_y)
+let ground_and_base_riser_right : sketch = stroke from (80, ground_and_base_ground_y) to (80, ground_and_base_step_y)
+draw [ground_and_base_riser_left, ground_and_base_riser_right]
+
+# Stone texture on plaza - scattered dashes for weathered surface
+scribble dash at (12, 89)
+scribble dash at (28, 93)
+scribble dash at (45, 90)
+scribble dash at (62, 94)
+scribble dash at (78, 89)
+scribble dash at (88, 92)
+scribble dash at (22, 94)
+scribble dash at (55, 93)
+
+# Shadow under the foundation step
+let ground_and_base_shadow_1 : sketch = stroke from (22, 84) to (78, 84)
+scribble ground_and_base_shadow_1
+scribble dash at (35, 84)
+scribble dash at (50, 84)
+scribble dash at (65, 84)
+
+# Viewer position hint - subtle shadow/mark at center-left
+let ground_and_base_viewer_pos : vec = (30, 96)
+let ground_and_base_viewer_shadow : sketch = stroke from (28, 97) to (32, 97)
+scribble ground_and_base_viewer_shadow
+
+# Section: Three Portals
+# Three Portals - Ground level entrance doors
+# Central portal is larger, flanked by two smaller symmetrical portals
+# Low angle perspective means tops of arches curve slightly upward at edges
+
+# Base positions for the three portals
+let three_portals_ground_y : number = 85
+let three_portals_top_central : number = 55
+let three_portals_top_side : number = 62
+
+# Central portal - the largest
+let three_portals_central_left : vec = (38, three_portals_ground_y)
+let three_portals_central_right : vec = (62, three_portals_ground_y)
+let three_portals_central_apex : vec = (50, three_portals_top_central)
+
+# Central portal arch
+let three_portals_central_arch : sketch = stroke from three_portals_central_left to three_portals_central_apex via [(42, 58)]
+let three_portals_central_arch_r : sketch = stroke from three_portals_central_apex to three_portals_central_right via [(58, 58)]
+draw [three_portals_central_arch, three_portals_central_arch_r]
+
+# Central portal jambs (vertical sides)
+let three_portals_central_jamb_l : sketch = stroke from three_portals_central_left to (38, three_portals_ground_y + 5)
+let three_portals_central_jamb_r : sketch = stroke from three_portals_central_right to (62, three_portals_ground_y + 5)
+trace [three_portals_central_jamb_l, three_portals_central_jamb_r]
+
+# Left portal - smaller
+let three_portals_left_inner : vec = (32, three_portals_ground_y)
+let three_portals_left_outer : vec = (15, three_portals_ground_y)
+let three_portals_left_apex : vec = (23, three_portals_top_side)
+
+let three_portals_left_arch_l : sketch = stroke from three_portals_left_outer to three_portals_left_apex via [(17, 66)]
+let three_portals_left_arch_r : sketch = stroke from three_portals_left_apex to three_portals_left_inner via [(29, 66)]
+draw [three_portals_left_arch_l, three_portals_left_arch_r]
+
+# Left portal jambs
+let three_portals_left_jamb_l : sketch = stroke from three_portals_left_outer to (15, three_portals_ground_y + 5)
+let three_portals_left_jamb_r : sketch = stroke from three_portals_left_inner to (32, three_portals_ground_y + 5)
+trace [three_portals_left_jamb_l, three_portals_left_jamb_r]
+
+# Right portal - smaller, mirrors left
+let three_portals_right_inner : vec = (68, three_portals_ground_y)
+let three_portals_right_outer : vec = (85, three_portals_ground_y)
+let three_portals_right_apex : vec = (77, three_portals_top_side)
+
+let three_portals_right_arch_l : sketch = stroke from three_portals_right_inner to three_portals_right_apex via [(71, 66)]
+let three_portals_right_arch_r : sketch = stroke from three_portals_right_apex to three_portals_right_outer via [(83, 66)]
+draw [three_portals_right_arch_l, three_portals_right_arch_r]
+
+# Right portal jambs
+let three_portals_right_jamb_l : sketch = stroke from three_portals_right_inner to (68, three_portals_ground_y + 5)
+let three_portals_right_jamb_r : sketch = stroke from three_portals_right_outer to (85, three_portals_ground_y + 5)
+trace [three_portals_right_jamb_l, three_portals_right_jamb_r]
+
+# Tympanum details - semicircular carved areas above doors
+# Central tympanum - suggestion of Last Judgment relief
+let three_portals_central_tymp_center : vec = (50, 62)
+scribble stroke from (42, 68) to (50, 60)
+scribble stroke from (58, 68) to (50, 60)
+scribble stroke from (46, 65) to (54, 65)
+
+# Archivolts - concentric arches framing each portal
+# Central portal outer arch
+let three_portals_central_arch_outer : sketch = stroke from (35, three_portals_ground_y) to (50, 50) via [(38, 54)]
+let three_portals_central_arch_outer_r : sketch = stroke from (50, 50) to (65, three_portals_ground_y) via [(62, 54)]
+draw [three_portals_central_arch_outer, three_portals_central_arch_outer_r]
+
+# Trumeau - central pillar dividing the main door
+let three_portals_trumeau : sketch = stroke from (50, three_portals_ground_y) to (50, 70)
+trace three_portals_trumeau
+
+# Door depth shadows - suggesting recessed entrances
+let three_portals_shadow_central_l : sketch = stroke from (40, 70) to (40, three_portals_ground_y)
+let three_portals_shadow_central_r : sketch = stroke from (60, 70) to (60, three_portals_ground_y)
+scribble [three_portals_shadow_central_l, three_portals_shadow_central_r]
+
+# Depth shading with dashes - darkness inside portals
+scribble dash at (45, 78)
+scribble dash at (50, 80)
+scribble dash at (55, 78)
+scribble dash at (23, 78)
+scribble dash at (77, 78)
+
+# Statue column suggestions on jambs
+let three_portals_statue_l1 : sketch = stroke from (36, 72) to (36, three_portals_ground_y)
+let three_portals_statue_l2 : sketch = stroke from (34, 74) to (34, three_portals_ground_y)
+let three_portals_statue_r1 : sketch = stroke from (64, 72) to (64, three_portals_ground_y)
+let three_portals_statue_r2 : sketch = stroke from (66, 74) to (66, three_portals_ground_y)
+draw [three_portals_statue_l1, three_portals_statue_l2, three_portals_statue_r1, three_portals_statue_r2]
+
+# Buttress divisions between portals
+let three_portals_buttress_left : sketch = stroke from (33, three_portals_ground_y) to (33, 52)
+let three_portals_buttress_right : sketch = stroke from (67, three_portals_ground_y) to (67, 52)
+trace [three_portals_buttress_left, three_portals_buttress_right]
+
+# Section: Gallery of Kings
+# Gallery of Kings - horizontal band of 28 statues above the three portals
+# Strong horizontal emphasis with rhythmic vertical figures
+
+# Main horizontal boundaries of the gallery
+let gallery_of_kings_left : vec = (12, 58)
+let gallery_of_kings_right : vec = (188, 58)
+let gallery_of_kings_base_left : vec = (12, 72)
+let gallery_of_kings_base_right : vec = (188, 72)
+
+# Strong horizontal lines defining the gallery band
+let gallery_of_kings_top_cornice : sketch = stroke from gallery_of_kings_left to gallery_of_kings_right
+let gallery_of_kings_bottom_cornice : sketch = stroke from gallery_of_kings_base_left to gallery_of_kings_base_right
+trace [gallery_of_kings_top_cornice, gallery_of_kings_bottom_cornice]
+
+# Secondary horizontal - the ledge where statues stand
+let gallery_of_kings_ledge_left : vec = (12, 70)
+let gallery_of_kings_ledge_right : vec = (188, 70)
+let gallery_of_kings_ledge : sketch = stroke from gallery_of_kings_ledge_left to gallery_of_kings_ledge_right
+draw gallery_of_kings_ledge
+
+# Vertical dividers between statue niches - rhythmic spacing
+let gallery_of_kings_div1 : sketch = stroke from (20, 58) to (20, 70)
+let gallery_of_kings_div2 : sketch = stroke from (32, 58) to (32, 70)
+let gallery_of_kings_div3 : sketch = stroke from (44, 58) to (44, 70)
+let gallery_of_kings_div4 : sketch = stroke from (56, 58) to (56, 70)
+let gallery_of_kings_div5 : sketch = stroke from (68, 58) to (68, 70)
+let gallery_of_kings_div6 : sketch = stroke from (80, 58) to (80, 70)
+let gallery_of_kings_div7 : sketch = stroke from (92, 58) to (92, 70)
+let gallery_of_kings_div8 : sketch = stroke from (104, 58) to (104, 70)
+let gallery_of_kings_div9 : sketch = stroke from (116, 58) to (116, 70)
+let gallery_of_kings_div10 : sketch = stroke from (128, 58) to (128, 70)
+let gallery_of_kings_div11 : sketch = stroke from (140, 58) to (140, 70)
+let gallery_of_kings_div12 : sketch = stroke from (152, 58) to (152, 70)
+let gallery_of_kings_div13 : sketch = stroke from (164, 58) to (164, 70)
+let gallery_of_kings_div14 : sketch = stroke from (176, 58) to (176, 70)
+
+draw [gallery_of_kings_div1, gallery_of_kings_div2, gallery_of_kings_div3, gallery_of_kings_div4]
+draw [gallery_of_kings_div5, gallery_of_kings_div6, gallery_of_kings_div7, gallery_of_kings_div8]
+draw [gallery_of_kings_div9, gallery_of_kings_div10, gallery_of_kings_div11, gallery_of_kings_div12]
+draw [gallery_of_kings_div13, gallery_of_kings_div14]
+
+# Suggested statue forms - simple vertical strokes with slight heads
+let gallery_of_kings_statue1 : sketch = stroke from (26, 69) to (26, 61)
+let gallery_of_kings_statue2 : sketch = stroke from (38, 69) to (38, 61)
+let gallery_of_kings_statue3 : sketch = stroke from (50, 69) to (50, 61)
+let gallery_of_kings_statue4 : sketch = stroke from (62, 69) to (62, 61)
+let gallery_of_kings_statue5 : sketch = stroke from (74, 69) to (74, 61)
+let gallery_of_kings_statue6 : sketch = stroke from (86, 69) to (86, 61)
+let gallery_of_kings_statue7 : sketch = stroke from (98, 69) to (98, 61)
+let gallery_of_kings_statue8 : sketch = stroke from (110, 69) to (110, 61)
+let gallery_of_kings_statue9 : sketch = stroke from (122, 69) to (122, 61)
+let gallery_of_kings_statue10 : sketch = stroke from (134, 69) to (134, 61)
+let gallery_of_kings_statue11 : sketch = stroke from (146, 69) to (146, 61)
+let gallery_of_kings_statue12 : sketch = stroke from (158, 69) to (158, 61)
+let gallery_of_kings_statue13 : sketch = stroke from (170, 69) to (170, 61)
+
+scribble [gallery_of_kings_statue1, gallery_of_kings_statue2, gallery_of_kings_statue3]
+scribble [gallery_of_kings_statue4, gallery_of_kings_statue5, gallery_of_kings_statue6]
+scribble [gallery_of_kings_statue7, gallery_of_kings_statue8, gallery_of_kings_statue9]
+scribble [gallery_of_kings_statue10, gallery_of_kings_statue11, gallery_of_kings_statue12]
+scribble gallery_of_kings_statue13
+
+# Crowned heads suggested with small marks
+let gallery_of_kings_crown1 : sketch = dash at (26, 60)
+let gallery_of_kings_crown2 : sketch = dash at (38, 60)
+let gallery_of_kings_crown3 : sketch = dash at (50, 60)
+let gallery_of_kings_crown4 : sketch = dash at (62, 60)
+let gallery_of_kings_crown5 : sketch = dash at (74, 60)
+let gallery_of_kings_crown6 : sketch = dash at (86, 60)
+let gallery_of_kings_crown7 : sketch = dash at (98, 60)
+let gallery_of_kings_crown8 : sketch = dash at (110, 60)
+let gallery_of_kings_crown9 : sketch = dash at (122, 60)
+let gallery_of_kings_crown10 : sketch = dash at (134, 60)
+let gallery_of_kings_crown11 : sketch = dash at (146, 60)
+let gallery_of_kings_crown12 : sketch = dash at (158, 60)
+let gallery_of_kings_crown13 : sketch = dash at (170, 60)
+
+scribble [gallery_of_kings_crown1, gallery_of_kings_crown2, gallery_of_kings_crown3]
+scribble [gallery_of_kings_crown4, gallery_of_kings_crown5, gallery_of_kings_crown6]
+scribble [gallery_of_kings_crown7, gallery_of_kings_crown8, gallery_of_kings_crown9]
+scribble [gallery_of_kings_crown10, gallery_of_kings_crown11, gallery_of_kings_crown12]
+scribble gallery_of_kings_crown13
+
+# Decorative arcade arches above each statue niche
+let gallery_of_kings_arch1 : sketch = stroke from (20, 58) to (32, 58) via [(26, 55)]
+let gallery_of_kings_arch2 : sketch = stroke from (32, 58) to (44, 58) via [(38, 55)]
+let gallery_of_kings_arch3 : sketch = stroke from (44, 58) to (56, 58) via [(50, 55)]
+let gallery_of_kings_arch4 : sketch = stroke from (56, 58) to (68, 58) via [(62, 55)]
+let gallery_of_kings_arch5 : sketch = stroke from (68, 58) to (80, 58) via [(74, 55)]
+let gallery_of_kings_arch6 : sketch = stroke from (80, 58) to (92, 58) via [(86, 55)]
+let gallery_of_kings_arch7 : sketch = stroke from (92, 58) to (104, 58) via [(98, 55)]
+let gallery_of_kings_arch8 : sketch = stroke from (104, 58) to (116, 58) via [(110, 55)]
+let gallery_of_kings_arch9 : sketch = stroke from (116, 58) to (128, 58) via [(122, 55)]
+let gallery_of_kings_arch10 : sketch = stroke from (128, 58) to (140, 58) via [(134, 55)]
+let gallery_of_kings_arch11 : sketch = stroke from (140, 58) to (152, 58) via [(146, 55)]
+let gallery_of_kings_arch12 : sketch = stroke from (152, 58) to (164, 58) via [(158, 55)]
+let gallery_of_kings_arch13 : sketch = stroke from (164, 58) to (176, 58) via [(170, 55)]
+
+draw [gallery_of_kings_arch1, gallery_of_kings_arch2, gallery_of_kings_arch3]
+draw [gallery_of_kings_arch4, gallery_of_kings_arch5, gallery_of_kings_arch6]
+draw [gallery_of_kings_arch7, gallery_of_kings_arch8, gallery_of_kings_arch9]
+draw [gallery_of_kings_arch10, gallery_of_kings_arch11, gallery_of_kings_arch12]
+draw gallery_of_kings_arch13
+
+# Shadow beneath the gallery - horizontal shading dashes
+let gallery_of_kings_shadow1 : sketch = dash at (25, 71)
+let gallery_of_kings_shadow2 : sketch = dash at (45, 71)
+let gallery_of_kings_shadow3 : sketch = dash at (65, 71)
+let gallery_of_kings_shadow4 : sketch = dash at (85, 71)
+let gallery_of_kings_shadow5 : sketch = dash at (105, 71)
+let gallery_of_kings_shadow6 : sketch = dash at (125, 71)
+let gallery_of_kings_shadow7 : sketch = dash at (145, 71)
+let gallery_of_kings_shadow8 : sketch = dash at (165, 71)
+
+scribble [gallery_of_kings_shadow1, gallery_of_kings_shadow2, gallery_of_kings_shadow3, gallery_of_kings_shadow4]
+scribble [gallery_of_kings_shadow5, gallery_of_kings_shadow6, gallery_of_kings_shadow7, gallery_of_kings_shadow8]

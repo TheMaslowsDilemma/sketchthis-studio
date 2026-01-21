@@ -1,0 +1,383 @@
+# <title>Herzog's Lone Penguin Headed for the Mountains</title>
+# <summary>
+# A solitary penguin waddles across an expansive landscape toward distant
+# mountain peaks, inspired by Werner Herzog's contemplative documentaries
+# about nature's extremes and the absurd determination of creatures.
+# The composition emphasizes isolation and scale.
+# </summary>
+# <metadata>
+#   <subject>Single penguin walking toward mountains</subject>
+#   <perspective>Wide landscape view, slightly elevated</perspective>
+#   <style>Minimalist sketch with dramatic negative space</style>
+# </metadata>
+
+# <section>MOUNTAIN RANGE</section>
+# <description>Distant jagged peaks dominate the upper third, creating the penguin's impossible destination. Three main peaks with varying heights suggest depth and scale.</description>
+
+let mountain_base_y : number = 60
+let peak_left : vec = (30, 20)
+let peak_center : vec = (100, 10)
+let peak_right : vec = (160, 35)
+
+let left_mountain : sketch = [
+  stroke from (10, mountain_base_y) to peak_left via [(20, 40)],
+  stroke from peak_left to (50, mountain_base_y) via [(35, 45)]
+]
+
+let center_mountain : sketch = [
+  stroke from (60, mountain_base_y) to peak_center via [(80, 25)],
+  stroke from peak_center to (130, mountain_base_y) via [(115, 30)]
+]
+
+let right_mountain : sketch = [
+  stroke from (135, mountain_base_y) to peak_right via [(145, 45)],
+  stroke from peak_right to (185, mountain_base_y) via [(170, 50)]
+]
+
+# Mountain shading for depth
+let mountain_shadows : sketch = [
+  dash at (25, 45),
+  dash at (28, 48),
+  dash at (22, 50),
+  dash at (95, 35),
+  dash at (98, 40),
+  dash at (92, 42),
+  dash at (150, 52),
+  dash at (155, 55)
+]
+
+trace [left_mountain, center_mountain, right_mountain, mountain_shadows]
+
+# <section>HORIZON AND GROUND</section>
+# <description>A simple horizon line establishes the vast empty plain between the penguin and mountains. Sparse detail suggests ice or tundra.</description>
+
+let horizon_y : number = 95
+let horizon_line : sketch = stroke from (0, horizon_y) to (200, horizon_y)
+
+let ground_texture : sketch = [
+  dash at (45, 110),
+  dash at (70, 105),
+  dash at (120, 108),
+  dash at (165, 112)
+]
+
+draw [horizon_line, ground_texture]
+
+# <section>THE LONE PENGUIN</section>
+# <description>A small but determined penguin in the lower portion, facing the mountains. The penguin's body is egg-shaped with flippers, distinctive black and white markings, and webbed feet mid-waddle.</description>
+
+let penguin_center : vec = (85, 140)
+let penguin_top : vec = penguin_center + (0, -15)
+let penguin_bottom : vec = penguin_center + (0, 15)
+
+# Body outline - classic penguin egg shape
+let body : sketch = [
+  stroke from penguin_top to penguin_center + (8, 0) via [(9, -8)],
+  stroke from penguin_center + (8, 0) to penguin_bottom via [(7, 10)],
+  stroke from penguin_bottom to penguin_center + (-8, 0) via [(-7, 10)],
+  stroke from penguin_center + (-8, 0) to penguin_top via [(-9, -8)]
+]
+
+# Black back and white belly distinction
+let belly_line : sketch = stroke from penguin_center + (-6, -10) to penguin_center + (-4, 12)
+
+# Head
+let head_top : vec = penguin_top + (0, -5)
+let beak : sketch = [
+  stroke from head_top + (-2, 2) to head_top + (3, 0),
+  stroke from head_top + (3, 0) to head_top + (-2, 4)
+]
+
+# Eye
+let eye : sketch = dot at penguin_top + (2, -2)
+
+# Flippers
+let flipper_left : sketch = stroke from penguin_center + (-8, -2) to penguin_center + (-14, 5)
+let flipper_right : sketch = stroke from penguin_center + (8, -2) to penguin_center + (13, 8)
+
+# Feet - mid-waddle position
+let foot_left : sketch = [
+  stroke from penguin_bottom + (-3, 0) to penguin_bottom + (-5, 5),
+  stroke from penguin_bottom + (-5, 5) to penguin_bottom + (-2, 5)
+]
+
+let foot_right : sketch = [
+  stroke from penguin_bottom + (3, 0) to penguin_bottom + (4, 6),
+  stroke from penguin_bottom + (4, 6) to penguin_bottom + (7, 6)
+]
+
+# Shading on black areas
+let penguin_shading : sketch = [
+  dash at penguin_center + (4, -8),
+  dash at penguin_center + (5, -4),
+  dash at penguin_center + (4, 2)
+]
+
+scribble [body, belly_line, beak, eye, flipper_left, flipper_right, foot_left, foot_right, penguin_shading]
+
+# <section>PENGUIN'S TRAIL</section>
+# <description>Faint footprints behind the penguin showing the long journey already undertaken, emphasizing the absurd scale of the quest.</description>
+
+let trail : sketch = [
+  dash at (78, 148),
+  dash at (75, 150),
+  dash at (70, 155),
+  dash at (67, 157),
+  dash at (62, 162),
+  dash at (59, 164),
+  dash at (54, 169),
+  dash at (50, 172)
+]
+
+draw trail
+
+# <section>SKY TEXTURE</section>
+# <description>Minimal marks in the sky suggesting harsh wind or empty vastness above.</description>
+
+let sky_marks : sketch = [
+  dash at (140, 25),
+  dash at (175, 40),
+  dash at (20, 30)
+]
+
+draw sky_marks
+
+# === EXPANDED DETAILS ===
+
+
+# Section: MOUNTAIN RANGE
+# MOUNTAIN RANGE - Enhanced with detail
+# Keeping original anchor points and positions
+
+let mountain_base_y : number = 60
+let peak_left : vec = (30, 20)
+let peak_center : vec = (100, 10)
+let peak_right : vec = (160, 35)
+
+# Original mountain contours
+let left_mountain : sketch = [
+  stroke from (10, mountain_base_y) to peak_left via [(20, 40)],
+  stroke from peak_left to (50, mountain_base_y) via [(35, 45)]
+]
+
+let center_mountain : sketch = [
+  stroke from (60, mountain_base_y) to peak_center via [(80, 25)],
+  stroke from peak_center to (130, mountain_base_y) via [(115, 30)]
+]
+
+let right_mountain : sketch = [
+  stroke from (135, mountain_base_y) to peak_right via [(145, 45)],
+  stroke from peak_right to (185, mountain_base_y) via [(170, 50)]
+]
+
+# Enhanced rocky texture on peaks
+let mountain_range_left_ridge : sketch = [
+  stroke from (28, 22) to (32, 18),
+  stroke from (26, 28) to (30, 24),
+  stroke from (32, 32) to (34, 28)
+]
+
+let mountain_range_center_ridge : sketch = [
+  stroke from (98, 12) to (102, 8),
+  stroke from (96, 16) to (100, 12),
+  stroke from (100, 14) to (104, 11),
+  stroke from (88, 22) to (92, 18)
+]
+
+let mountain_range_right_ridge : sketch = [
+  stroke from (158, 37) to (162, 33),
+  stroke from (156, 42) to (160, 38),
+  stroke from (148, 46) to (152, 42)
+]
+
+# Enhanced shading with more depth
+let mountain_shadows : sketch = [
+  dash at (25, 45),
+  dash at (28, 48),
+  dash at (22, 50),
+  dash at (24, 52),
+  dash at (26, 54),
+  dash at (30, 50),
+  dash at (33, 52),
+  dash at (95, 35),
+  dash at (98, 40),
+  dash at (92, 42),
+  dash at (90, 38),
+  dash at (96, 45),
+  dash at (100, 42),
+  dash at (102, 38),
+  dash at (105, 35),
+  dash at (150, 52),
+  dash at (155, 55),
+  dash at (152, 57),
+  dash at (158, 53),
+  dash at (162, 50),
+  dash at (148, 54)
+]
+
+# Snow caps on peaks
+let mountain_range_snow : sketch = [
+  dash at (29, 21),
+  dash at (31, 19),
+  dash at (99, 11),
+  dash at (101, 9),
+  dash at (159, 36),
+  dash at (161, 34)
+]
+
+# Crevasse details
+let mountain_range_crevasses : sketch = [
+  stroke from (35, 45) to (37, 48),
+  stroke from (115, 30) to (117, 35),
+  stroke from (170, 50) to (172, 53)
+]
+
+draw [left_mountain, center_mountain, right_mountain, mountain_range_left_ridge, mountain_range_center_ridge, mountain_range_right_ridge, mountain_range_crevasses]
+scribble [mountain_shadows, mountain_range_snow]
+
+# Section: HORIZON AND GROUND
+# <section>HORIZON AND GROUND</section>
+# <description>A simple horizon line establishes the vast empty plain between the penguin and mountains. Sparse detail suggests ice or tundra.</description>
+
+let horizon_y : number = 95
+let horizon_line : sketch = stroke from (0, horizon_y) to (200, horizon_y)
+
+# Add subtle variation to horizon with gentle undulations
+let horizon_and_ground_hill1 : sketch = stroke from (30, horizon_y) to (50, horizon_y - 1) via [(40, horizon_y - 0.5)]
+let horizon_and_ground_hill2 : sketch = stroke from (90, horizon_y) to (110, horizon_y - 0.8) via [(100, horizon_y - 0.4)]
+let horizon_and_ground_hill3 : sketch = stroke from (150, horizon_y) to (165, horizon_y - 0.6) via [(157, horizon_y - 0.3)]
+
+# Original ground texture positions
+let ground_texture : sketch = [
+  dash at (45, 110),
+  dash at (70, 105),
+  dash at (120, 108),
+  dash at (165, 112)
+]
+
+# Add ice cracks and tundra texture radiating from original points
+let horizon_and_ground_crack1 : sketch = stroke from (45, 110) to (48, 115)
+let horizon_and_ground_crack2 : sketch = stroke from (70, 105) to (67, 100)
+let horizon_and_ground_crack3 : sketch = stroke from (120, 108) to (123, 113)
+
+# Additional sparse ground details
+let horizon_and_ground_scattered : sketch = [
+  dash at (20, 107),
+  dash at (55, 112),
+  dash at (85, 109),
+  dash at (100, 106),
+  dash at (135, 111),
+  dash at (145, 104),
+  dash at (180, 110)
+]
+
+# Snow drift suggestion near horizon
+let horizon_and_ground_drift1 : sketch = stroke from (10, horizon_y + 2) to (25, horizon_y + 4) via [(17, horizon_y + 3)]
+let horizon_and_ground_drift2 : sketch = stroke from (170, horizon_y + 1) to (190, horizon_y + 3) via [(180, horizon_y + 2)]
+
+draw [
+  horizon_line,
+  horizon_and_ground_hill1,
+  horizon_and_ground_hill2,
+  horizon_and_ground_hill3,
+  ground_texture,
+  horizon_and_ground_crack1,
+  horizon_and_ground_crack2,
+  horizon_and_ground_crack3,
+  horizon_and_ground_scattered,
+  horizon_and_ground_drift1,
+  horizon_and_ground_drift2
+]
+
+# Section: THE LONE PENGUIN
+# <section>THE LONE PENGUIN</section>
+# <description>A small but determined penguin in the lower portion, facing the mountains. The penguin's body is egg-shaped with flippers, distinctive black and white markings, and webbed feet mid-waddle.</description>
+
+let penguin_center : vec = (85, 140)
+let penguin_top : vec = penguin_center + (0, -15)
+let penguin_bottom : vec = penguin_center + (0, 15)
+
+# Body outline - classic penguin egg shape
+let body : sketch = [
+  stroke from penguin_top to penguin_center + (8, 0) via [(9, -8)],
+  stroke from penguin_center + (8, 0) to penguin_bottom via [(7, 10)],
+  stroke from penguin_bottom to penguin_center + (-8, 0) via [(-7, 10)],
+  stroke from penguin_center + (-8, 0) to penguin_top via [(-9, -8)]
+]
+
+# Black back and white belly distinction
+let belly_line : sketch = stroke from penguin_center + (-6, -10) to penguin_center + (-4, 12)
+
+# Head
+let head_top : vec = penguin_top + (0, -5)
+let beak : sketch = [
+  stroke from head_top + (-2, 2) to head_top + (3, 0),
+  stroke from head_top + (3, 0) to head_top + (-2, 4)
+]
+
+# Eye
+let eye : sketch = dot at penguin_top + (2, -2)
+
+# Flippers
+let flipper_left : sketch = stroke from penguin_center + (-8, -2) to penguin_center + (-14, 5)
+let flipper_right : sketch = stroke from penguin_center + (8, -2) to penguin_center + (13, 8)
+
+# Feet - mid-waddle position
+let foot_left : sketch = [
+  stroke from penguin_bottom + (-3, 0) to penguin_bottom + (-5, 5),
+  stroke from penguin_bottom + (-5, 5) to penguin_bottom + (-2, 5)
+]
+
+let foot_right : sketch = [
+  stroke from penguin_bottom + (3, 0) to penguin_bottom + (4, 6),
+  stroke from penguin_bottom + (4, 6) to penguin_bottom + (7, 6)
+]
+
+# Enhanced shading on black back areas - richer texture
+let penguin_shading : sketch = [
+  dash at penguin_center + (4, -8),
+  dash at penguin_center + (5, -4),
+  dash at penguin_center + (4, 2),
+  dash at penguin_center + (2, -10),
+  dash at penguin_center + (6, -6),
+  dash at penguin_center + (3, -2),
+  dash at penguin_center + (5, 0),
+  dash at penguin_center + (6, 4),
+  dash at penguin_center + (4, 6)
+]
+
+# Additional belly detail - subtle feather texture
+let the_lone_penguin_belly_detail : sketch = [
+  dash at penguin_center + (-2, -4),
+  dash at penguin_center + (0, 0),
+  dash at penguin_center + (-1, 4),
+  dash at penguin_center + (1, 8)
+]
+
+# Flipper detail - feather segments
+let the_lone_penguin_left_flipper_detail : sketch = [
+  stroke from penguin_center + (-10, 0) to penguin_center + (-12, 3),
+  stroke from penguin_center + (-11, 2) to penguin_center + (-13, 4)
+]
+
+let the_lone_penguin_right_flipper_detail : sketch = [
+  stroke from penguin_center + (10, 1) to penguin_center + (11, 5),
+  stroke from penguin_center + (11, 3) to penguin_center + (12, 6)
+]
+
+# Foot webbing detail
+let the_lone_penguin_foot_detail : sketch = [
+  stroke from penguin_bottom + (-4, 5) to penguin_bottom + (-3, 5),
+  stroke from penguin_bottom + (5, 6) to penguin_bottom + (6, 6)
+]
+
+# Head detail - subtle feather marks
+let the_lone_penguin_head_marks : sketch = [
+  stroke from penguin_top + (-3, -3) to penguin_top + (-2, -1),
+  stroke from penguin_top + (4, -3) to penguin_top + (5, -1)
+]
+
+# Beak detail - nostril
+let the_lone_penguin_beak_detail : sketch = dot at head_top + (1, 1)
+
+scribble [body, belly_line, beak, eye, flipper_left, flipper_right, foot_left, foot_right, penguin_shading, the_lone_penguin_belly_detail, the_lone_penguin_left_flipper_detail, the_lone_penguin_right_flipper_detail, the_lone_penguin_foot_detail, the_lone_penguin_head_marks, the_lone_penguin_beak_detail]
