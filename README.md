@@ -1,101 +1,92 @@
-## Sketch Studio
+# sketchgen
 
-### Overview
+Minimal CLI tool for generating SketchLang sketches from descriptions or images using LLMs.
 
-This project implements a studio in GoLang where an input image description is processed by an LLM (artist) to iteratively produce a final sketch in SketchLang. The process involves planning, dividing into sections, critiquing, compiling, and merging sub-works with transparency via logging.
+## Installation
 
-
-### Components
-
-**Artist**: Plans steps, divides work into tiles/sections recursively, delegates details, ensures coherency via negotiation.
-**Critic**: Reviews specific sections, provides feedback (sections may align with artist's named divisions).
-**Compilation**: Verifies sub-pieces align; checks SketchLang compilation errors before merging.
-**Merging**: Negotiates changes between neighboring sub-artists; compiles sub-works first to avoid upstream issues.
-**Transparency**: Logs top-level plans, draft SVGs, critic responses, compilation errors, token usage (if available), and step timings.
-Prompt Design: Key prompts for top-level artist (detailed description + tiling) and sub-artists; easily accessible.
-
-
-### Program Flow
-
-```mermaid
-%%{init: {
-  'theme': 'base',
-  'themeVariables': {
-    'fontSize': '14px',
-    'fontFamily': 'Inter, sans-serif',
-    'primaryColor': '#6366f1',
-    'primaryTextColor': '#ffffff',
-    'primaryBorderColor': '#4f46e5',
-    'secondaryColor': '#f1f5f9',
-    'secondaryTextColor': '#334155',
-    'tertiaryColor': '#ecfdf5',
-    'lineColor': '#64748b',
-    'textColor': '#334155'
-  }
-}}%%
-flowchart TB
-    A[Image Description]
-    B[Orchestrator]
-    
-    subgraph artists [Sub-Artists]
-        direction LR
-        C1[1]
-        C2[2]
-        C3[3]
-        Cn[n]
-    end
-    
-    subgraph negotiation [Neighbor Negotiation]
-        direction LR
-        N1[Negotiate 1+2]
-        N2[Negotiate 3+n]
-    end
-    
-    subgraph processing [Processing Pipeline]
-        D[Combine]
-        E[Compile Sub-Works]
-        F[Critique SVG]
-        G{Changes Needed?}
-    end
-    
-    H[Merge Works]
-    I[Output: SketchLang]
-    J[Logs]
-    
-    A --> B
-    B --> C1 & C2 & C3 & Cn
-    C1 & C2 --> N1
-    C3 & Cn --> N2
-    N1 & N2 --> D
-    D --> E
-    E --> F
-    F --> G
-    G -->|Yes| B
-    G -->|No| H
-    H --> I
-    
-    J -. monitors .-> B
-    J -. monitors .-> D
-    J -. monitors .-> F
-    
-    style A fill:#f8fafc,stroke:#cbd5e1,color:#334155
-    style B fill:#6366f1,stroke:#4f46e5,color:#ffffff
-    style C1 fill:#8b5cf6,stroke:#7c3aed,color:#ffffff
-    style C2 fill:#8b5cf6,stroke:#7c3aed,color:#ffffff
-    style C3 fill:#8b5cf6,stroke:#7c3aed,color:#ffffff
-    style Cn fill:#8b5cf6,stroke:#7c3aed,color:#ffffff
-    style N1 fill:#06b6d4,stroke:#0891b2,color:#ffffff
-    style N2 fill:#06b6d4,stroke:#0891b2,color:#ffffff
-    style D fill:#0891b2,stroke:#0e7490,color:#ffffff
-    style E fill:#14b8a6,stroke:#0d9488,color:#ffffff
-    style F fill:#f59e0b,stroke:#d97706,color:#ffffff
-    style G fill:#f1f5f9,stroke:#94a3b8,color:#334155
-    style H fill:#22c55e,stroke:#16a34a,color:#ffffff
-    style I fill:#10b981,stroke:#059669,color:#ffffff
-    style J fill:#334155,stroke:#1e293b,color:#ffffff
-    style artists fill:#f8fafc,stroke:#e2e8f0,stroke-width:1px
-    style negotiation fill:#f8fafc,stroke:#e2e8f0,stroke-width:1px
-    style processing fill:#f8fafc,stroke:#e2e8f0,stroke-width:1px
-    
-    linkStyle 14,15,16 stroke:#334155,stroke-width:2px,stroke-dasharray:5
+```bash
+go build -o sketchstudio .
 ```
+
+Requires `sketchlang` compiler in PATH. See https://github.com/TheMaslowsDilemma/sketchthis-dsl
+
+## Usage
+
+### From Description
+
+```bash
+sketchstudio -d "an extremely detailed image of the Notre Dame Cathedral" -pos 0,0 -size 80,80
+```
+
+### From Image URL
+
+```bash
+sketchstudio -url "https://example.com/image.jpg" -pos 0,0 -size 80,80
+```
+
+## Options
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `-d` | | Image description |
+| `-url` | | Image URL to sketch |
+| `-pos` | `0,0` | Position (x,y) in mm |
+| `-size` | `80,80` | Size (w,h) in mm |
+| `-o` | auto | Output filename (without extension) |
+| `-local` | false | Use local LMStudio instead of Anthropic |
+| `-debug` | false | Enable debug logging |
+
+## Outputs
+
+The tool generates two files:
+- `<name>.sketch` — SketchLang source code
+- `<name>.svg` — SVG preview
+
+Output paths are printed to stdout (one per line).
+
+## Configuration
+
+### Anthropic (Default)
+
+Set `ANTHROPIC_API_KEY` environment variable:
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...
+```
+
+### Local LMStudio
+
+Start LMStudio with a model loaded, then use `-local`:
+
+```bash
+sketchstudio -d "a cat" -local
+```
+
+Expects OpenAI-compatible API at `http://localhost:1234`.
+
+## Examples
+
+```bash
+# Simple sketch
+sketchstudio -d "a vintage bicycle"
+
+# Detailed with positioning
+sketchstudio -d "the Eiffel Tower with intricate ironwork details" -pos 10,10 -size 60,100
+
+# From URL with debug output
+sketchstudio -url "https://example.com/photo.jpg" -debug
+
+# Using local model
+sketchstudio -d "an extremely detailed sketch of the Notre Dame Cathedral" -local -debug
+```
+
+## Exit Codes
+
+| Code | Meaning |
+|------|---------|
+| 0 | Success |
+| 1 | Error (message on stderr) |
+
+## Language Spec
+
+Edit `lang.go` to customize the SketchLang specification provided to the LLM.

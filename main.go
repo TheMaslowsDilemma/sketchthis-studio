@@ -1,103 +1,103 @@
 package main
 
 import (
-	"context"
 	"flag"
 	"fmt"
 	"os"
-	"os/signal"
-	"syscall"
-	"time"
+	"path/filepath"
+	"strings"
 )
 
 func main() {
-	cfg := parseFlags()
-
-	studio, err := NewStudio(cfg.studio, langSpec)
-	if err != nil {
-		fatal("create studio: %v", err)
-	}
-
-	req := SketchRequest{
-		Description: cfg.description,
-		RequestFrom: cfg.requestFrom,
-		CreatedAt:   time.Now(),
-	}
-
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
-	handleInterrupt(cancel)
-
-	var sketch *Sketch
-	if cfg.validate {
-		sketch, err = studio.GenerateWithValidation(ctx, req)
-	} else {
-		sketch, err = studio.Generate(ctx, req)
-	}
-	if err != nil {
-		fatal("generate: %v", err)
-	}
-
-	fmt.Printf("\n✓ Sketch '%s' generated\n", sketch.Title)
-	fmt.Printf("  SVG: %s\n", sketch.SVGPath)
-}
-
-type config struct {
-	studio      StudioConfig
-	description string
-	requestFrom string
-	validate    bool
-}
-
-func parseFlags() config {
-	var c config
-
-	flag.StringVar(&c.description, "d", "", "Description of the sketch (required)")
-	flag.StringVar(&c.studio.CompilerPath, "compiler", "./output/main.exe", "Path to sketchlang compiler")
-	flag.StringVar(&c.studio.OutputDir, "output", "./output", "Output directory")
-	flag.StringVar(&c.studio.AnthropicKey, "key", "", "Anthropic API key (or ANTHROPIC_API_KEY env)")
-	flag.StringVar(&c.studio.Model, "model", "claude-sonnet-4-5", "Model to use")
-	flag.BoolVar(&c.studio.VerboseLogging, "v", false, "Verbose logging")
-	flag.BoolVar(&c.validate, "validate", false, "Enable compile validation feedback")
-	flag.StringVar(&c.requestFrom, "from", "", "Source handle")
-
-	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, "Sketch Studio - AI-powered sketch generation\n\n")
-		fmt.Fprintf(os.Stderr, "Usage: sketch-studio -d \"description\" [options]\n\n")
-		fmt.Fprintf(os.Stderr, "Options:\n")
-		flag.PrintDefaults()
-	}
-
+	desc := flag.String("d", "", "image description")
+	url := flag.String("url", "", "image URL")
+	pos := flag.String("pos", "0,0", "position x,y in mm")
+	size := flag.String("size", "80,80", "size w,h in mm")
+	local := flag.Bool("local", false, "use local LMStudio")
+	debug := flag.Bool("debug", false, "emit debug logs")
+	output := flag.String("o", "", "output name (default: derived from input)")
 	flag.Parse()
 
-	if c.description == "" {
-		fmt.Fprintln(os.Stderr, "Error: -d description required")
-		flag.Usage()
-		os.Exit(1)
+	if *desc == "" && *url == "" {
+		fatal("provide -d or -url")
 	}
 
-	if c.studio.AnthropicKey == "" {
-		c.studio.AnthropicKey = os.Getenv("ANTHROPIC_API_KEY")
-	}
-	if c.studio.AnthropicKey == "" {
-		fatal("Anthropic API key required (-key or ANTHROPIC_API_KEY env)")
+	log := &Logger{enabled: *debug}
+
+	var client LLMClient
+	if *local {
+		client = NewLocalClient(log)
+	} else {
+		key := os.Getenv("ANTHROPIC_API_KEY")
+		if key == "" {
+			fatal("ANTHROPIC_API_KEY not set")
+		}
+		client = NewAnthropicClient(key, log)
 	}
 
-	c.studio.EnableLogging = true
-	return c
+	posVec := parseVec(*pos)
+	sizeVec := parseVec(*size)
+
+	prompt := *desc
+	if *url != "" {
+		prompt = fmt.Sprintf("Create an extremely detailed sketch of the image at this URL: %s", *url)
+	}
+
+	log.Info("generating sketch...")
+	result, err := Generate(client, prompt, log)
+	if err != nil {
+		fatal("generation failed: %v", err)
+	}
+
+	outName := *output
+	if outName == "" {
+		outName = sanitize(result.Title)
+	}
+
+	log.Info("compiling to SVG...")
+	svg, err := Compile(result.Code, outName, posVec, sizeVec, log)
+	if err != nil {
+		fatal("compile failed: %v", err)
+	}
+
+	sketchPath := outName + ".sketch"
+	svgPath := outName + ".svg"
+
+	must(os.WriteFile(sketchPath, []byte(result.Code), 0644))
+	must(os.WriteFile(svgPath, []byte(svg), 0644))
+
+	abs1, _ := filepath.Abs(sketchPath)
+	abs2, _ := filepath.Abs(svgPath)
+	fmt.Printf("%s\n%s\n", abs1, abs2)
 }
 
-func handleInterrupt(cancel context.CancelFunc) {
-	sig := make(chan os.Signal, 1)
-	signal.Notify(sig, os.Interrupt, syscall.SIGTERM)
-	go func() {
-		<-sig
-		fmt.Println("\nInterrupted...")
-		cancel()
-	}()
+func parseVec(s string) Vec2 {
+	var x, y float64
+	fmt.Sscanf(s, "%f,%f", &x, &y)
+	return Vec2{x, y}
+}
+
+func sanitize(s string) string {
+	s = strings.ToLower(s)
+	s = strings.Map(func(r rune) rune {
+		if r >= 'a' && r <= 'z' || r >= '0' && r <= '9' {
+			return r
+		}
+		return '_'
+	}, s)
+	if len(s) > 40 {
+		s = s[:40]
+	}
+	return strings.Trim(s, "_")
 }
 
 func fatal(format string, args ...any) {
-	fmt.Fprintf(os.Stderr, "Error: "+format+"\n", args...)
+	fmt.Fprintf(os.Stderr, "error: "+format+"\n", args...)
 	os.Exit(1)
+}
+
+func must(err error) {
+	if err != nil {
+		fatal("%v", err)
+	}
 }

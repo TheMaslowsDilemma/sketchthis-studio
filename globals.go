@@ -1,6 +1,6 @@
 package main
 
-const langSpec = `# SketchLang Quick Reference
+const LangSpec  = `# SketchLang Quick Reference
 
 ## Types
 - number: float
