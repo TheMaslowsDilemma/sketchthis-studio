@@ -9,6 +9,7 @@ go build -o sketchstudio .
 ```
 
 Requires `sketchlang` compiler in PATH. See https://github.com/TheMaslowsDilemma/sketchthis-dsl
+Also requires `ANTHROPIC_API_KEY` in ENV.
 
 ## Usage
 

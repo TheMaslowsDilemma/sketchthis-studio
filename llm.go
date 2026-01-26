@@ -30,7 +30,7 @@ func NewAnthropicClient(key string, log *Logger) *AnthropicClient {
 
 func (c *AnthropicClient) Complete(system string, messages []Message) (string, error) {
 	body := map[string]any{
-		"model":      "claude-sonnet-4-20250514",
+		"model":      "claude-sonnet-4-5",
 		"max_tokens": 16384,
 		"system":     system,
 		"messages":   messages,
