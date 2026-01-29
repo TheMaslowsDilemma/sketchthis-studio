@@ -44,7 +44,7 @@ func main() {
 	}
 
 	log.Info("generating sketch...")
-	result, err := Generate(client, prompt, log)
+	result, err := Generate(client, prompt, *url, posVec, sizeVec, log)
 	if err != nil {
 		fatal("generation failed: %v", err)
 	}
@@ -54,21 +54,27 @@ func main() {
 		outName = sanitize(result.Title)
 	}
 
-	log.Info("compiling to SVG...")
-	svg, err := Compile(result.Code, outName, posVec, sizeVec, log)
+	outDir := filepath.Join("output", outName)
+	must(os.MkdirAll(outDir, 0755))
+
+	log.Info("compiling...")
+	svg, gcode, err := Compile(result.Code, outName, posVec, sizeVec, log)
 	if err != nil {
 		fatal("compile failed: %v", err)
 	}
 
-	sketchPath := outName + ".sketch"
-	svgPath := outName + ".svg"
+	sketchPath := filepath.Join(outDir, outName+".sketch")
+	svgPath := filepath.Join(outDir, outName+".svg")
+	gcodePath := filepath.Join(outDir, outName+".gcode")
 
 	must(os.WriteFile(sketchPath, []byte(result.Code), 0644))
 	must(os.WriteFile(svgPath, []byte(svg), 0644))
+	must(os.WriteFile(gcodePath, []byte(gcode), 0644))
 
 	abs1, _ := filepath.Abs(sketchPath)
 	abs2, _ := filepath.Abs(svgPath)
-	fmt.Printf("%s\n%s\n", abs1, abs2)
+	abs3, _ := filepath.Abs(gcodePath)
+	fmt.Printf("%s\n%s\n%s\n", abs1, abs2, abs3)
 }
 
 func parseVec(s string) Vec2 {

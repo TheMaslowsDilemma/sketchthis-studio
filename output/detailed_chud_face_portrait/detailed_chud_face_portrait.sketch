@@ -1,0 +1,146 @@
+# Chud Face - Detailed Portrait
+# Base dimensions and key anchor points
+
+let head_center : vec = (50, 45)
+let head_width : number = 35
+let head_height : number = 40
+
+# Main head outline - slightly egg-shaped
+let head_outline : sketch = stroke from (head_center + (-head_width/2, -head_height/2)) to (head_center + (head_width/2, -head_height/2)) via [(head_center + (0, -head_height/2 - 3))]
+let head_right : sketch = stroke from (head_center + (head_width/2, -head_height/2)) to (head_center + (head_width/2, head_height/2)) via [(head_center + (head_width/2 + 2, 0))]
+let head_bottom : sketch = stroke from (head_center + (head_width/2, head_height/2)) to (head_center + (-head_width/2, head_height/2)) via [(head_center + (0, head_height/2 + 1))]
+let head_left : sketch = stroke from (head_center + (-head_width/2, head_height/2)) to (head_center + (-head_width/2, -head_height/2)) via [(head_center + (-head_width/2 - 2, 0))]
+
+# Eye positions and structure
+let left_eye_center : vec = head_center + (-8, -5)
+let right_eye_center : vec = head_center + (8, -5)
+
+# Left eye detailed construction
+let left_eye_outer : sketch = stroke from (left_eye_center + (-6, -3)) to (left_eye_center + (6, -3)) via [(left_eye_center + (0, -4))]
+let left_eye_inner : sketch = stroke from (left_eye_center + (-6, 2)) to (left_eye_center + (6, 2)) via [(left_eye_center + (0, 3))]
+let left_eye_left : sketch = stroke from (left_eye_center + (-6, -3)) to (left_eye_center + (-6, 2))
+let left_eye_right : sketch = stroke from (left_eye_center + (6, -3)) to (left_eye_center + (6, 2))
+
+# Left eyeball and pupil
+let left_eyeball : sketch = stroke from (left_eye_center + (-4, -1)) to (left_eye_center + (4, -1)) via [(left_eye_center + (0, -2))]
+let left_eyeball_bottom : sketch = stroke from (left_eye_center + (-4, -1)) to (left_eye_center + (4, -1)) via [(left_eye_center + (0, 1))]
+let left_pupil : sketch = dot at (left_eye_center + (1, -1))
+
+# Right eye detailed construction
+let right_eye_outer : sketch = stroke from (right_eye_center + (-6, -3)) to (right_eye_center + (6, -3)) via [(right_eye_center + (0, -4))]
+let right_eye_inner : sketch = stroke from (right_eye_center + (-6, 2)) to (right_eye_center + (6, 2)) via [(right_eye_center + (0, 3))]
+let right_eye_left : sketch = stroke from (right_eye_center + (-6, -3)) to (right_eye_center + (-6, 2))
+let right_eye_right : sketch = stroke from (right_eye_center + (6, -3)) to (right_eye_center + (6, 2))
+
+# Right eyeball and pupil
+let right_eyeball : sketch = stroke from (right_eye_center + (-4, -1)) to (right_eye_center + (4, -1)) via [(right_eye_center + (0, -2))]
+let right_eyeball_bottom : sketch = stroke from (right_eye_center + (-4, -1)) to (right_eye_center + (4, -1)) via [(right_eye_center + (0, 1))]
+let right_pupil : sketch = dot at (right_eye_center + (-1, -1))
+
+# Heavy eye bags and wrinkles
+let left_eye_bag_top : sketch = stroke from (left_eye_center + (-7, 3)) to (left_eye_center + (7, 3)) via [(left_eye_center + (0, 5))]
+let left_eye_bag_bottom : sketch = stroke from (left_eye_center + (-6, 6)) to (left_eye_center + (6, 6)) via [(left_eye_center + (0, 8))]
+let right_eye_bag_top : sketch = stroke from (right_eye_center + (-7, 3)) to (right_eye_center + (7, 3)) via [(right_eye_center + (0, 5))]
+let right_eye_bag_bottom : sketch = stroke from (right_eye_center + (-6, 6)) to (right_eye_center + (6, 6)) via [(right_eye_center + (0, 8))]
+
+# Nose structure - broad and prominent
+let nose_tip : vec = head_center + (0, 8)
+let nose_bridge : sketch = stroke from (head_center + (0, -2)) to nose_tip
+let nose_left_wing : sketch = stroke from nose_tip to (nose_tip + (-4, 2)) via [(nose_tip + (-2, 1))]
+let nose_right_wing : sketch = stroke from nose_tip to (nose_tip + (4, 2)) via [(nose_tip + (2, 1))]
+let left_nostril : sketch = stroke from (nose_tip + (-2, 1)) to (nose_tip + (-2, 3)) via [(nose_tip + (-3, 2))]
+let right_nostril : sketch = stroke from (nose_tip + (2, 1)) to (nose_tip + (2, 3)) via [(nose_tip + (3, 2))]
+
+# Mouth and expression
+let mouth_center : vec = head_center + (0, 18)
+let mouth_left : vec = mouth_center + (-6, 0)
+let mouth_right : vec = mouth_center + (6, 0)
+let upper_lip : sketch = stroke from mouth_left to mouth_right via [(mouth_center + (0, -1))]
+let lower_lip : sketch = stroke from mouth_left to mouth_right via [(mouth_center + (0, 2))]
+let mouth_corners : sketch = [
+  stroke from mouth_left to (mouth_left + (0, -2)),
+  stroke from mouth_right to (mouth_right + (0, -2))
+]
+
+# Facial creases and character lines
+let left_nasolabial : sketch = stroke from (nose_tip + (-3, 1)) to (mouth_left + (-1, -3)) via [(nose_tip + (-5, 8))]
+let right_nasolabial : sketch = stroke from (nose_tip + (3, 1)) to (mouth_right + (1, -3)) via [(nose_tip + (5, 8))]
+
+# Forehead wrinkles
+let forehead_wrinkle_1 : sketch = stroke from (head_center + (-12, -15)) to (head_center + (12, -15)) via [(head_center + (0, -18))]
+let forehead_wrinkle_2 : sketch = stroke from (head_center + (-10, -12)) to (head_center + (10, -12)) via [(head_center + (0, -14))]
+
+# Cheek definition
+let left_cheek_line : sketch = stroke from (left_eye_center + (-8, 8)) to (mouth_left + (-2, -5)) via [(head_center + (-15, 5))]
+let right_cheek_line : sketch = stroke from (right_eye_center + (8, 8)) to (mouth_right + (2, -5)) via [(head_center + (15, 5))]
+
+# Jawline emphasis
+let jaw_left : sketch = stroke from (head_center + (-head_width/2, 15)) to (mouth_center + (-8, 8)) via [(head_center + (-20, 20))]
+let jaw_right : sketch = stroke from (head_center + (head_width/2, 15)) to (mouth_center + (8, 8)) via [(head_center + (20, 20))]
+
+# Additional facial details and texture
+let temple_lines : sketch = [
+  stroke from (head_center + (-15, -10)) to (head_center + (-12, -5)),
+  stroke from (head_center + (15, -10)) to (head_center + (12, -5))
+]
+
+# Eye bag shading with dashes
+let eye_bag_shading : sketch = [
+  dash at (left_eye_center + (-4, 4)),
+  dash at (left_eye_center + (-2, 5)),
+  dash at (left_eye_center + (0, 5)),
+  dash at (left_eye_center + (2, 5)),
+  dash at (left_eye_center + (4, 4)),
+  dash at (right_eye_center + (-4, 4)),
+  dash at (right_eye_center + (-2, 5)),
+  dash at (right_eye_center + (0, 5)),
+  dash at (right_eye_center + (2, 5)),
+  dash at (right_eye_center + (4, 4))
+]
+
+# Cheek shading
+let cheek_shading : sketch = [
+  dash at (head_center + (-12, 2)),
+  dash at (head_center + (-10, 4)),
+  dash at (head_center + (-8, 6)),
+  dash at (head_center + (12, 2)),
+  dash at (head_center + (10, 4)),
+  dash at (head_center + (8, 6))
+]
+
+# Forehead shading
+let forehead_shading : sketch = [
+  dash at (head_center + (-8, -16)),
+  dash at (head_center + (-4, -17)),
+  dash at (head_center + (0, -17)),
+  dash at (head_center + (4, -17)),
+  dash at (head_center + (8, -16))
+]
+
+# Assemble complete face
+let main_structure : sketch = [
+  head_outline, head_right, head_bottom, head_left,
+  left_eye_outer, left_eye_inner, left_eye_left, left_eye_right,
+  right_eye_outer, right_eye_inner, right_eye_left, right_eye_right,
+  left_eyeball, left_eyeball_bottom, right_eyeball, right_eyeball_bottom,
+  nose_bridge, nose_left_wing, nose_right_wing, left_nostril, right_nostril,
+  upper_lip, lower_lip, mouth_corners
+]
+
+scribble mirror main_structure about x_axis
+
+let facial_details : sketch = [
+  left_eye_bag_top, left_eye_bag_bottom, right_eye_bag_top, right_eye_bag_bottom,
+  left_nasolabial, right_nasolabial, forehead_wrinkle_1, forehead_wrinkle_2,
+  left_cheek_line, right_cheek_line, jaw_left, jaw_right, temple_lines
+]
+
+let facial_features : sketch = [left_pupil, right_pupil]
+
+let shading_details : sketch = [eye_bag_shading, cheek_shading, forehead_shading]
+
+# Render the complete portrait
+#trace main_structure
+#trace facial_details  
+#trace facial_features
+#scribble shading_details

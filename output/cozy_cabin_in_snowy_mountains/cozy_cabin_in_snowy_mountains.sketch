@@ -1,0 +1,674 @@
+# === MOUNTAIN RANGE BACKGROUND ===
+
+# Far mountain left
+let mountain_far_left_base_l : vec = (0, 45)
+let mountain_far_left_peak : vec = (25, 15)
+let mountain_far_left_base_r : vec = (50, 45)
+let mountain_far_left_l : sketch = stroke from mountain_far_left_base_l to mountain_far_left_peak
+let mountain_far_left_r : sketch = stroke from mountain_far_left_peak to mountain_far_left_base_r
+trace [mountain_far_left_l, mountain_far_left_r]
+scribble mirror [mountain_far_left_l, mountain_far_left_r] about (3,2)
+
+# Far mountain center-left
+let mountain_far_cl_base_l : vec = (35, 45)
+let mountain_far_cl_peak : vec = (55, 20)
+let mountain_far_cl_base_r : vec = (75, 45)
+let mountain_far_cl_l : sketch = stroke from mountain_far_cl_base_l to mountain_far_cl_peak
+let mountain_far_cl_r : sketch = stroke from mountain_far_cl_peak to mountain_far_cl_base_r
+trace [mountain_far_cl_l, mountain_far_cl_r]
+scribble mirror [mountain_far_cl_l, mountain_far_cl_r] about (2,3)
+
+
+# Main center mountain (tallest)
+let mountain_center_base_l : vec = (55, 45)
+let mountain_center_peak : vec = (85, 8)
+let mountain_center_base_r : vec = (115, 45)
+let mountain_center_l : sketch = stroke from mountain_center_base_l to mountain_center_peak
+let mountain_center_r : sketch = stroke from mountain_center_peak to mountain_center_base_r
+trace [mountain_center_l, mountain_center_r]
+
+# Mountain center-right
+let mountain_cr_base_l : vec = (100, 45)
+let mountain_cr_peak : vec = (125, 18)
+let mountain_cr_base_r : vec = (150, 45)
+let mountain_cr_l : sketch = stroke from mountain_cr_base_l to mountain_cr_peak
+let mountain_cr_r : sketch = stroke from mountain_cr_peak to mountain_cr_base_r
+trace [mountain_cr_l, mountain_cr_r]
+
+# Far right mountain
+let mountain_far_right_base_l : vec = (135, 45)
+let mountain_far_right_peak : vec = (160, 25)
+let mountain_far_right_base_r : vec = (185, 45)
+let mountain_far_right_l : sketch = stroke from mountain_far_right_base_l to mountain_far_right_peak
+let mountain_far_right_r : sketch = stroke from mountain_far_right_peak to mountain_far_right_base_r
+trace [mountain_far_right_l, mountain_far_right_r]
+
+# Mountain snow texture - center mountain
+draw stroke from (70, 30) to (75, 25)
+draw stroke from (80, 20) to (85, 15)
+draw stroke from (90, 22) to (95, 28)
+draw stroke from (75, 35) to (80, 32)
+draw stroke from (95, 35) to (100, 38)
+
+# Mountain ridgelines detail
+draw stroke from (85, 8) to (78, 22)
+draw stroke from (85, 8) to (92, 20)
+draw stroke from (55, 20) to (50, 30)
+draw stroke from (55, 20) to (62, 32)
+draw stroke from (125, 18) to (118, 30)
+draw stroke from (125, 18) to (132, 28)
+
+# === TREELINE SILHOUETTE (background) ===
+
+# Background pine trees - left side
+let bg_tree1_base : vec = (5, 48)
+let bg_tree1_top : vec = (5, 38)
+draw stroke from bg_tree1_base to bg_tree1_top
+draw stroke from (5, 42) to (2, 45)
+draw stroke from (5, 42) to (8, 45)
+draw stroke from (5, 40) to (3, 42)
+draw stroke from (5, 40) to (7, 42)
+
+let bg_tree2_base : vec = (12, 48)
+let bg_tree2_top : vec = (12, 36)
+draw stroke from bg_tree2_base to bg_tree2_top
+draw stroke from (12, 44) to (8, 48)
+draw stroke from (12, 44) to (16, 48)
+draw stroke from (12, 41) to (9, 44)
+draw stroke from (12, 41) to (15, 44)
+draw stroke from (12, 38) to (10, 40)
+draw stroke from (12, 38) to (14, 40)
+
+let bg_tree3_base : vec = (20, 48)
+let bg_tree3_top : vec = (20, 40)
+draw stroke from bg_tree3_base to bg_tree3_top
+draw stroke from (20, 45) to (17, 48)
+draw stroke from (20, 45) to (23, 48)
+draw stroke from (20, 42) to (18, 44)
+draw stroke from (20, 42) to (22, 44)
+
+# Background pine trees - right side
+let bg_tree4_base : vec = (165, 48)
+let bg_tree4_top : vec = (165, 37)
+draw stroke from bg_tree4_base to bg_tree4_top
+draw stroke from (165, 44) to (161, 48)
+draw stroke from (165, 44) to (169, 48)
+draw stroke from (165, 41) to (162, 44)
+draw stroke from (165, 41) to (168, 44)
+draw stroke from (165, 38) to (163, 40)
+draw stroke from (165, 38) to (167, 40)
+
+let bg_tree5_base : vec = (175, 48)
+let bg_tree5_top : vec = (175, 42)
+draw stroke from bg_tree5_base to bg_tree5_top
+draw stroke from (175, 46) to (172, 48)
+draw stroke from (175, 46) to (178, 48)
+draw stroke from (175, 44) to (173, 46)
+draw stroke from (175, 44) to (177, 46)
+
+# === MIDGROUND TREES LEFT ===
+
+# Large pine tree far left
+let tree_l1_trunk_base : vec = (15, 85)
+let tree_l1_trunk_top : vec = (15, 50)
+draw stroke from tree_l1_trunk_base to tree_l1_trunk_top
+
+# Tree L1 branches
+draw stroke from (15, 80) to (5, 85)
+draw stroke from (15, 80) to (25, 85)
+draw stroke from (15, 75) to (6, 82)
+draw stroke from (15, 75) to (24, 82)
+draw stroke from (15, 70) to (7, 78)
+draw stroke from (15, 70) to (23, 78)
+draw stroke from (15, 65) to (8, 73)
+draw stroke from (15, 65) to (22, 73)
+draw stroke from (15, 60) to (9, 67)
+draw stroke from (15, 60) to (21, 67)
+draw stroke from (15, 55) to (10, 61)
+draw stroke from (15, 55) to (20, 61)
+draw stroke from (15, 52) to (12, 55)
+draw stroke from (15, 52) to (18, 55)
+
+# Snow on tree L1
+scribble dash at (10, 77)
+scribble dash at (20, 77)
+scribble dash at (11, 72)
+scribble dash at (19, 72)
+scribble dash at (12, 67)
+scribble dash at (18, 67)
+
+# Medium pine tree left
+let tree_l2_trunk_base : vec = (35, 85)
+let tree_l2_trunk_top : vec = (35, 55)
+draw stroke from tree_l2_trunk_base to tree_l2_trunk_top
+
+draw stroke from (35, 82) to (27, 85)
+draw stroke from (35, 82) to (43, 85)
+draw stroke from (35, 77) to (28, 82)
+draw stroke from (35, 77) to (42, 82)
+draw stroke from (35, 72) to (29, 78)
+draw stroke from (35, 72) to (41, 78)
+draw stroke from (35, 67) to (30, 73)
+draw stroke from (35, 67) to (40, 73)
+draw stroke from (35, 62) to (31, 67)
+draw stroke from (35, 62) to (39, 67)
+draw stroke from (35, 58) to (32, 62)
+draw stroke from (35, 58) to (38, 62)
+
+scribble dash at (30, 75)
+scribble dash at (40, 75)
+scribble dash at (31, 70)
+scribble dash at (39, 70)
+
+# Small pine tree left foreground
+let tree_l3_trunk_base : vec = (25, 95)
+let tree_l3_trunk_top : vec = (25, 72)
+draw stroke from tree_l3_trunk_base to tree_l3_trunk_top
+
+draw stroke from (25, 92) to (18, 95)
+draw stroke from (25, 92) to (32, 95)
+draw stroke from (25, 87) to (19, 92)
+draw stroke from (25, 87) to (31, 92)
+draw stroke from (25, 82) to (20, 87)
+draw stroke from (25, 82) to (30, 87)
+draw stroke from (25, 77) to (21, 82)
+draw stroke from (25, 77) to (29, 82)
+draw stroke from (25, 74) to (23, 77)
+draw stroke from (25, 74) to (27, 77)
+
+# === MIDGROUND TREES RIGHT ===
+
+# Large pine tree far right
+let tree_r1_trunk_base : vec = (170, 85)
+let tree_r1_trunk_top : vec = (170, 48)
+draw stroke from tree_r1_trunk_base to tree_r1_trunk_top
+
+draw stroke from (170, 82) to (160, 85)
+draw stroke from (170, 82) to (180, 85)
+draw stroke from (170, 77) to (161, 82)
+draw stroke from (170, 77) to (179, 82)
+draw stroke from (170, 72) to (162, 78)
+draw stroke from (170, 72) to (178, 78)
+draw stroke from (170, 67) to (163, 73)
+draw stroke from (170, 67) to (177, 73)
+draw stroke from (170, 62) to (164, 68)
+draw stroke from (170, 62) to (176, 68)
+draw stroke from (170, 57) to (165, 63)
+draw stroke from (170, 57) to (175, 63)
+draw stroke from (170, 52) to (166, 57)
+draw stroke from (170, 52) to (174, 57)
+draw stroke from (170, 50) to (168, 52)
+draw stroke from (170, 50) to (172, 52)
+
+scribble dash at (164, 75)
+scribble dash at (176, 75)
+scribble dash at (165, 70)
+scribble dash at (175, 70)
+scribble dash at (166, 65)
+scribble dash at (174, 65)
+
+# Medium pine tree right
+let tree_r2_trunk_base : vec = (155, 90)
+let tree_r2_trunk_top : vec = (155, 60)
+draw stroke from tree_r2_trunk_base to tree_r2_trunk_top
+
+draw stroke from (155, 87) to (147, 90)
+draw stroke from (155, 87) to (163, 90)
+draw stroke from (155, 82) to (148, 87)
+draw stroke from (155, 82) to (162, 87)
+draw stroke from (155, 77) to (149, 82)
+draw stroke from (155, 77) to (161, 82)
+draw stroke from (155, 72) to (150, 77)
+draw stroke from (155, 72) to (160, 77)
+draw stroke from (155, 67) to (151, 72)
+draw stroke from (155, 67) to (159, 72)
+draw stroke from (155, 63) to (152, 67)
+draw stroke from (155, 63) to (158, 67)
+
+scribble dash at (150, 80)
+scribble dash at (160, 80)
+
+# === CABIN STRUCTURE ===
+
+# Main A-frame roof outline
+let cabin_roof_peak : vec = (92, 52)
+let cabin_roof_left : vec = (55, 95)
+let cabin_roof_right : vec = (130, 95)
+
+let cabin_roof_left_line : sketch = stroke from cabin_roof_left to cabin_roof_peak
+let cabin_roof_right_line : sketch = stroke from cabin_roof_peak to cabin_roof_right
+trace [cabin_roof_left_line, cabin_roof_right_line]
+
+# Roof overhang
+let overhang_left : vec = (52, 97)
+let overhang_right : vec = (133, 97)
+draw stroke from overhang_left to cabin_roof_left
+draw stroke from overhang_right to cabin_roof_right
+draw stroke from overhang_left to (52, 95)
+draw stroke from overhang_right to (133, 95)
+
+# Cabin base/foundation
+let cabin_base_left : vec = (55, 115)
+let cabin_base_right : vec = (130, 115)
+draw stroke from cabin_roof_left to cabin_base_left
+draw stroke from cabin_roof_right to cabin_base_right
+draw stroke from cabin_base_left to cabin_base_right
+
+# Front wall under roof
+let wall_top_left : vec = (65, 95)
+let wall_top_right : vec = (120, 95)
+draw stroke from wall_top_left to wall_top_right
+
+# === CABIN ROOF TEXTURE (wooden planks) ===
+
+# Left roof planks
+draw stroke from (58, 93) to (74, 68)
+draw stroke from (61, 93) to (77, 68)
+draw stroke from (64, 93) to (80, 68)
+draw stroke from (67, 93) to (83, 68)
+draw stroke from (70, 93) to (86, 68)
+draw stroke from (73, 93) to (89, 68)
+draw stroke from (76, 90) to (90, 65)
+draw stroke from (79, 87) to (91, 62)
+draw stroke from (82, 84) to (91, 58)
+draw stroke from (85, 80) to (92, 55)
+
+# Right roof planks
+draw stroke from (127, 93) to (111, 68)
+draw stroke from (124, 93) to (108, 68)
+draw stroke from (121, 93) to (105, 68)
+draw stroke from (118, 93) to (102, 68)
+draw stroke from (115, 93) to (99, 68)
+draw stroke from (112, 93) to (96, 68)
+draw stroke from (109, 90) to (95, 65)
+draw stroke from (106, 87) to (94, 62)
+draw stroke from (103, 84) to (93, 58)
+draw stroke from (100, 80) to (93, 55)
+
+# Roof snow accumulation
+scribble stroke from (55, 94) to (70, 78) via [(62, 85)]
+scribble stroke from (70, 78) to (85, 62) via [(77, 70)]
+scribble stroke from (85, 62) to (92, 53) via [(88, 57)]
+scribble stroke from (130, 94) to (115, 78) via [(123, 85)]
+scribble stroke from (115, 78) to (100, 62) via [(108, 70)]
+scribble stroke from (100, 62) to (93, 53) via [(97, 57)]
+
+# Snow texture dashes on roof
+scribble dash at (60, 88)
+scribble dash at (65, 83)
+scribble dash at (70, 78)
+scribble dash at (75, 73)
+scribble dash at (80, 68)
+scribble dash at (125, 88)
+scribble dash at (120, 83)
+scribble dash at (115, 78)
+scribble dash at (110, 73)
+scribble dash at (105, 68)
+
+# === CHIMNEY ===
+
+let chimney_base_left : vec = (105, 68)
+let chimney_base_right : vec = (115, 72)
+let chimney_top_left : vec = (105, 50)
+let chimney_top_right : vec = (115, 50)
+
+draw stroke from chimney_base_left to chimney_top_left
+draw stroke from chimney_base_right to chimney_top_right
+draw stroke from chimney_top_left to chimney_top_right
+
+# Chimney cap
+draw stroke from (103, 50) to (117, 50)
+draw stroke from (103, 48) to (117, 48)
+draw stroke from (103, 48) to (103, 50)
+draw stroke from (117, 48) to (117, 50)
+
+# Chimney brick texture
+draw stroke from (105, 55) to (115, 55)
+draw stroke from (105, 60) to (115, 60)
+draw stroke from (105, 65) to (115, 65)
+draw stroke from (110, 50) to (110, 55)
+draw stroke from (108, 55) to (108, 60)
+draw stroke from (112, 55) to (112, 60)
+draw stroke from (110, 60) to (110, 65)
+
+# Snow on chimney cap
+scribble dash at (108, 47)
+scribble dash at (112, 47)
+
+# === SMOKE FROM CHIMNEY ===
+
+let smoke1 : sketch = stroke from (110, 48) to (108, 40) via [(112, 44)]
+let smoke2 : sketch = stroke from (108, 40) to (112, 32) via [(105, 36)]
+let smoke3 : sketch = stroke from (112, 32) to (106, 24) via [(115, 28)]
+let smoke4 : sketch = stroke from (106, 24) to (114, 16) via [(103, 20)]
+let smoke5 : sketch = stroke from (114, 16) to (108, 8) via [(118, 12)]
+
+scribble [smoke1, smoke2, smoke3, smoke4, smoke5]
+
+# Additional wispy smoke
+scribble stroke from (110, 45) to (115, 38) via [(108, 41)]
+scribble stroke from (115, 38) to (118, 30) via [(112, 34)]
+scribble stroke from (106, 35) to (102, 28) via [(108, 31)]
+
+# === MAIN WINDOW (large, warm glow) ===
+
+let window_left : vec = (78, 97)
+let window_right : vec = (107, 97)
+let window_top : vec = (92, 75)
+
+# Window frame - triangular
+trace stroke from window_left to window_top
+trace stroke from window_top to window_right
+trace stroke from window_left to window_right
+
+# Window inner frame
+let window_inner_left : vec = (80, 96)
+let window_inner_right : vec = (105, 96)
+let window_inner_top : vec = (92, 77)
+draw stroke from window_inner_left to window_inner_top
+draw stroke from window_inner_top to window_inner_right
+draw stroke from window_inner_left to window_inner_right
+
+# Window mullions (cross pieces)
+let window_center_v_top : vec = (92, 77)
+let window_center_v_bottom : vec = (92, 96)
+draw stroke from window_center_v_top to window_center_v_bottom
+
+let window_h_left : vec = (82, 88)
+let window_h_right : vec = (103, 88)
+draw stroke from window_h_left to window_h_right
+
+# Warm glow texture inside window
+scribble dash at (85, 92)
+scribble dash at (88, 90)
+scribble dash at (95, 92)
+scribble dash at (98, 90)
+scribble dash at (92, 85)
+scribble dash at (86, 83)
+scribble dash at (98, 83)
+scribble dash at (90, 93)
+scribble dash at (94, 93)
+
+# === FRONT PORCH/DECK ===
+
+# Deck platform
+let deck_left : vec = (60, 115)
+let deck_right : vec = (125, 115)
+let deck_front_left : vec = (60, 120)
+let deck_front_right : vec = (125, 120)
+
+draw stroke from deck_left to deck_right
+draw stroke from deck_left to deck_front_left
+draw stroke from deck_right to deck_front_right
+draw stroke from deck_front_left to deck_front_right
+
+# Deck planks
+draw stroke from (65, 115) to (65, 120)
+draw stroke from (75, 115) to (75, 120)
+draw stroke from (85, 115) to (85, 120)
+draw stroke from (95, 115) to (95, 120)
+draw stroke from (105, 115) to (105, 120)
+draw stroke from (115, 115) to (115, 120)
+
+# Porch railing posts
+draw stroke from (62, 115) to (62, 105)
+draw stroke from (123, 115) to (123, 105)
+
+# Porch railing
+draw stroke from (62, 107) to (123, 107)
+draw stroke from (62, 110) to (123, 110)
+
+# Railing balusters
+draw stroke from (70, 110) to (70, 115)
+draw stroke from (80, 110) to (80, 115)
+draw stroke from (90, 110) to (90, 115)
+draw stroke from (100, 110) to (100, 115)
+draw stroke from (110, 110) to (110, 115)
+
+# === DOOR ===
+
+let door_left : vec = (87, 115)
+let door_right : vec = (98, 115)
+let door_top_left : vec = (87, 97)
+let door_top_right : vec = (98, 97)
+
+trace stroke from door_left to door_top_left
+trace stroke from door_right to door_top_right
+trace stroke from door_top_left to door_top_right
+
+# Door panels
+draw stroke from (89, 100) to (96, 100)
+draw stroke from (89, 100) to (89, 107)
+draw stroke from (96, 100) to (96, 107)
+draw stroke from (89, 107) to (96, 107)
+
+draw stroke from (89, 109) to (96, 109)
+draw stroke from (89, 109) to (89, 113)
+draw stroke from (96, 109) to (96, 113)
+draw stroke from (89, 113) to (96, 113)
+
+# Door handle
+draw dash at (95, 106)
+
+# === CABIN WALL SIDING TEXTURE ===
+
+# Left wall wood planks
+draw stroke from (55, 98) to (65, 98)
+draw stroke from (55, 101) to (65, 101)
+draw stroke from (55, 104) to (65, 104)
+draw stroke from (55, 107) to (65, 107)
+draw stroke from (55, 110) to (65, 110)
+draw stroke from (55, 113) to (65, 113)
+
+# Right wall wood planks
+draw stroke from (120, 98) to (130, 98)
+draw stroke from (120, 101) to (130, 101)
+draw stroke from (120, 104) to (130, 104)
+draw stroke from (120, 107) to (130, 107)
+draw stroke from (120, 110) to (130, 110)
+draw stroke from (120, 113) to (130, 113)
+
+# === SNOW ON GROUND ===
+
+# Snow bank curves around cabin
+scribble stroke from (0, 115) to (50, 118) via [(25, 120)]
+scribble stroke from (50, 118) to (55, 116)
+scribble stroke from (130, 116) to (135, 118)
+scribble stroke from (135, 118) to (185, 115) via [(160, 120)]
+
+# Snow mounds
+scribble stroke from (10, 125) to (30, 122) via [(20, 120)]
+scribble stroke from (30, 122) to (45, 125) via [(38, 121)]
+scribble stroke from (140, 125) to (160, 121) via [(150, 119)]
+scribble stroke from (160, 121) to (180, 124) via [(170, 120)]
+
+# Ground snow texture
+scribble dash at (15, 122)
+scribble dash at (25, 118)
+scribble dash at (35, 123)
+scribble dash at (45, 120)
+scribble dash at (150, 122)
+scribble dash at (160, 118)
+scribble dash at (170, 123)
+scribble dash at (175, 119)
+
+# Snow patches in front of cabin
+scribble dash at (70, 122)
+scribble dash at (80, 124)
+scribble dash at (92, 123)
+scribble dash at (105, 124)
+scribble dash at (115, 122)
+
+# === PATH TO CABIN ===
+
+# Footpath through snow
+scribble stroke from (92, 140) to (92, 125) via [(88, 135), (96, 130)]
+scribble stroke from (88, 140) to (90, 125) via [(85, 132)]
+scribble stroke from (96, 140) to (94, 125) via [(99, 132)]
+
+# Footprints in snow
+scribble dash at (90, 138)
+scribble dash at (94, 135)
+scribble dash at (89, 132)
+scribble dash at (93, 129)
+
+# === FOREGROUND DETAILS ===
+
+# Snow-covered bush left
+scribble stroke from (40, 125) to (50, 120) via [(45, 118)]
+scribble stroke from (50, 120) to (55, 125) via [(52, 119)]
+scribble dash at (45, 121)
+scribble dash at (50, 119)
+
+# Snow-covered bush right
+scribble stroke from (135, 125) to (142, 119) via [(138, 117)]
+scribble stroke from (142, 119) to (150, 124) via [(146, 118)]
+scribble dash at (140, 120)
+scribble dash at (145, 119)
+
+# Small foreground tree left
+let fg_tree_l_base : vec = (8, 130)
+let fg_tree_l_top : vec = (8, 110)
+draw stroke from fg_tree_l_base to fg_tree_l_top
+draw stroke from (8, 125) to (2, 130)
+draw stroke from (8, 125) to (14, 130)
+draw stroke from (8, 120) to (3, 126)
+draw stroke from (8, 120) to (13, 126)
+draw stroke from (8, 115) to (4, 120)
+draw stroke from (8, 115) to (12, 120)
+draw stroke from (8, 112) to (6, 115)
+draw stroke from (8, 112) to (10, 115)
+
+scribble dash at (5, 123)
+scribble dash at (11, 123)
+scribble dash at (6, 118)
+scribble dash at (10, 118)
+
+# Small foreground tree right
+let fg_tree_r_base : vec = (178, 130)
+let fg_tree_r_top : vec = (178, 108)
+draw stroke from fg_tree_r_base to fg_tree_r_top
+draw stroke from (178, 127) to (172, 130)
+draw stroke from (178, 127) to (184, 130)
+draw stroke from (178, 122) to (173, 127)
+draw stroke from (178, 122) to (183, 127)
+draw stroke from (178, 117) to (174, 122)
+draw stroke from (178, 117) to (182, 122)
+draw stroke from (178, 112) to (175, 117)
+draw stroke from (178, 112) to (181, 117)
+draw stroke from (178, 110) to (176, 113)
+draw stroke from (178, 110) to (180, 113)
+
+scribble dash at (174, 124)
+scribble dash at (182, 124)
+scribble dash at (175, 119)
+scribble dash at (181, 119)
+
+# === NIGHT SKY STARS ===
+
+# Large stars
+trace dot at (15, 8)
+trace dot at (45, 12)
+trace dot at (30, 5)
+trace dot at (150, 6)
+trace dot at (170, 10)
+trace dot at (140, 3)
+
+# Medium stars
+draw dot at (8, 15)
+draw dot at (22, 18)
+draw dot at (38, 8)
+draw dot at (55, 5)
+draw dot at (145, 12)
+draw dot at (160, 5)
+draw dot at (175, 18)
+draw dot at (180, 8)
+
+# Small stars (scattered)
+scribble dash at (5, 10)
+scribble dash at (12, 22)
+scribble dash at (28, 12)
+scribble dash at (35, 18)
+scribble dash at (42, 5)
+scribble dash at (48, 15)
+scribble dash at (52, 10)
+scribble dash at (135, 8)
+scribble dash at (142, 18)
+scribble dash at (152, 15)
+scribble dash at (158, 10)
+scribble dash at (165, 20)
+scribble dash at (172, 3)
+scribble dash at (178, 15)
+scribble dash at (182, 22)
+
+# Additional twinkling stars
+scribble dash at (3, 25)
+scribble dash at (18, 28)
+scribble dash at (32, 25)
+scribble dash at (168, 28)
+scribble dash at (182, 30)
+
+# === LIGHT GLOW FROM WINDOW ===
+
+# Light rays emanating from window
+scribble stroke from (85, 96) to (75, 110) via [(80, 103)]
+scribble stroke from (92, 96) to (92, 112)
+scribble stroke from (100, 96) to (110, 110) via [(105, 103)]
+
+# Warm glow on snow beneath window
+scribble dash at (80, 118)
+scribble dash at (85, 120)
+scribble dash at (92, 121)
+scribble dash at (100, 120)
+scribble dash at (105, 118)
+
+# === FALLING SNOW ===
+
+# Snowflakes throughout scene
+scribble dash at (10, 35)
+scribble dash at (25, 50)
+scribble dash at (40, 42)
+scribble dash at (55, 65)
+scribble dash at (70, 55)
+scribble dash at (85, 45)
+scribble dash at (100, 42)
+scribble dash at (115, 50)
+scribble dash at (130, 58)
+scribble dash at (145, 45)
+scribble dash at (160, 55)
+scribble dash at (175, 40)
+
+scribble dash at (18, 60)
+scribble dash at (32, 75)
+scribble dash at (48, 68)
+scribble dash at (138, 70)
+scribble dash at (152, 78)
+scribble dash at (168, 65)
+
+scribble dash at (5, 80)
+scribble dash at (22, 95)
+scribble dash at (38, 88)
+scribble dash at (145, 90)
+scribble dash at (158, 85)
+scribble dash at (175, 95)
+
+scribble dash at (12, 105)
+scribble dash at (28, 112)
+scribble dash at (42, 105)
+scribble dash at (148, 108)
+scribble dash at (165, 112)
+scribble dash at (180, 105)
+
+# === ADDITIONAL ATMOSPHERE ===
+
+# Distant birds/specks
+scribble dash at (60, 30)
+scribble dash at (62, 32)
+scribble dash at (125, 28)
+scribble dash at (127, 30)
+
+# Moon glow area (subtle)
+scribble dash at (160, 12)
+scribble dash at (162, 14)
+scribble dash at (158, 14)
+scribble dash at (160, 16)

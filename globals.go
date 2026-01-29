@@ -1,68 +1,51 @@
 package main
 
-const LangSpec  = `# SketchLang Quick Reference
+const LangSpec  = `# SketchLang Reference
 
 ## Types
-- number: float
-- vec: 2D point (x, y)
-- sketch: drawable or list of sketches
+number (float), vec (x,y), sketch (drawable/list)
 
 ## Syntax
 let NAME : type = expr
 trace|draw|scribble sketch_expr
 
 ## Expressions
-
-Numbers: literals, +, -, *, /, parentheses
-
-Vectors:
-  (x, y)              -- construct
-  origin              -- (0, 0)
-  center of sketch    -- centroid
-  flow at vec         -- flow field direction
-  vec + vec, vec - vec, vec * number
-
+Nums: literals, +,-,*,/, parens
+Vecs: (x,y), origin, center of sketch, vec±vec, vec*num
 Sketches:
   dot at vec
   dash at vec
-  stroke from vec to vec [via [vec, ...]]
-  [sketch, sketch, ...]   -- list
+  stroke from vec to vec [via [vec,...]]
+  mirror sketch about vec
+  [sketch, ...]
 
-## Render Commands
-- trace: exact, clean lines
-- draw: slight wobble, hand-drawn
-- scribble: heavy noise, sketchy
+## Render: trace (exact) | draw (wobble) | scribble (noisy)
 
 ## Examples
+let c : sketch = stroke from (0,50) to (100,50) via [(50,0)]
+trace c
 
-### Curves with control points
-let curve : sketch = stroke from (0, 50) to (100, 50) via [(50, 0)]
-trace curve
+let p1 : vec = (50,10)
+let p2 : vec = (10,90)
+let p3 : vec = (90,90)
+let tri : sketch = [stroke from p1 to p2, stroke from p2 to p3, stroke from p3 to p1]
+draw mirror tri about (1,0)
 
-### Centroid and composition
-let triangle : sketch = [
-  stroke from (50, 10) to (10, 90),
-  stroke from (10, 90) to (90, 90),
-  stroke from (90, 90) to (50, 10)
-]
-let heart : vec = center of triangle
-let spokes : sketch = [
-  stroke from heart to (50, 10),
-  stroke from heart to (10, 90),
-  stroke from heart to (90, 90),
-  dash at (80,80),
-  dash at (60,60)
-]
-trace [triangle, spokes]
-
-### Nested center reference
-scribble stroke from origin to center of stroke from heart to (20, 26)
+scribble stroke from origin to center of tri
 
 ## Rules
-- NO dot notation (vec.x invalid)
-- NO reassignment
+- Complete detailed sketches
+- NO dot notation (v.x invalid), NO reassignment
+- Short variable names, minimal comments
+- dash is sketch: scribble dash at (10,10)
+- via = Catmull-Rom splines
+
+## Rules
+- USE short variable names
+- Complete sketch with much detail
+- NO dot notation (vec.x invalid), NO reassignment
+- Minimal Comments if any.
 - dash is a sketch, not a statement: scribble dash at (10,10)
 - via points create Catmull-Rom splines
-- Flow field affects only dash orientation
-- Coordinates in mm, comments with #
+- mirror reflects about axis through sketch centroid
 `

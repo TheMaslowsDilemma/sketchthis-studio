@@ -5,24 +5,23 @@ Minimal CLI tool for generating SketchLang sketches from descriptions or images 
 ## Installation
 
 ```bash
-go build -o sketchstudio .
+go build -o sketchgen .
 ```
 
-Requires `sketchlang` compiler in PATH. See https://github.com/TheMaslowsDilemma/sketchthis-dsl
-Also requires `ANTHROPIC_API_KEY` in ENV.
+Requires `sketchlang` compiler in PATH.
 
 ## Usage
 
 ### From Description
 
 ```bash
-sketchstudio -d "an extremely detailed image of the Notre Dame Cathedral" -pos 0,0 -size 80,80
+sketchgen -d "an extremely detailed image of the Notre Dame Cathedral" -pos 0,0 -size 80,80
 ```
 
 ### From Image URL
 
 ```bash
-sketchstudio -url "https://example.com/image.jpg" -pos 0,0 -size 80,80
+sketchgen -url "https://example.com/image.jpg" -pos 0,0 -size 80,80
 ```
 
 ## Options
@@ -37,11 +36,13 @@ sketchstudio -url "https://example.com/image.jpg" -pos 0,0 -size 80,80
 | `-local` | false | Use local LMStudio instead of Anthropic |
 | `-debug` | false | Enable debug logging |
 
+
 ## Outputs
 
-The tool generates two files:
-- `<name>.sketch` — SketchLang source code
-- `<name>.svg` — SVG preview
+Files are written to `output/<n>/`:
+- `<n>.sketch` - SketchLang source code
+- `<n>.svg` - SVG preview
+- `<n>.gcode` - G-code for plotter
 
 Output paths are printed to stdout (one per line).
 
@@ -60,7 +61,7 @@ export ANTHROPIC_API_KEY=sk-ant-...
 Start LMStudio with a model loaded, then use `-local`:
 
 ```bash
-sketchstudio -d "a cat" -local
+sketchgen -d "a cat" -local
 ```
 
 Expects OpenAI-compatible API at `http://localhost:1234`.
@@ -69,16 +70,16 @@ Expects OpenAI-compatible API at `http://localhost:1234`.
 
 ```bash
 # Simple sketch
-sketchstudio -d "a vintage bicycle"
+sketchgen -d "a vintage bicycle"
 
 # Detailed with positioning
-sketchstudio -d "the Eiffel Tower with intricate ironwork details" -pos 10,10 -size 60,100
+sketchgen -d "the Eiffel Tower with intricate ironwork details" -pos 10,10 -size 60,100
 
 # From URL with debug output
-sketchstudio -url "https://example.com/photo.jpg" -debug
+sketchgen -url "https://example.com/photo.jpg" -debug
 
 # Using local model
-sketchstudio -d "an extremely detailed sketch of the Notre Dame Cathedral" -local -debug
+sketchgen -d "a Japanese temple" -local -debug
 ```
 
 ## Exit Codes

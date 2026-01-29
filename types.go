@@ -10,7 +10,6 @@ type Vec2 struct{ X, Y float64 }
 type SketchResult struct {
     Code    string
     Title   string
-    Summary string
 }
 
 type Logger struct {

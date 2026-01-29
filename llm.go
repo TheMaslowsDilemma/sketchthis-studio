@@ -18,7 +18,6 @@ type Message struct {
 	Content string `json:"content"`
 }
 
-// Anthropic client
 type AnthropicClient struct {
 	key string
 	log *Logger
@@ -30,7 +29,7 @@ func NewAnthropicClient(key string, log *Logger) *AnthropicClient {
 
 func (c *AnthropicClient) Complete(system string, messages []Message) (string, error) {
 	body := map[string]any{
-		"model":      "claude-sonnet-4-5",
+		"model":      "claude-opus-4-5",
 		"max_tokens": 16384,
 		"system":     system,
 		"messages":   messages,
@@ -71,7 +70,6 @@ func (c *AnthropicClient) Complete(system string, messages []Message) (string, e
 	return result.Content[0].Text, nil
 }
 
-// Local LMStudio client (OpenAI-compatible)
 type LocalClient struct {
 	log *Logger
 }
