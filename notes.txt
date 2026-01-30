@@ -102,9 +102,14 @@ we do this for all sections and finally produce the final!
 Jan. 30 2026
 ----------------------------------------------------------
 
---- LOCAL UPDATES ---
+--- LOCAL RUNS ---
 we now have a 4070ti to run some very small models locally.
 smaller models can be used more librally and can be given
 more attempts to retry and potentially more granular control
 over code manipulation such as only editting certain lines
-if the compiler complains. we can use tags for this.
+if the compiler complains.
+
+--- CODE EDITS ---
+we want easy editting of the sketchcode once a first draft
+has been produced. llms might be good at only recalling
+how to fix a line or a few lines.
