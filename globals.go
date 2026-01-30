@@ -38,7 +38,7 @@ scribble stroke origin to center of tri
 
 ## Rules
 - Define base primitives once and transform them. Prioritize DRY principles to minimize token count.
-- USE short variable names (NOT `by` thats a keyword)
+- USE short variable names (NOT "by" thats a keyword)
 - Complete sketch with much detail
 - NO dot notation (vec.x invalid), NO reassignment
 - Minimal comments if any

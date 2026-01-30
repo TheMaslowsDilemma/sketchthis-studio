@@ -17,7 +17,7 @@ func Compile(code, outputName string, pos, size Vec2, log *Logger) (svg, gcode s
 	}
 	defer os.RemoveAll(tmpDir)
 
-	inputPath := filepath.Join(tmpDir, outputName+".sketch")
+	inputPath := filepath.Join(tmpDir, outputName + ".sketch")
 	if err := os.WriteFile(inputPath, []byte(code), 0644); err != nil {
 		return "", "", err
 	}
@@ -31,7 +31,7 @@ func Compile(code, outputName string, pos, size Vec2, log *Logger) (svg, gcode s
 		"--gcode",
 	}
 
-	log.Debug("running: %s %v", compilerBin, args)
+	log.Debug("%s %v", compilerBin, args)
 
 	cmd := exec.Command(compilerBin, args...)
 	cmd.Dir = tmpDir
@@ -39,15 +39,15 @@ func Compile(code, outputName string, pos, size Vec2, log *Logger) (svg, gcode s
 	cmd.Stderr = &stderr
 
 	if err := cmd.Run(); err != nil {
-		return "", "", fmt.Errorf("compile error: %s", stderr.String())
+		return "", "", fmt.Errorf("%s", stderr.String())
 	}
 
-	svgData, err := os.ReadFile(filepath.Join(tmpDir, outputName+".svg"))
+	svgData, err := os.ReadFile(filepath.Join(tmpDir, outputName + ".svg"))
 	if err != nil {
 		return "", "", fmt.Errorf("SVG not generated")
 	}
 
-	gcodeData, err := os.ReadFile(filepath.Join(tmpDir, outputName+".txt"))
+	gcodeData, err := os.ReadFile(filepath.Join(tmpDir, outputName + ".txt"))
 	if err != nil {
 		return "", "", fmt.Errorf("gcode not generated")
 	}

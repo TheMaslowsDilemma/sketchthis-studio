@@ -7,8 +7,23 @@ import (
 
 type Vec2 struct{ X, Y float64 }
 
+type SketchCode struct {
+    RawCode string
+}
+
+type SketchError struct {
+    Line int
+    Col int
+    Message string
+}
+
+type SketchValidation struct {
+    Valid   bool
+    Errors  []SketchError
+}
+
 type SketchResult struct {
-    Code    string
+    Code    SketchCode
     Title   string
 }
 
@@ -18,22 +33,18 @@ type Logger struct {
 
 func (l *Logger) Info(format string, args ...any) {
     if l.enabled {
-        printf("INFO: "+format, args...)
+        fmt.Printf("[INFO]: " + format, args...)
     }
 }
 
 func (l *Logger) Warn(format string, args ...any) {
     if l.enabled {
-        printf("WARN: "+format, args...)
+        fmt.Printf("[WARN]: " + format, args...)
     }
 }
 
 func (l *Logger) Debug(format string, args ...any) {
     if l.enabled {
-        printf("DEBUG: "+format, args...)
+        fmt.Printf("[DEBUG]: " + format, args...)
     }
-}
-
-func printf(format string, args ...any) {
-    fmt.Fprintf(os.Stderr, format+"\n", args...)
 }

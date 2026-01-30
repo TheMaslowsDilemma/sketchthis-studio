@@ -20,10 +20,11 @@ func Generate(client LLMClient, description, imageURL string, pos, size Vec2, lo
 
 		result, err := parseResponse(content)
 		if err != nil {
+			log.Info("\n---------------------\ncontent\n%s\n---------------------\n", content)
 			lastErr = err
 			if attempt < maxRetries {
 				log.Warn("parse error (attempt %d/%d): %v", attempt+1, maxRetries+1, err)
-				retry := fmt.Sprintf("Parse error: %v\n\nInclude <title> and <code> tags.", err)
+				retry := fmt.Sprintf("Parse error: %v\n\nYOU MUST INCLUDE <title> and <code> tags.", err)
 				if imageURL != "" {
 					retry += fmt.Sprintf("\n\nRemember your goal: sketch the image at this URL: %s", imageURL)
 				}
@@ -57,6 +58,22 @@ func Generate(client LLMClient, description, imageURL string, pos, size Vec2, lo
 	}
 
 	return nil, lastErr
+}
+
+func Generate(client LLMClient, description, imageURL string, pos, size Vec2, log *Logger) (*SketchResult, error) {
+	/*
+		----
+		fallback is configurable. local models will be more liberal with attempts to self-right.
+		----
+
+		1. you have an image description and a langauge for which to express that image in detail.
+		2. the language is compilable and can point out where things went wrong.
+
+
+	*/
+	var (
+		ms []Message /* messages btw artist and llm */
+	)
 }
 
 func systemPrompt() string {
