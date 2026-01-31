@@ -43,10 +43,10 @@ func main() {
 		prompt = fmt.Sprintf("Create an extremely detailed sketch of the image at this URL: %s", *url)
 	}
 
-	log.Info("starting artist generation")
-	result, err := Generate(client, prompt, *url, posVec, sizeVec, log)
+	log.Info("generating sketch...\n")
+	result, err := Generate(client, prompt, *url, log)
 	if err != nil {
-		fatal("artist failed: %v", err)
+		fatal("generation failed: %v", err)
 	}
 
 	outName := *output
@@ -57,15 +57,15 @@ func main() {
 	outDir := filepath.Join("output", outName)
 	must(os.MkdirAll(outDir, 0755))
 
-	log.Info("compiling...")
-	svg, gcode, err := Compile(result.Code.RawCode, outName, posVec, sizeVec, log)
+	log.Info("compiling...\n")
+	svg, gcode, err := Compile(result.Code, outName, posVec, sizeVec, log)
 	if err != nil {
 		fatal("compile failed: %v", err)
 	}
 
-	sketchPath := filepath.Join(outDir, outName + ".sketch")
-	svgPath := filepath.Join(outDir, outName + ".svg")
-	gcodePath := filepath.Join(outDir, outName + ".gcode")
+	sketchPath := filepath.Join(outDir, outName+".sketch")
+	svgPath := filepath.Join(outDir, outName+".svg")
+	gcodePath := filepath.Join(outDir, outName+".gcode")
 
 	must(os.WriteFile(sketchPath, []byte(result.Code), 0644))
 	must(os.WriteFile(svgPath, []byte(svg), 0644))

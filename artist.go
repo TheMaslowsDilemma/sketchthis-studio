@@ -6,74 +6,59 @@ import (
 	"strings"
 )
 
-const maxRetries = 3
+const (
+	maxRetries      = 3
+	maxRetriesLocal = 6
+)
 
-func Generate(client LLMClient, description, imageURL string, pos, size Vec2, log *Logger) (*SketchResult, error) {
-	messages := []Message{{Role: "user", Content: description}}
-	var lastErr error
-
-	for attempt := 0; attempt <= maxRetries; attempt++ {
-		content, err := client.Complete(systemPrompt(), messages)
-		if err != nil {
-			return nil, err
-		}
-
-		result, err := parseResponse(content)
-		if err != nil {
-			log.Info("\n---------------------\ncontent\n%s\n---------------------\n", content)
-			lastErr = err
-			if attempt < maxRetries {
-				log.Warn("parse error (attempt %d/%d): %v", attempt+1, maxRetries+1, err)
-				retry := fmt.Sprintf("Parse error: %v\n\nYOU MUST INCLUDE <title> and <code> tags.", err)
-				if imageURL != "" {
-					retry += fmt.Sprintf("\n\nRemember your goal: sketch the image at this URL: %s", imageURL)
-				}
-				messages = append(messages,
-					Message{Role: "assistant", Content: content},
-					Message{Role: "user", Content: retry},
-				)
-				continue
-			}
-			return nil, fmt.Errorf("parse failed after %d attempts: %w", maxRetries+1, err)
-		}
-
-		if _, _, err := Compile(result.Code, "_validate", pos, size, log); err != nil {
-			lastErr = err
-			if attempt < maxRetries {
-				log.Warn("compile error (attempt %d/%d): %v", attempt+1, maxRetries+1, err)
-				retry := fmt.Sprintf("Compilation failed:\n%s\n\nYour code:\n```\n%s\n```\n\nFix the code.", err, result.Code)
-				if imageURL != "" {
-					retry += fmt.Sprintf("\n\nRemember your goal: sketch the image at this URL: %s", imageURL)
-				}
-				messages = append(messages,
-					Message{Role: "assistant", Content: content},
-					Message{Role: "user", Content: retry},
-				)
-				continue
-			}
-			return nil, fmt.Errorf("compilation failed after %d attempts: %w", maxRetries+1, lastErr)
-		}
-
-		return result, nil
+func Generate(client LLMClient, desc, imageURL string, log *Logger) (*SketchResult, error) {
+	prompt := desc
+	if imageURL != "" {
+		prompt = fmt.Sprintf("Create an extremely detailed sketch of the image at: %s", imageURL)
 	}
-
-	return nil, lastErr
+	return generate(client, prompt, nil, nil, 0, log)
 }
 
-func Generate(client LLMClient, description, imageURL string, pos, size Vec2, log *Logger) (*SketchResult, error) {
-	/*
-		----
-		fallback is configurable. local models will be more liberal with attempts to self-right.
-		----
+func generate(client LLMClient, prompt string, prevCode *string, prevErr *SketchError, attempt int, log *Logger) (*SketchResult, error) {
+	max := maxRetries
+	if client.IsLocal() {
+		max = maxRetriesLocal
+	}
+	if attempt > max {
+		return nil, fmt.Errorf("failed after %d attempts", attempt)
+	}
 
-		1. you have an image description and a langauge for which to express that image in detail.
-		2. the language is compilable and can point out where things went wrong.
+	var msg string
+	if prevErr != nil && prevCode != nil {
+		msg = retryPrompt(*prevCode, *prevErr)
+	} else if prevErr != nil {
+		msg = fmt.Sprintf("Error: %s\n\nYou MUST include <title> and <code> tags.", prevErr.Message)
+	} else {
+		msg = prompt
+	}
 
+	messages := []Message{{Role: "user", Content: msg}}
+	resp, err := client.Complete(systemPrompt(), messages)
+	if err != nil {
+		return nil, err
+	}
 
-	*/
-	var (
-		ms []Message /* messages btw artist and llm */
-	)
+	result, parseErr := parseResponse(resp)
+	if parseErr != nil {
+		log.Warn("parse error (attempt %d): %v\n", attempt+1, parseErr)
+		return generate(client, prompt, nil, &SketchError{Message: parseErr.Error()}, attempt+1, log)
+	}
+
+	skerr, err := ValidateSketch(result.Code, log)
+	if err != nil {
+		return nil, fmt.Errorf("validation failed: %w", err)
+	}
+	if skerr != nil {
+		log.Warn("compile error (attempt %d): line %d col %d: %s\n", attempt+1, skerr.Line, skerr.Column, skerr.Message)
+		return generate(client, prompt, &result.Code, skerr, attempt+1, log)
+	}
+
+	return result, nil
 }
 
 func systemPrompt() string {
@@ -81,31 +66,76 @@ func systemPrompt() string {
 
 %s
 
-Create a COMPLETE, EXTREMELY DETAILED sketch.
-
 FORMAT:
 <title>SKETCH TITLE</title>
 <code>
 # Complete SketchLang code
 </code>
+
+When fixing code, respond with either:
+1. Full corrected code in <code> tags, OR
+2. Edits in this format:
+<edit line="N">replacement line</edit>
+<edit line="N-M">
+replacement
+lines
+</edit>
 `, LangSpec)
 }
 
-func parseResponse(content string) (*SketchResult, error) {
-	code := extractCode(content)
-	if code == "" {
-		return nil, fmt.Errorf("no <code> block found")
-	}
+func retryPrompt(code string, skerr SketchError) string {
+	lines := strings.Split(code, "\n")
+	start := max(0, skerr.Line-3)
+	end := min(len(lines), skerr.Line+2)
+	context := strings.Join(lines[start:end], "\n")
 
+	return fmt.Sprintf(`Compile error at line %d, column %d: %s
+
+Context:
+%s
+
+Provide fix as <edit line="%d">corrected line</edit> or full <code> block.`,
+		skerr.Line, skerr.Column, skerr.Message, context, skerr.Line)
+}
+
+func parseResponse(content string) (*SketchResult, error) {
 	title := extractTag(content, "title")
 	if title == "" {
 		return nil, fmt.Errorf("no <title> found")
 	}
 
-	return &SketchResult{
-		Code:    code,
-		Title:   title,
-	}, nil
+	code := extractCode(content)
+	if code == "" {
+		return nil, fmt.Errorf("no <code> block found")
+	}
+
+	return &SketchResult{Code: code, Title: title}, nil
+}
+
+func applyEdits(code, response string) string {
+	re := regexp.MustCompile(`(?s)<edit line="(\d+)(?:-(\d+))?">(.*?)</edit>`)
+	matches := re.FindAllStringSubmatch(response, -1)
+	if len(matches) == 0 {
+		return code
+	}
+
+	lines := strings.Split(code, "\n")
+	for _, m := range matches {
+		var start, end int
+		fmt.Sscanf(m[1], "%d", &start)
+		if m[2] != "" {
+			fmt.Sscanf(m[2], "%d", &end)
+		} else {
+			end = start
+		}
+		start--
+		replacement := strings.Split(strings.TrimSpace(m[3]), "\n")
+
+		if start >= 0 && end <= len(lines) {
+			lines = append(lines[:start], append(replacement, lines[end:]...)...)
+		}
+	}
+	return strings.Join(lines, "\n")
 }
 
 func extractCode(content string) string {

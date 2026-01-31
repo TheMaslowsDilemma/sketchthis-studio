@@ -11,6 +11,7 @@ import (
 
 type LLMClient interface {
 	Complete(system string, messages []Message) (string, error)
+	IsLocal() bool
 }
 
 type Message struct {
@@ -70,8 +71,16 @@ func (c *AnthropicClient) Complete(system string, messages []Message) (string, e
 	return result.Content[0].Text, nil
 }
 
+func (ac *AnthropicClient) IsLocal() bool {
+	return false 
+}
+
 type LocalClient struct {
 	log *Logger
+}
+
+func (lc *LocalClient) IsLocal() bool {
+	return true
 }
 
 func NewLocalClient(log *Logger) *LocalClient {

@@ -2,14 +2,9 @@ package main
 
 import (
     "fmt"
-    "os"
 )
 
 type Vec2 struct{ X, Y float64 }
-
-type SketchCode struct {
-    RawCode string
-}
 
 type SketchError struct {
     Line int        `json:"line"`
@@ -18,7 +13,7 @@ type SketchError struct {
 }
 
 type SketchResult struct {
-    Code    SketchCode
+    Code    string
     Title   string
 }
 
@@ -28,13 +23,13 @@ type Logger struct {
 
 func (l *Logger) Info(format string, args ...any) {
     if l.enabled {
-        fmt.Printf("[INFO]: " + format, args...)
+        fmt.Printf("[\033[32mINFO\033[0m]: " + format, args...)
     }
 }
 
 func (l *Logger) Warn(format string, args ...any) {
     if l.enabled {
-        fmt.Printf("[WARN]: " + format, args...)
+        fmt.Printf("[\033[33mWARN\033[0m]: " + format, args...)
     }
 }
 

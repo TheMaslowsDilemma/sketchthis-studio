@@ -1,11 +1,5 @@
 package main
 
-import (
-  "fmt"
-  "crypto/rand"
-  "encoding/base64"
-)
-
 const LangSpec  = `# SketchLang Reference
 
 ## Types
@@ -42,24 +36,15 @@ draw translate big by (100, 0)
 
 scribble stroke origin to center of tri
 
-## Rules
-- Define base primitives once and transform them. Prioritize DRY principles to minimize token count.
+## Tips
+- Prioritize DRY principles to minimize token count. Modular components can be re-used.
 - USE short variable names (NOT "by" thats a keyword)
-- Complete sketch with much detail
 - NO dot notation (vec.x invalid), NO reassignment
 - Minimal comments if any
+- transformations are not render calls.
 - dash is a sketch, not a statement: scribble dash (10,10)
 - via points create Catmull-Rom splines
-- mirror reflects about axis through sketch centroid, x_axis and y_axis are global constants
+- x_axis, y_axis, origin are globally defined vecs
 - Maximize use of transformations (translate, scale, mirror) for component. 
-- FIRST DEFINE COUNTOURS! and ANCHORPOINTS! Then add detail and reuse compoments
+- Mirroring happens along the center of a sketch, MAKE SURE to translate mirrors if needed.
 `
-
-func randomB64String(n int) (string, error) {
-  bs := make([]byte, n)
-  _, err := rand.Read(bs, n)
-  if err != nil {
-    return "", fmt.Errorf("failed to rand read: %v", err)
-  }
-  return base64.StdEncoding.EncodeToString(bs), nil
-}

@@ -113,3 +113,10 @@ if the compiler complains.
 we want easy editting of the sketchcode once a first draft
 has been produced. llms might be good at only recalling
 how to fix a line or a few lines.
+
+
+--- PARSE COMPILER OUTPUT ---
+compiler output should be parsed so we can pull the exact
+line that caused the error. an example
+{ "msg": "expected sketch got number"; "line": 10; "col": 14; }
+this can then be parsed into a SketchError. the 
