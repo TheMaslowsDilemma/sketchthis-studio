@@ -23,18 +23,18 @@ type Logger struct {
 
 func (l *Logger) Info(format string, args ...any) {
     if l.enabled {
-        fmt.Printf("[\033[32mINFO\033[0m]: " + format, args...)
+        fmt.Printf("[\033[32mINFO\033[0m]: " + format + "\n", args...)
     }
 }
 
 func (l *Logger) Warn(format string, args ...any) {
     if l.enabled {
-        fmt.Printf("[\033[33mWARN\033[0m]: " + format, args...)
+        fmt.Printf("[\033[33mWARN\033[0m]: " + format + "\n", args...)
     }
 }
 
 func (l *Logger) Debug(format string, args ...any) {
     if l.enabled {
-        fmt.Printf("[DEBUG]: " + format, args...)
+        fmt.Printf("[DEBUG]: " + format + "\n", args...)
     }
 }

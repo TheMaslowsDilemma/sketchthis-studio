@@ -1,3 +1,0 @@
-let p1 : vec = (1,0)
-let p2 : vec = p1 + p1
-let x : sketch = stroke p1 to p2

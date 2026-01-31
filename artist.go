@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	maxRetries      = 3
+	maxRetries      = 1
 	maxRetriesLocal = 6
 )
 
@@ -38,11 +38,12 @@ func generate(client LLMClient, prompt string, prevCode *string, prevErr *Sketch
 	}
 
 	messages := []Message{{Role: "user", Content: msg}}
+	log.Debug("generating response")
 	resp, err := client.Complete(systemPrompt(), messages)
 	if err != nil {
 		return nil, err
 	}
-
+	log.Debug("resp: %s", resp)
 	result, parseErr := parseResponse(resp)
 	if parseErr != nil {
 		log.Warn("parse error (attempt %d): %v\n", attempt+1, parseErr)
@@ -61,7 +62,7 @@ func generate(client LLMClient, prompt string, prevCode *string, prevErr *Sketch
 	return result, nil
 }
 
-func systemPrompt() string {
+func initialPrompt() string {
 	return fmt.Sprintf(`You are an expert sketch artist using SketchLang.
 
 %s
@@ -71,18 +72,11 @@ FORMAT:
 <code>
 # Complete SketchLang code
 </code>
-
-When fixing code, respond with either:
-1. Full corrected code in <code> tags, OR
-2. Edits in this format:
-<edit line="N">replacement line</edit>
-<edit line="N-M">
-replacement
-lines
-</edit>
 `, LangSpec)
 }
 
+// pulls in context around the error and gives that context
+// with the error formatted, then asks for the fix.
 func retryPrompt(code string, skerr SketchError) string {
 	lines := strings.Split(code, "\n")
 	start := max(0, skerr.Line-3)

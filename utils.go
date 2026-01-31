@@ -38,7 +38,7 @@ scribble stroke origin to center of tri
 
 ## Tips
 - Prioritize DRY principles to minimize token count. Modular components can be re-used.
-- USE short variable names (NOT "by" thats a keyword)
+- use consice, short variable names (NOT "by" thats a keyword)
 - NO dot notation (vec.x invalid), NO reassignment
 - Minimal comments if any
 - transformations are not render calls.
