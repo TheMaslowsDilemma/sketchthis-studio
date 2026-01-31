@@ -6,9 +6,61 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"encoding/json"
 )
 
 const compilerBin = "sketchlang"
+
+func parseCompilerError(errstr string) (*SketchError, error) {
+	var skerr SketchError
+	if err := json.Unmarshal([]byte(errstr), &skerr); err != nil {
+		return nil, fmt.Errorf("failed to parse compiler err: %v")
+	}
+	return &skerr
+}
+
+func ValidateSketch(text string, log *Logger) (*SketchError, error) {
+	tmpDir, err := os.MkdirTemp("", "sketchstudio-validation-")
+	if err != nil {
+		return nil, fmt.Errorf("failed to MkdirTemp: %v", err)
+	}
+	defer os.RemoveAll(tmpDir)
+
+	filename, err := randomB64String(7)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get random filename: %v", err)
+	}
+
+	filename = filename + ".sketch"
+	tmpFilePath := filepath.Join(tmpDir, filename)
+
+	if err := os.WriteFile(tmpFilePath, []byte(text), 0644); err != nil {
+		return nil, fmt.Errorf("failed to write code: %v", err)
+	}
+
+	// pos and size dont matter, so vals are arbitrary
+	args := []string{
+		filename,
+		"-pos 0,0", 
+		"-size 100,100",
+	}
+
+	log.Debug("validate begin. %s %v", compilerBin, args)
+	
+	cmd := exec.Command(compilerBin, args...)
+	cmd.Dir = tmpDir
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
+
+	err = cmd.Run()
+	if err != nil {
+		return parseSketchError(stderr.String())
+	}
+
+	// success
+	log.Debug("validate success")
+	return nil, nil
+}
 
 func Compile(code, outputName string, pos, size Vec2, log *Logger) (svg, gcode string, err error) {
 	tmpDir, err := os.MkdirTemp("", "sketch-")

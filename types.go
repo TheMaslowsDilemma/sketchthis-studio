@@ -12,14 +12,9 @@ type SketchCode struct {
 }
 
 type SketchError struct {
-    Line int
-    Col int
-    Message string
-}
-
-type SketchValidation struct {
-    Valid   bool
-    Errors  []SketchError
+    Line int        `json:"line"`
+    Column int      `json:"col"`
+    Message string  `json:"msg"`
 }
 
 type SketchResult struct {
