@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"unicode"
 )
 
 func main() {
@@ -83,18 +84,20 @@ func parseVec(s string) Vec2 {
 	return Vec2{x, y}
 }
 
+
 func sanitize(s string) string {
-	s = strings.ToLower(s)
-	s = strings.Map(func(r rune) rune {
-		if r >= 'a' && r <= 'z' || r >= '0' && r <= '9' {
-			return r
+	return strings.Map(func(r rune) rune {
+		if r > 127 {
+			if unicode.IsLetter(r) || unicode.IsNumber(r) || unicode.IsPunct(r) {
+				return r
+			}
+			return -1
 		}
-		return '_'
+		if r < 32 && r != '\n' && r != '\t' {
+			return -1
+		}
+		return r
 	}, s)
-	if len(s) > 40 {
-		s = s[:40]
-	}
-	return strings.Trim(s, "_")
 }
 
 func fatal(format string, args ...any) {

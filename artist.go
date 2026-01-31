@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
-	"unicode"
 )
 
 const (
@@ -201,19 +200,4 @@ func extractTag(content, tag string) string {
 		return strings.TrimSpace(m[1])
 	}
 	return ""
-}
-
-func sanitize(s string) string {
-	return strings.Map(func(r rune) rune {
-		if r > 127 {
-			if unicode.IsLetter(r) || unicode.IsNumber(r) || unicode.IsPunct(r) {
-				return r
-			}
-			return -1
-		}
-		if r < 32 && r != '\n' && r != '\t' {
-			return -1
-		}
-		return r
-	}, s)
 }
