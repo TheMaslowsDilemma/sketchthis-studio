@@ -120,3 +120,23 @@ compiler output should be parsed so we can pull the exact
 line that caused the error. an example
 { "msg": "expected sketch got number"; "line": 10; "col": 14; }
 this can then be parsed into a SketchError. the 
+
+----------------------------------------------------------
+Jan. 31 2026
+----------------------------------------------------------
+
+--- EDITS ---
+the compiler errors are now given to the LLM with context
+of its code and a pointer to where it was going wrong. 
+we might need better parsing of the multi-line replacements.
+
+--- LOCAL RUNS ---
+runs have been helpful to point friction points in the language
+and have shown how models fall into certain "behaviors" or
+patterns.
+the syntax can be improved further. we should spend time on
+chaining syntax, rotation syntax, and simplifying prepositions
+further. my initial idea that we should "take advantage of"
+has not turned out to be very helpful. maybe we can use it in
+planning, but the sketchlang code itself can and should be
+much leaner than english.

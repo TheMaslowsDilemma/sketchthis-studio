@@ -24,7 +24,7 @@ func randomB64String(n int) (string, error) {
 func parseSketchError(errstr string) (*SketchError, error) {
 	var skerr SketchError
 	if err := json.Unmarshal([]byte(errstr), &skerr); err != nil {
-		return &SketchError{Message: errstr}, nil
+		return &SketchError{ Message: errstr }, nil
 	}
 	return &skerr, nil
 }

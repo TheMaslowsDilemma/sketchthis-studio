@@ -16,25 +16,34 @@ Sketches:
   dot vec
   dash vec
   stroke vec to vec [via [vec,...]]
+  mirror sketch about vec
   translate sketch by vec
   scale sketch by number
-  mirror sketch about vec
+  rotate sketch by number
   [sketch, ...]
 
 ## Render: trace (exact) | draw (wobble) | scribble (noisy)
 
 ## Examples
-let c : sketch = stroke (0,50) to (100,50) via [(50,0)]
-trace c
+let arrow : sketch = [
+  stroke (0, 0) to (20, 0),
+  stroke (20, 0) to (15, 5),
+  stroke (20, 0) to (15, -5)
+]
 
-let p1 : vec = (50,10)
-let p2 : vec = (10,90)
-let p3 : vec = (90,90)
-let tri : sketch = [stroke p1 to p2, stroke p2 to p3, stroke p3 to p1]
-let big : sketch = scale tri by 2
-draw translate big by (100, 0)
+let arrows : sketch = [
+  arrow,
+  rotate arrow by 45,
+  rotate arrow by 90
+]
 
-scribble stroke origin to center of tri
+let arrw1 : sketch = scale arrows by 0.4
+let arrw2 : sketch = translate arrw1 by (20, 20)
+let arrw3 : sketch = translate arrw2 by (20, 0)
+
+draw arrw1
+trace arrw2
+scribble rotate arrw3 by 90
 
 ## Tips
 - Prioritize DRY principles to minimize token count. Modular components can be re-used.
@@ -47,4 +56,5 @@ scribble stroke origin to center of tri
 - x_axis, y_axis, origin are globally defined vecs
 - Maximize use of transformations (translate, scale, mirror) for component. 
 - Mirroring happens along the center of a sketch, MAKE SURE to translate mirrors if needed.
+- Comments are made with #
 `
