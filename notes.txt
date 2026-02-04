@@ -140,3 +140,79 @@ further. my initial idea that we should "take advantage of"
 has not turned out to be very helpful. maybe we can use it in
 planning, but the sketchlang code itself can and should be
 much leaner than english.
+
+----------------------------------------------------------
+Feb. 1 2026
+----------------------------------------------------------
+
+--- IDEAS ON FINETUNING ---
+we could likely benefit from finetuning a small 7b model
+using unsloth, on the sketchlang DSL. this should be easy
+to run on the 4070ti and if we get that working we can
+consider renting some gpus to finetune a larger model.
+
+----------------------------------------------------------
+Feb. 4 2026
+----------------------------------------------------------
+
+--- SKILL ---
+before doing any finetuning we can pursue making a simple
+skill file for claude at least. its less interesting but
+supposedly has high impact for the little it takes to make.
+
+--- CONFIG & DYNAMIC MODELS ---
+local models and haiku should be in charge of the edits.
+id like to make the client dynamic. consider we have some
+configuration for the run describing the models that can
+be used, the number of retries etc. at minimum we should
+have these variables all in one accessible spot.
+
+--- PLANNERS ---
+the language is much leaner now and local running models
+make it more reasonable to build out the multi-stage system
+of drawing. two components will power the system: planners
+and artists. the planners will produce plans and artists
+will produce the validated sketch code. the system will
+start with a single planner to create the plan for the
+sketch scene and subject, depth is 0. the plan is passed
+to child nodes that are planners or artists. we will
+keep a small branching factor and small maximum depth,
+but keep that in configuration.
+i could see this benefiting sketches where we want detail in
+subjects, but still need attention in surrounding. detail in
+the eyes, but less in the cheeks etc.
+we will need plan prompts and plan parsers and validators.
+the artists have their own Generator and Validator loop,
+where the validator is the compiler. we should extract this
+pattern of validator and generator loop, where a producer
+creates, validator either accepts, or fails with an error
+(which ideally gives context on why the error occured)
+then the state of the loop (attempts) determines if the
+loop continues or fails through based on the configured
+maximum retries.
+we then end up with a clean ValidatedProducer architecture,
+black boxes. we would have the SketchCode Producer or the
+Plan Producer. Ill NOTE we currently roughly have a single
+sketch code producer, that accepts the description or
+url and either fails or produces validated and compiled
+(to svg and gcode).
+an improvement that the validated producer will give is
+traces to producer outputs. we should save all those steps
+for debugging. each studio run begins and starts with a
+traceid. all model outputs will be saved under that traceid
+folder in <trace-id>/raw/<node-type>-<node-id>/<attempt-number>.txt
+the run will generate a tree graph with each node (named
+uuid) will be presentin that graph. this will be output into
+<trace-id>/run-tree.json
+or whatever is best for storing graph data or just raw text.
+we will need to formulate how the plans look, will become a
+sort of language in itself. we will need a way to parse plans
+and send those into either furhter plan producers or sketch
+producers. we will need to have a mechanism of combining the
+output of the artists. they are the leaves of the graph and
+will likely need ways to make variable names unique. I may
+be interested in writing this entire system in Ocaml and 
+foget about Go.
+
+
+

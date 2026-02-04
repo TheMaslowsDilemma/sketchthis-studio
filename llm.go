@@ -30,7 +30,7 @@ func NewAnthropicClient(key string, log *Logger) *AnthropicClient {
 
 func (c *AnthropicClient) Complete(system string, messages []Message) (string, error) {
 	body := map[string]any{
-		"model":      "claude-opus-4-5",
+		"model":      "claude-haiku-4-5",
 		"max_tokens": 16384,
 		"system":     system,
 		"messages":   messages,
@@ -97,7 +97,7 @@ func (c *LocalClient) Complete(system string, messages []Message) (string, error
 	}
 
 	data, _ := json.Marshal(body)
-	req, _ := http.NewRequest("POST", "http://localhost:1234/v1/chat/completions", bytes.NewReader(data))
+	req, _ := http.NewRequest("POST", "http://10.0.0.117:1234/v1/chat/completions", bytes.NewReader(data))
 	req.Header.Set("Content-Type", "application/json")
 
 	client := &http.Client{Timeout: 300 * time.Second}

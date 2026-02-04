@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	maxRetries      = 2
+	maxRetries      = 3
 	maxRetriesLocal = 6
 )
 
@@ -143,19 +143,12 @@ Fix ONLY this error. Do NOT simplify the sketch.`, skerr.Line, skerr.Column, ske
 func parseResponse(content string, prevCode *string) (*SketchResult, error) {
 	if prevCode != nil {
 		if edited := applyEdits(*prevCode, content); edited != *prevCode {
-			title := extractTag(content, "title")
-			if title == "" {
-				title = "Untitled"
-			}
+			title := extractTitle(content)
 			return &SketchResult{Code: edited, Title: title}, nil
 		}
 	}
 
-	title := extractTag(content, "title")
-	if title == "" {
-		return nil, fmt.Errorf("no <title> found")
-	}
-
+	title := extractTitle(content)
 	code := extractCode(content)
 	if code == "" {
 		return nil, fmt.Errorf("no <code> block found")
@@ -213,6 +206,17 @@ func extractCode(content string) string {
 		return strings.TrimSpace(m[1])
 	}
 	return ""
+}
+
+func extractTitle(content string) string {
+	title := extractTag(content, "title") // remove slashes and spaces from title, replace with dash
+	title = strings.ReplaceAll(title, "/", "-")
+	title = strings.ReplaceAll(title, "\\", "-")
+	title = strings.ReplaceAll(title, " ", "-")
+	if title == "" {
+		title = "Untitled"
+	}
+	return title
 }
 
 func extractTag(content, tag string) string {

@@ -1,60 +1,118 @@
 package main
 
-const LangSpec  = `# SketchLang Reference
+const LangSpec = `# SketchLang Reference
 
 ## Types
-number (float), vec (x,y), sketch (drawable/list)
+number (float), vec (x,y), sketch (drawable/list), region (closed polygon)
 
 ## Syntax
-let NAME : type = expr
-trace|draw|scribble sketch_expr
+let NAME = expr
+trace|draw|scribble expr
 
 ## Expressions
-Nums: literals, +,-,*,/, parens
-Vecs: (x,y), origin, center of sketch, vec±vec, vec*num
-Sketches:
-  dot vec
-  dash vec
-  stroke vec to vec [via [vec,...]]
-  mirror sketch about vec
-  translate sketch by vec
-  scale sketch by number
-  rotate sketch by number
-  [sketch, ...]
 
-## Render: trace (exact) | draw (wobble) | scribble (noisy)
+### Numbers
+Literals, +, -, *, /, parentheses
 
-## Examples
-let arrow : sketch = [
-  stroke (0, 0) to (20, 0),
-  stroke (20, 0) to (15, 5),
-  stroke (20, 0) to (15, -5)
-]
+### Vectors
+- (x, y) literal
+- origin, x_axis, y_axis (globals)
+- centerof sketch
+- vec ± vec, vec * num
 
-let arrows : sketch = [
-  arrow,
-  rotate arrow by 45,
-  rotate arrow by 90
-]
+### Sketches
+- dot vec | dot [vec, ...]
+- dash vec | dash [vec, ...]
+- stroke -> [vec, ...] (straight segments)
+- stroke ~> [vec, ...] (Catmull-Rom spline)
+- [sketch, ...]
+- shade region_or_sketch
 
-let arrw1 : sketch = scale arrows by 0.4
-let arrw2 : sketch = translate arrw1 by (20, 20)
-let arrw3 : sketch = translate arrw2 by (20, 0)
+### Regions
+- regionof sketch (convex hull)
 
-draw arrw1
-trace arrw2
-scribble rotate arrw3 by 90
+### Transforms (pipe or prefix)
+- expr |> translate vec
+- expr |> scale number
+- expr |> rotate degrees
+- expr |> mirror vec
+- expr |> at vec
+- translate expr vec (prefix form)
 
-## Tips
-- Prioritize DRY principles to minimize token count. Modular components can be re-used.
-- use consice, short variable names (NOT "by" thats a keyword)
-- NO dot notation (vec.x invalid), NO reassignment
-- Minimal comments if any
-- transformations are not render calls.
-- dash is a sketch, not a statement: scribble dash (10,10)
-- via points create Catmull-Rom splines
-- x_axis, y_axis, origin are globally defined vecs
-- Maximize use of transformations (translate, scale, mirror) for component. 
-- Mirroring happens along the center of a sketch, MAKE SURE to translate mirrors if needed.
-- Comments are made with #
+## Strokes
+stroke -> [...] connects points with straight segments.
+stroke ~> [...] interpolates a smooth curve through points.
+Both require at least two points.
+
+RIGHT — rectangle:
+  let box = [
+    stroke -> [(0,0), (10,0), (10,10), (0,10), (0,0)]
+  ]
+
+RIGHT — smooth curve:
+  let hill = stroke ~> [(0,0), (20,15), (40,20), (60,15), (80,0)]
+
+WRONG:
+  stroke (0,0) to (10,0)
+  stroke from (0,0) to (10,0) via [...]
+
+## Render Modes
+- trace: exact lines
+- draw: slight wobble
+- scribble: noisy/sketchy
+
+## Rules
+
+=== RULE 1 ===
+Transform arguments parse as atoms. No parens needed
+unless doing inline math.
+  draw s |> scale 2              # fine
+  draw s |> scale (2 * 3)        # parens needed
+
+=== RULE 2 ===
+Transforms operate relative to sketch center. After mirror
+use translate or at to align, otherwise sketches overlap.
+  let wing = stroke ~> [(0,0), (5,12), (15,10)]
+  let bird = [wing, wing |> mirror y_axis |> translate (15, 0)]
+
+=== RULE 3 ===
+When geometry must rotate around a shared point, define it
+centered at origin. Use at to place it last.
+  let spoke = stroke -> [(-r, 0), (r, 0)]
+  draw [spoke, spoke |> rotate 60, spoke |> rotate 120] |> at center
+
+## Example
+  let eye = stroke ~> [(0,0), (4,3), (8,0)]
+  draw [
+    eye |> at (35, 60),
+    eye |> at (55, 60)
+  ]
+
+  let petal = stroke ~> [(0,0), (-3,4), (3,4), (0,8)]
+  let bloom = [
+    petal,
+    petal |> rotate 45,
+    petal |> rotate 90,
+    petal |> rotate 135,
+    petal |> rotate 180,
+    petal |> rotate 225,
+    petal |> rotate 270,
+    petal |> rotate 315
+  ]
+
+  let leaf = stroke ~> [(0,0), (5,8), (3,15), (0,20), (-3,15), (-5,8)]
+  let shaded_leaf = [leaf, shade leaf]
+  draw shaded_leaf |> scale 0.7 |> rotate 30 |> at (80, 110)
+
+## Notes
+- NO dot notation (v.x is invalid)
+- NO variable reassignment
+- NO type annotations in let bindings
+- Transforms are expressions returning new sketches
+- dash orientation follows the flow field of nearby strokes
+- shade fills a region with random dashes (use scribble for texture)
+- Stack multiple shade passes for denser fill
+- Coordinates are in mm
+- Use short names, reuse with transforms (DRY)
+- Minimal comments
 `
